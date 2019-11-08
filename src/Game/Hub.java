@@ -1,15 +1,17 @@
 package Game;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
-import java.util.concurrent.ThreadPoolExecutor;
 
-public class Hub {
+public class Hub implements ActionListener {
 
     Scanner sc = new Scanner(System.in);
     JFrame frame = new JFrame();
+    JButton exitButton = new JButton("Exit game");
+    NewGame newGame = new NewGame();
 
 
 
@@ -18,12 +20,10 @@ public class Hub {
         frameMenu();
     }
 
-
     //Jframe
     public void frameMenu(){
 
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = (JPanel) frame.getContentPane(); //ett paket man kan lägga in flera lable/Buttons i för att sortera dem.
         panel.setLayout(null);
@@ -31,7 +31,6 @@ public class Hub {
         JLabel gameName = new JLabel("*SPELETS TITEL*");
         JButton newRunButton = new JButton("New Run");
         JButton tutorialButton = new JButton("Tutorial");
-        JButton exitButton = new JButton("Exit game");
 
         panel.add(gameName);
 
@@ -46,6 +45,31 @@ public class Hub {
         frame.setSize(600, 300);
         frame.setVisible(true);
     }
+
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+
+        String name = actionEvent.getActionCommand();
+
+        if(name.equals("New Run")){
+
+            frame.dispose();
+            newGame.startGame();
+        }
+        if(name.equals("Tutorial")){
+
+            //Tutorial
+        }
+        if(name.equals("Exit game")){
+
+            frame.dispose();
+            System.exit(0);
+        }
+    }
+
+
+
 
     //Ren Java
     public void mainMenu(){
