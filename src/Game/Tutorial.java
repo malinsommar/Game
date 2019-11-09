@@ -3,12 +3,12 @@ package Game;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewGame {
+public class Tutorial {
 
     JFrame gameFrame = new JFrame();
-    JLabel text = new JLabel("HiHi");
+    JLabel text = new JLabel("This is the tutorial");
 
-    public void startGame(){
+    public void Guide(){
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -20,3 +20,4 @@ public class NewGame {
 
     }
 }
+
