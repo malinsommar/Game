@@ -43,5 +43,30 @@ public class Hub {
         tutorialButton.addActionListener(e -> theTutorial.Guide());
         exitButton.addActionListener(e -> System.exit(0));
     }
+    //Ren Java
+    public void mainMenu(){
+        //New run, tutorial, exit
+        Scanner sc = new Scanner(System.in);
+        System.out.println("**Thwart Knights**");
+        System.out.println("[1] New run");
+        System.out.println("[2] Tutorial");
+        System.out.println("[2] Exit");
+
+        int menuChoice = sc.nextInt();
+
+        switch (menuChoice){
+
+            case 1:
+                //new run
+
+            case 2:
+                //Tutorial
+
+            case 3:
+                System.out.println("Shutting down...");
+                System.exit(0);
+        }
+    }
 }
+
 
