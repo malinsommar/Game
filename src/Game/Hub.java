@@ -6,68 +6,55 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
-public class Hub {
+public class Hub extends JFrame {
+
     private JLabel gameName;
     private JButton tutorialButton, newRunButton, exitButton;
-    Scanner sc = new Scanner(System.in);
     JFrame frame = new JFrame();
-    NewGame theGame = new NewGame();
-    Tutorial theTutorial = new Tutorial();
+
     public Hub() {
-        frameMenu();
-    }
 
-    //JFrame
-    public void frameMenu() {
-        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel panel = (JPanel) frame.getContentPane(); //A package you can put many labels/buttons into sort them.
-        panel.setLayout(null);
-        frame.setTitle("*Thwart Knights*");
-        gameName = new JLabel("*Thwart Knights*");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout( null/*new BoxLayout( getContentPane(), BoxLayout.Y_AXIS )*/);
+        setSize(1900, 1080);
+        setTitle("Thwart Knight");
+
+        ImageIcon background = new ImageIcon("tavern.jpg"); //download image
+        setContentPane(new JLabel(background));
+
+        gameName = new JLabel("          --Thwart Knights--");
+        gameName.setFont(new Font("Courier", Font.BOLD,75));
+        gameName.setForeground(Color.white);
+
         newRunButton = new JButton("New Game");
+        newRunButton.setSize(300,100);
+        newRunButton.setLocation(600,180);
+
         tutorialButton = new JButton("Tutorial");
+        tutorialButton.setSize(300,100);
+        tutorialButton.setLocation(600,300);
+
         exitButton = new JButton("Exit game");
+        exitButton.setSize(300,100);
+        exitButton.setLocation(600,420);
 
-        panel.add(gameName);
+        add(gameName);
         Dimension size = gameName.getPreferredSize();
-        gameName.setBounds(240, 10, size.width, size.height);  //Indicates where the label should be. layout is with.
-        panel.add(newRunButton);
-        frame.add(tutorialButton);
-        frame.add(exitButton);
+        gameName.setBounds(240, 10, size.width, size.height);
 
-        frame.setLayout(new FlowLayout()); //Default layout
-        frame.setSize(600, 300);
-        frame.setVisible(true);
+        add(newRunButton);
+        add(tutorialButton);
+        add(exitButton);
+
+        //add(panel);
+
 
         newRunButton.addActionListener(e -> frame.dispose());
-        newRunButton.addActionListener(e -> theGame.startGame());
-        tutorialButton.addActionListener(e -> theTutorial.Guide());
+        newRunButton.addActionListener(e -> new NewGame());
+      //  tutorialButton.addActionListener(e -> theTutorial.Guide());
         exitButton.addActionListener(e -> System.exit(0));
-    }
-    //Ren Java
-    public void mainMenu(){
-        //New run, tutorial, exit
-        Scanner sc = new Scanner(System.in);
-        System.out.println("**Thwart Knights**");
-        System.out.println("[1] New run");
-        System.out.println("[2] Tutorial");
-        System.out.println("[2] Exit");
 
-        int menuChoice = sc.nextInt();
-
-        switch (menuChoice){
-
-            case 1:
-                //new run
-
-            case 2:
-                //Tutorial
-
-            case 3:
-                System.out.println("Shutting down...");
-                System.exit(0);
-        }
+        setResizable(false);
+        setVisible(true);
     }
 }
-
-
