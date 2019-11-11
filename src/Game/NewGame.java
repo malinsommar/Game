@@ -2,7 +2,6 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 
 public class NewGame extends JFrame{
 
@@ -10,6 +9,7 @@ public class NewGame extends JFrame{
     JLabel backStory;
     JLabel backStory2;
     JLabel backStory3;
+    JButton startButton;
 
 
     private JButton forestButton, caveButton; //
@@ -49,6 +49,7 @@ public class NewGame extends JFrame{
         Dimension size3 = backStory3.getPreferredSize();
         backStory3.setBounds(400, 175, size3.width, size3.height);
 
+
         //Characters     **Jag kan bara lyckas få in en gif bois,fuckking swing
         Icon mage = new ImageIcon("mage.gif");
         try {
@@ -56,9 +57,15 @@ public class NewGame extends JFrame{
         } catch (Exception e) {
         }
 
+        //Button
+        startButton = new JButton("Prepare to die...");
+        startButton.setSize(300,100);
+        startButton.setLocation(500,550);
+        startButton.setFont(new Font("Courier", Font.BOLD,27));
+        startButton.setBackground(Color.white);
 
 
-
+        add(startButton);
         add(backStory);
         add(backStory2);
         add(backStory3);
