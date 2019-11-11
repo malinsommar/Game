@@ -10,7 +10,7 @@ public class simontest extends JFrame{
     public simontest(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon picShop = new ImageIcon("shopshop.jpg");//download cave image
+        ImageIcon picShop = new ImageIcon("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Gametest\\shopk.jpg");//download cave image
         setContentPane(new JLabel(picShop)); //assign background
 
         setLayout(new FlowLayout()); //Default layout
