@@ -57,8 +57,8 @@ public class NewGame extends JFrame{
         } catch (Exception e) {
         }
 
-        //Button
-        startButton = new JButton("Prepare to die...");
+        //Start Button
+        startButton = new JButton("Save the world");
         startButton.setSize(300,100);
         startButton.setLocation(500,550);
         startButton.setFont(new Font("Courier", Font.BOLD,27));
