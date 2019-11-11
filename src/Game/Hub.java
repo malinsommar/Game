@@ -27,6 +27,7 @@ public class Hub {
         newRunButton = new JButton("New Game");
         tutorialButton = new JButton("Tutorial");
         exitButton = new JButton("Exit game");
+
         panel.add(gameName);
         Dimension size = gameName.getPreferredSize();
         gameName.setBounds(240, 10, size.width, size.height);  //Indicates where the label should be. layout is with.

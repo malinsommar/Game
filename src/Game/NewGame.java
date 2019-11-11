@@ -16,8 +16,8 @@ public class NewGame{
         ImageIcon picMain = new ImageIcon("tavern.jpg"); //download tavern image
         ImageIcon picForest = new ImageIcon("forest.jpg");//download cavern image
         ImageIcon picCave = new ImageIcon("cave.jpg");//download cave image
-        //String picMenu = ("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Game\\tavern.jpg"); hehe pathen är en string hehe
         gameFrame.setContentPane(new JLabel(picMain)); //assign background
+
         /*
         till senare (placerar text på botten
         studentsButton.setHorizontalTextPosition(AbstractButton.CENTER);
@@ -30,11 +30,11 @@ public class NewGame{
 
         gameFrame.setLayout(new FlowLayout()); //Default layout
         gameFrame.setSize(1920, 1080);
-        gameFrame.setVisible(true);
         forestButton = new JButton(picForest); //
         caveButton = new JButton(picCave); //
         gameFrame.add(forestButton); //
         gameFrame.add(caveButton); //
+        gameFrame.setVisible(true);
 
     }
     }
