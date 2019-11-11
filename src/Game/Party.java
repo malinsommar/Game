@@ -1,4 +1,4 @@
 package Game;
 
-public class Party {
+public class Party{
 }

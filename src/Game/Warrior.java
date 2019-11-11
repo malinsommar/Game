@@ -1,4 +1,4 @@
 package Game;
 
-public class Warrior {
+public class Warrior extends Party {
 }
