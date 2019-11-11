@@ -47,12 +47,12 @@ public class NewGame extends JFrame{
         backStory3.setFont(new Font("Courier", Font.BOLD,60));
         backStory3.setForeground(Color.black);
         Dimension size3 = backStory3.getPreferredSize();
-        backStory3.setBounds(400, 200, size3.width, size3.height);
+        backStory3.setBounds(400, 175, size3.width, size3.height);
 
         //Characters     **Jag kan bara lyckas få in en gif bois,fuckking swing
-        Icon warrior = new ImageIcon("warrior.gif");
+        Icon mage = new ImageIcon("mage.gif");
         try {
-            setContentPane(new JLabel(warrior));
+            setContentPane(new JLabel(mage));
         } catch (Exception e) {
         }
 
