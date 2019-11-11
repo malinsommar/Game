@@ -3,7 +3,7 @@ package Game;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewGame{
+public class NewGame extends JFrame{
 
     JFrame gameFrame = new JFrame();
     private JButton forestButton, caveButton; //
@@ -24,15 +24,13 @@ public class NewGame{
          */
 
 
-
-
-        gameFrame.setLayout(new FlowLayout()); //Default layout
-        gameFrame.setSize(1920, 1080);
+        setLayout(new FlowLayout()); //Default layout
+        setSize(1920, 1080);
         forestButton = new JButton(picForest); //
         caveButton = new JButton(picCave); //
-        gameFrame.add(forestButton); //
-        gameFrame.add(caveButton); //
-        gameFrame.setVisible(true);
+        add(forestButton); //
+        add(caveButton); //
+        setVisible(true);
 
     }
 }
