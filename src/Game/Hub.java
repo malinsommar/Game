@@ -14,29 +14,34 @@ public class Hub extends JFrame {
 
     public Hub() {
 
+        super();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout( null/*new BoxLayout( getContentPane(), BoxLayout.Y_AXIS )*/);
         setSize(1900, 1080);
         setTitle("Thwart Knight");
 
-        ImageIcon background = new ImageIcon("tavern.jpg"); //download image
+        ImageIcon background = new ImageIcon("leaves.jpg"); //download image
         setContentPane(new JLabel(background));
 
-        gameName = new JLabel("          --Thwart Knights--");
-        gameName.setFont(new Font("Courier", Font.BOLD,75));
+        gameName = new JLabel("--Thwart Knights--");
+        gameName.setFont(new Font("Courier", Font.BOLD,100));
         gameName.setForeground(Color.white);
 
         newRunButton = new JButton("New Game");
         newRunButton.setSize(300,100);
-        newRunButton.setLocation(600,180);
+        newRunButton.setLocation(500,210);
+        newRunButton.setFont(new Font("Courier", Font.BOLD,27));
 
         tutorialButton = new JButton("Tutorial");
         tutorialButton.setSize(300,100);
-        tutorialButton.setLocation(600,300);
+        tutorialButton.setLocation(500,330);
+        tutorialButton.setFont(new Font("Courier", Font.BOLD,27));
 
         exitButton = new JButton("Exit game");
         exitButton.setSize(300,100);
-        exitButton.setLocation(600,420);
+        exitButton.setLocation(500,450);
+        exitButton.setFont(new Font("Courier", Font.BOLD,27));
+
 
         add(gameName);
         Dimension size = gameName.getPreferredSize();

@@ -24,8 +24,6 @@ public class NewGame extends JFrame{
          */
 
 
-
-
         setLayout(new FlowLayout()); //Default layout
         setSize(1920, 1080);
         forestButton = new JButton(picForest); //
