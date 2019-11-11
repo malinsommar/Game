@@ -50,10 +50,13 @@ public class NewGame extends JFrame{
         backStory3.setBounds(400, 175, size3.width, size3.height);
 
 
-        //Characters     **Jag kan bara lyckas få in en gif bois,fuckking swing
+        //Characters
+        JPanel magePanel = new JPanel();
+
         Icon mage = new ImageIcon("mage.gif");
         try {
             setContentPane(new JLabel(mage));
+
         } catch (Exception e) {
         }
 
@@ -63,7 +66,6 @@ public class NewGame extends JFrame{
         startButton.setLocation(500,550);
         startButton.setFont(new Font("Courier", Font.BOLD,27));
         startButton.setBackground(Color.white);
-
 
         add(startButton);
         add(backStory);
