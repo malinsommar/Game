@@ -8,6 +8,10 @@ import java.io.IOException;
 public class ForrestFight extends JFrame{
 
     Font pixelMplus;
+    JButton attack;
+    JButton block;
+    JButton item;
+    JButton skill;
 
     public void importFont() {
 
@@ -34,8 +38,23 @@ public class ForrestFight extends JFrame{
         ImageIcon background = new ImageIcon("forest.jpg"); //download image
         setContentPane(new JLabel(background)); //set backgrund
 
+        //Wolf Mob gif
         ImageIcon wolf = new ImageIcon("forrestMob.gif");
         add(new JLabel(wolf));
+
+        //Buttons
+        attack = new JButton("Attack");
+        block = new JButton("Block");
+        item = new JButton("Item");
+        skill = new JButton("Skill");
+
+
+        //Add Items
+        add(attack);
+        add(block);
+        add(item);
+        add(skill);
+
 
         setVisible(true);
     }
