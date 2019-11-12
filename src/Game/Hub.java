@@ -8,7 +8,6 @@ public class Hub extends JFrame {
 
     private JLabel gameName;
     private JButton tutorialButton, newRunButton, exitButton;
-    JFrame frame = new JFrame();
 
     public Hub() {
 
@@ -16,14 +15,14 @@ public class Hub extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout( null);
         setSize(1900, 1080);
-        setTitle("Thwart Knight");
+        setTitle("Alterborne");
 
         //Background picture
         ImageIcon background = new ImageIcon("leaves.jpg"); //download image
-        setContentPane(new JLabel(background));
+        setContentPane(new JLabel(background)); //set backgrund
 
         //Title of game
-        gameName = new JLabel("Thwart Knights");
+        gameName = new JLabel("Alterborne");
         gameName.setFont(new Font("Courier", Font.BOLD,100));
         gameName.setForeground(Color.white);
         Dimension size = gameName.getPreferredSize();
@@ -51,15 +50,14 @@ public class Hub extends JFrame {
         exitButton.setFont(new Font("Courier", Font.BOLD,27));
         exitButton.setBackground(Color.white);
 
-
-        //Action Listeners
+        // Add all items
         add(gameName);
         add(newRunButton);
         add(tutorialButton);
         add(exitButton);
 
-        // Add all items
-        newRunButton.addActionListener(e -> frame.dispose());
+        //Action Listeners
+        newRunButton.addActionListener(e -> dispose());
         newRunButton.addActionListener(e -> new NewGame());
         tutorialButton.addActionListener(e -> new Tutorial());
         exitButton.addActionListener(e -> System.exit(0));

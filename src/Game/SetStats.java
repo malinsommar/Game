@@ -19,11 +19,8 @@ public class SetStats {
         ran.setActionStrategy(new BasicAttackBlock());
         hea.setActionStrategy(new BasicAttackBlock());
 
+        hea.preformAction();
 
 
     }
-
-
-
-
 }

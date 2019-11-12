@@ -1,6 +1,6 @@
 package Game;
 
-public abstract class Party implements BasicSkills{
+public abstract class Party{
 
     BasicSkills basicSkills;
 
@@ -12,7 +12,6 @@ public abstract class Party implements BasicSkills{
 
         basicSkills.attack();
         basicSkills.block();
-
 
     }
 }
