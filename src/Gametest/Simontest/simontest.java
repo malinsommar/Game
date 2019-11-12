@@ -1,4 +1,4 @@
-package Gametest;
+package Gametest.Simontest;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
