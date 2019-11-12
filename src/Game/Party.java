@@ -15,5 +15,4 @@ public abstract class Party implements BasicSkills{
 
 
     }
-
 }
