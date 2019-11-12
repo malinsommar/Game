@@ -22,7 +22,7 @@ public class Hub extends JFrame {
         setTitle("Alterborne");
 
 
-        //Font
+        //Import font
         try{
             pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
