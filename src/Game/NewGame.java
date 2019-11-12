@@ -49,7 +49,6 @@ public class NewGame extends JFrame{
         Dimension size3 = backStory3.getPreferredSize();
         backStory3.setBounds(400, 175, size3.width, size3.height);
 
-
         //Characters
         JPanel magePanel = new JPanel();
 
