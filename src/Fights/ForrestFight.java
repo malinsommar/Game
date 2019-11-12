@@ -42,26 +42,40 @@ public class ForrestFight extends JFrame{
         JLabel wolf1 = new JLabel();
         wolf1.setIcon(new ImageIcon("forestMob.gif"));
         Dimension wolfSize = wolf1.getPreferredSize();
-        wolf1.setBounds(850, 310, wolfSize.width, wolfSize.height);
+        wolf1.setBounds(850, 320, wolfSize.width, wolfSize.height);
 
         JLabel wolf2 = new JLabel();
         wolf2.setIcon(new ImageIcon("forestMob.gif"));
-        wolf2.setBounds(1030, 310, wolfSize.width, wolfSize.height);
+        wolf2.setBounds(1030, 320, wolfSize.width, wolfSize.height);
 
         JLabel wolf3 = new JLabel();
         wolf3.setIcon(new ImageIcon("forestMob.gif"));
-        wolf3.setBounds(900, 390, wolfSize.width, wolfSize.height);
+        wolf3.setBounds(900, 400, wolfSize.width, wolfSize.height);
 
         JLabel wolf4 = new JLabel();
         wolf4.setIcon(new ImageIcon("forestMob.gif"));
-        wolf4.setBounds(1080, 390, wolfSize.width, wolfSize.height);
+        wolf4.setBounds(1080, 400, wolfSize.width, wolfSize.height);
 
         //Party members
         JLabel warrior = new JLabel();
         warrior.setIcon(new ImageIcon("warrior.gif"));
-        Dimension warriorsize = warrior.getPreferredSize();
-        warrior.setBounds(100, 200, warriorsize.width, warriorsize.height);
+        Dimension warriorSize = warrior.getPreferredSize();
+        warrior.setBounds(170, 210, warriorSize.width, warriorSize.height);
 
+        JLabel healer = new JLabel();
+        healer.setIcon(new ImageIcon("healer.gif"));
+        Dimension healerSize = healer.getPreferredSize();
+        healer.setBounds(-30, 210, healerSize.width, healerSize.height);
+
+        JLabel ranger = new JLabel();
+        ranger.setIcon(new ImageIcon("ranger.gif"));
+        Dimension rangerSize = ranger.getPreferredSize();
+        ranger.setBounds(70, 290, rangerSize.width, rangerSize.height);
+
+        JLabel mage = new JLabel();
+        mage.setIcon(new ImageIcon("mage.gif"));
+        Dimension mageSize = mage.getPreferredSize();
+        mage.setBounds(-110, 290, mageSize.width, mageSize.height);
 
 
         //Buttons
@@ -100,7 +114,11 @@ public class ForrestFight extends JFrame{
         add(wolf4);
         add(wolf1);
         add(wolf2);
+        add(ranger);
         add(warrior);
+        add(mage);
+        add(healer);
+
 
 
 
