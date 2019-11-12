@@ -1,4 +1,4 @@
-package Gametest;
+package Gametest.Davidtest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,7 +94,7 @@ public class Game extends Canvas implements Runnable{
          tickCount++;
 
          for (int i = 0; i<pixels.length; i++) {
-             pixels[i] = i + tickCount;
+             pixels[i] = i * tickCount;
      }
     }
     public void render() //prints out what the logic in the tick-function has stated should be printed out
