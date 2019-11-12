@@ -17,16 +17,31 @@ public class Hub extends JFrame {
         setSize(1900, 1080);
         setTitle("Alterborne");
 
+        /*
+        //Font
+        try{
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        }
+        catch(IOException | FontFormatException e){
+
+        }
+
+        textLabel.setFont(pixelMplus);
+*/
+
         //Background picture
-        ImageIcon background = new ImageIcon("leaves.jpg"); //download image
+        ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
         setContentPane(new JLabel(background)); //set backgrund
 
         //Title of game
         gameName = new JLabel("Alterborne");
-        gameName.setFont(new Font("Courier", Font.BOLD,100));
+        gameName.setFont(new Font("Monospaded", Font.ITALIC,120));
         gameName.setForeground(Color.white);
         Dimension size = gameName.getPreferredSize();
-        gameName.setBounds(300, 10, size.width, size.height);
+        gameName.setBounds(350, 10, size.width, size.height);
 
         //New run Button
         newRunButton = new JButton("New Game");
