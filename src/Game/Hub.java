@@ -99,6 +99,7 @@ public class Hub extends JFrame {
         });
 
         //Action Listeners for Tutorial Button
+        tutorialButton.addActionListener(e -> dispose());
         tutorialButton.addActionListener(e -> new ForrestFight());
         tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
 
