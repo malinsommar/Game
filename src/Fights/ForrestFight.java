@@ -84,24 +84,32 @@ public class ForrestFight extends JFrame{
         attackButton.setLocation(840, 535);
         attackButton.setFont(pixelMplus);
         attackButton.setBackground(Color.white);
+        attackButton.setBorder(null); //Remove border around button
+        attackButton.setFocusPainted(false);//Remove border around text in button
 
         blockButton = new JButton("Block");
         blockButton.setSize(200, 70);
         blockButton.setLocation(1050, 535);
         blockButton.setFont(pixelMplus);
         blockButton.setBackground(Color.white);
+        blockButton.setBorder(null); //Remove border around button
+        blockButton.setFocusPainted(false);//Remove border around text in button
 
         itemButton = new JButton("Item");
         itemButton.setSize(200, 70);
         itemButton.setLocation(1050, 610);
         itemButton.setFont(pixelMplus);
         itemButton.setBackground(Color.white);
+        itemButton.setBorder(null); //Remove border around button
+        itemButton.setFocusPainted(false);//Remove border around text in button
 
         skillButton = new JButton("Skill");
         skillButton.setSize(200, 70);
         skillButton.setLocation(840, 610);
         skillButton.setFont(pixelMplus);
         skillButton.setBackground(Color.white);
+        skillButton.setBorder(null); //Remove border around button
+        skillButton.setFocusPainted(false);//Remove border around text in button
 
 
         //Add Items
@@ -119,8 +127,6 @@ public class ForrestFight extends JFrame{
         add(healer);
 
         //Action Listeners
-
-
 
 
 

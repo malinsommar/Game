@@ -61,6 +61,8 @@ public class Hub extends JFrame {
         newRunButton.setLocation(500, 210);
         newRunButton.setFont(pixelMplus);
         newRunButton.setBackground(Color.white);
+        newRunButton.setBorder(null); //Remove border around button
+        newRunButton.setFocusPainted(false);//Remove border around text in button
 
         //Tutorial Button
         tutorialButton = new JButton("Tutorial");
@@ -68,6 +70,8 @@ public class Hub extends JFrame {
         tutorialButton.setLocation(500, 330);
         tutorialButton.setFont(pixelMplus);
         tutorialButton.setBackground(Color.white);
+        tutorialButton.setBorder(null); //Remove border around button
+        tutorialButton.setFocusPainted(false);//Remove border around text in button
 
 
         //Exit Button
@@ -76,6 +80,8 @@ public class Hub extends JFrame {
         exitButton.setLocation(500, 450);
         exitButton.setFont(pixelMplus);
         exitButton.setBackground(Color.white);
+        exitButton.setBorder(null); //Remove border around button
+        exitButton.setFocusPainted(false);//Remove border around text in button
 
         // Add all items
         add(gameName);
