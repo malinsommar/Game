@@ -23,8 +23,9 @@ public class NewGame extends JFrame{
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Background
-        ImageIcon background = new ImageIcon("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Gametest\\Simontest\\shopk.jpg");
+        ImageIcon background = new ImageIcon("bakgrundMountain.png");
         setContentPane(new JLabel(background));
+
 
         //Images
         ImageIcon picForest = new ImageIcon("forest.jpg");//download cavern image
@@ -84,10 +85,10 @@ public class NewGame extends JFrame{
         Dimension magesize = mage.getPreferredSize();
         Dimension healersize = healer.getPreferredSize();
         //bildens plasering
-        warrior.setBounds(100, 100, warriorsize.width, warriorsize.height);
-        ranger.setBounds(100, 100, rangersize.width, rangersize.height);
-        mage.setBounds(100, 100, magesize.width, magesize.height);
-        healer.setBounds(100, 100, healersize.width, healersize.height);
+        warrior.setBounds(200, 300, warriorsize.width, warriorsize.height);
+        ranger.setBounds(400, 300, rangersize.width, rangersize.height);
+        mage.setBounds(600, 300, magesize.width, magesize.height);
+        healer.setBounds(800, 300, healersize.width, healersize.height);
 
         //add(forestButton);
         //add(caveButton);
