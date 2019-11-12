@@ -12,6 +12,9 @@ public class ForrestFight extends JFrame{
     JButton blockButton;
     JButton itemButton;
     JButton skillButton;
+    JLabel attacked;
+    int attackIndex = 0;
+
 
     public void importFont() {
 
@@ -126,8 +129,62 @@ public class ForrestFight extends JFrame{
         add(mage);
         add(healer);
 
-        //Action Listeners
+        //Attack ActionListeners
+        attackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            //Change button color while hovering
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                attackButton.setBackground(Color.lightGray);
+            }
+            //Change back when not hovering
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                attackButton.setBackground(Color.white);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                attackIndex++;
+                if (attackIndex==1) {
+                    wolf1.setLocation(5000, 5000);
+                }
+                if (attackIndex==2) {
+                    wolf2.setLocation(5000, 5000);
+                }
+                if (attackIndex==3) {
+                    wolf3.setLocation(5000, 5000);
+                }
+                if (attackIndex==4) {
+                    wolf4.setLocation(5000, 5000);
+                }
+            }
+        });
 
+        //Block ActionListeners
+        blockButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                blockButton.setBackground(Color.lightGray);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                blockButton.setBackground(Color.white);
+            }
+        });
+
+        //Item ActionListeners
+        itemButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemButton.setBackground(Color.lightGray);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemButton.setBackground(Color.white);
+            }
+        });
+
+        //Skill ActionListeners
+        skillButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                skillButton.setBackground(Color.lightGray);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                skillButton.setBackground(Color.white);
+            }
+        });
 
 
         setVisible(true);

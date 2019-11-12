@@ -96,7 +96,7 @@ public class Hub extends JFrame {
         newRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
             //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                newRunButton.setBackground(Color.gray);
+                newRunButton.setBackground(Color.lightGray);
             }
             //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -111,7 +111,7 @@ public class Hub extends JFrame {
 
             //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tutorialButton.setBackground(Color.gray);
+                tutorialButton.setBackground(Color.lightGray);
             }
             //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -124,7 +124,7 @@ public class Hub extends JFrame {
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitButton.setBackground(Color.gray);
+                exitButton.setBackground(Color.lightGray);
             }
             //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {

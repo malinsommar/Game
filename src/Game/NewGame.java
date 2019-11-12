@@ -1,29 +1,24 @@
 package Game;
 
+import Fights.ForrestFight;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 
 public class NewGame extends JFrame{
 
-    JFrame gameFrame = new JFrame();
-    JLabel backStory;
-    JLabel backStory2;
-    JLabel backStory3;
+    JLabel backStory,backStory2,backStory3;
     JButton startButton;
-    Font pixelMplus;
-    Font pixelMplus2;
+    Font pixelMplus,pixelMplus2;
 
-    private JButton forestButton, caveButton; //
 
     public NewGame()  {
 
         setLayout(null);
         setSize(1920, 1080);
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.darkGray);
 
 
@@ -72,12 +67,19 @@ public class NewGame extends JFrame{
         startButton.setFont(pixelMplus);
         startButton.setForeground(Color.white);
         startButton.setBackground(Color.darkGray);
-        //startButton.setBorderPainted(false);
         startButton.setBorder(null); //Remove border around button
         startButton.setFocusPainted(false);//Remove border around text in button
 
-
-
+        startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            //Change button color while hovering
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                startButton.setBackground(Color.gray);
+            }
+            //Change back when not hovering
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                startButton.setBackground(Color.darkGray);
+            }
+        });
 
         add(startButton);
         add(backStory);
@@ -117,6 +119,11 @@ public class NewGame extends JFrame{
         healer.setBounds(740, 250, healerSize.width, healerSize.height);
         
         // ** End of party-members **
+
+        //ActionListeners
+        startButton.addActionListener(e -> dispose());
+        startButton.addActionListener(e -> new ForrestFight());
+
 
         setVisible(true);
     }
