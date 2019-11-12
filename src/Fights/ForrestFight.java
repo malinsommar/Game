@@ -39,8 +39,12 @@ public class ForrestFight extends JFrame{
         setContentPane(new JLabel(background)); //set backgrund
 
         //Wolf Mob gif
-        ImageIcon wolf = new ImageIcon("forrestMob.gif");
-        add(new JLabel(wolf));
+        JLabel wolf = new JLabel();
+        wolf.setIcon(new ImageIcon("forestMob.gif"));
+        add(wolf);
+        Dimension wolfSize = wolf.getPreferredSize();
+        wolf.setBounds(850, 300, wolfSize.width, wolfSize.height);
+
 
         //Buttons
         attack = new JButton("Attack");
