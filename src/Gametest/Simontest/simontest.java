@@ -1,4 +1,4 @@
-package Gametest;
+package Gametest.Simontest;
 
 import javafx.scene.canvas.GraphicsContext;
 

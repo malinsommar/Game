@@ -8,7 +8,6 @@ public class Hub extends JFrame {
 
     private JLabel gameName;
     private JButton tutorialButton, newRunButton, exitButton;
-    JFrame frame = new JFrame();
 
     public Hub() {
 
@@ -16,18 +15,33 @@ public class Hub extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout( null);
         setSize(1900, 1080);
-        setTitle("Thwart Knight");
+        setTitle("Alterborne");
+
+        /*
+        //Font
+        try{
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        }
+        catch(IOException | FontFormatException e){
+
+        }
+
+        textLabel.setFont(pixelMplus);
+*/
 
         //Background picture
-        ImageIcon background = new ImageIcon("leaves.jpg"); //download image
-        setContentPane(new JLabel(background));
+        ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
+        setContentPane(new JLabel(background)); //set backgrund
 
         //Title of game
-        gameName = new JLabel("Thwart Knights");
-        gameName.setFont(new Font("Courier", Font.BOLD,100));
+        gameName = new JLabel("Alterborne");
+        gameName.setFont(new Font("Monospaded", Font.ITALIC,120));
         gameName.setForeground(Color.white);
         Dimension size = gameName.getPreferredSize();
-        gameName.setBounds(300, 10, size.width, size.height);
+        gameName.setBounds(350, 10, size.width, size.height);
 
         //New run Button
         newRunButton = new JButton("New Game");
@@ -51,15 +65,14 @@ public class Hub extends JFrame {
         exitButton.setFont(new Font("Courier", Font.BOLD,27));
         exitButton.setBackground(Color.white);
 
-
-        //Action Listeners
+        // Add all items
         add(gameName);
         add(newRunButton);
         add(tutorialButton);
         add(exitButton);
 
-        // Add all items
-        newRunButton.addActionListener(e -> frame.dispose());
+        //Action Listeners
+        newRunButton.addActionListener(e -> dispose());
         newRunButton.addActionListener(e -> new NewGame());
         tutorialButton.addActionListener(e -> new Tutorial());
         exitButton.addActionListener(e -> System.exit(0));
