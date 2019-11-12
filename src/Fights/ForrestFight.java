@@ -104,7 +104,6 @@ public class ForrestFight extends JFrame{
         skillButton.setBackground(Color.white);
 
 
-
         //Add Items
         add(attackButton);
         add(blockButton);
@@ -118,6 +117,9 @@ public class ForrestFight extends JFrame{
         add(warrior);
         add(mage);
         add(healer);
+
+        //Action Listeners
+
 
 
 

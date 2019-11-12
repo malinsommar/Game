@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
 
 public class NewGame extends JFrame{
 
@@ -12,15 +14,35 @@ public class NewGame extends JFrame{
     JLabel backStory2;
     JLabel backStory3;
     JButton startButton;
-
+    Font pixelMplus;
+    Font pixelMplus2;
 
     private JButton forestButton, caveButton; //
 
     public NewGame()  {
 
         setLayout(null);
-
+        setSize(1920, 1080);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Import font
+        try {
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
+
+        try {
+            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(100f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
 
         //Background
         ImageIcon background = new ImageIcon("bakgrundMountain.png");
@@ -34,23 +56,23 @@ public class NewGame extends JFrame{
         caveButton = new JButton(picCave);
 
         //Text
-        backStory = new JLabel("This is a backstory. very cool. This is a backstory. very cool. This is a backstory. very cool.");
-        backStory.setFont(new Font("Courier", Font.BOLD,15));
-        backStory.setForeground(Color.black);
+        backStory = new JLabel("This is a backstory. very cool. This is a backstory. very cool.");
+        backStory.setFont(pixelMplus);
+        backStory.setForeground(Color.white);
         Dimension size = backStory.getPreferredSize();
-        backStory.setBounds(350, 100, size.width, size.height);
+        backStory.setBounds(170, 100, size.width, size.height);
 
-        backStory2 = new JLabel("This is a backstory. very nice. This is a backstory. very nice. This is a backstory. very cool.");
-        backStory2.setFont(new Font("Courier", Font.BOLD,15));
-        backStory2.setForeground(Color.black);
+        backStory2 = new JLabel("This is a backstory. very nice. This is a backstory. very nice.");
+        backStory2.setFont(pixelMplus);
+        backStory2.setForeground(Color.white);
         Dimension size2 = backStory2.getPreferredSize();
-        backStory2.setBounds(350, 130, size2.width, size2.height);
+        backStory2.setBounds(170, 130, size2.width, size2.height);
 
         backStory3 = new JLabel("This is your party.");
-        backStory3.setFont(new Font("Courier", Font.BOLD,60));
-        backStory3.setForeground(Color.black);
+        backStory3.setFont(pixelMplus2);
+        backStory3.setForeground(Color.white);
         Dimension size3 = backStory3.getPreferredSize();
-        backStory3.setBounds(400, 175, size3.width, size3.height);
+        backStory3.setBounds(200, 175, size3.width, size3.height);
 
         //Start Button
         startButton = new JButton("Save the world");
@@ -85,15 +107,13 @@ public class NewGame extends JFrame{
         Dimension magesize = mage.getPreferredSize();
         Dimension healersize = healer.getPreferredSize();
         //bildens plasering
-        warrior.setBounds(200, 300, warriorsize.width, warriorsize.height);
-        ranger.setBounds(400, 300, rangersize.width, rangersize.height);
-        mage.setBounds(600, 300, magesize.width, magesize.height);
-        healer.setBounds(800, 300, healersize.width, healersize.height);
+        warrior.setBounds(140, 300, warriorsize.width, warriorsize.height);
+        ranger.setBounds(340, 300, rangersize.width, rangersize.height);
+        mage.setBounds(540, 300, magesize.width, magesize.height);
+        healer.setBounds(740, 300, healersize.width, healersize.height);
 
         //add(forestButton);
         //add(caveButton);
-
-        setSize(1920, 1080);
 
         setVisible(true);
     }
