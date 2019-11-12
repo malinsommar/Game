@@ -2,6 +2,8 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class NewGame extends JFrame{
 
@@ -16,12 +18,12 @@ public class NewGame extends JFrame{
 
     public NewGame()  {
 
+        setLayout(null);
+
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
-        setLayout(new FlowLayout());
 
         //Background
-        ImageIcon background = new ImageIcon("leaves.jpg"); //download image
+        ImageIcon background = new ImageIcon("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Gametest\\Simontest\\shopk.jpg");
         setContentPane(new JLabel(background));
 
         //Images
@@ -49,16 +51,6 @@ public class NewGame extends JFrame{
         Dimension size3 = backStory3.getPreferredSize();
         backStory3.setBounds(400, 175, size3.width, size3.height);
 
-        //Characters
-        JPanel magePanel = new JPanel();
-
-        Icon mage = new ImageIcon("mage.gif");
-        try {
-            setContentPane(new JLabel(mage));
-
-        } catch (Exception e) {
-        }
-
         //Start Button
         startButton = new JButton("Save the world");
         startButton.setSize(300,100);
@@ -70,8 +62,37 @@ public class NewGame extends JFrame{
         add(backStory);
         add(backStory2);
         add(backStory3);
-        add(forestButton);
-        add(caveButton);
+
+        //skapar en label
+        JLabel warrior = new JLabel();
+        JLabel ranger = new JLabel();
+        JLabel mage = new JLabel();
+        JLabel healer = new JLabel();
+        //lägger in en bild i labelen
+        warrior.setIcon(new ImageIcon("warrior.gif"));
+        ranger.setIcon(new ImageIcon("ranger.gif"));
+        mage.setIcon(new ImageIcon("mage.gif"));
+        healer.setIcon(new ImageIcon("healer.gif"));
+        //lägger in labelen i framen
+        add(warrior);
+        add(ranger);
+        add(mage);
+        add(healer);
+        //hämtar storlek
+        Dimension warriorsize = warrior.getPreferredSize();
+        Dimension rangersize = ranger.getPreferredSize();
+        Dimension magesize = mage.getPreferredSize();
+        Dimension healersize = healer.getPreferredSize();
+        //bildens plasering
+        warrior.setBounds(100, 100, warriorsize.width, warriorsize.height);
+        ranger.setBounds(100, 100, rangersize.width, rangersize.height);
+        mage.setBounds(100, 100, magesize.width, magesize.height);
+        healer.setBounds(100, 100, healersize.width, healersize.height);
+
+        //add(forestButton);
+        //add(caveButton);
+
+        setSize(1920, 1080);
 
         setVisible(true);
     }
