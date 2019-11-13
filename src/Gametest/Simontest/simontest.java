@@ -1,5 +1,6 @@
 package Gametest.Simontest;
 
+import Game.musicpick;
 import javafx.scene.canvas.GraphicsContext;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ import java.util.Objects;
 public class simontest extends JFrame{
 
     JFrame testFrame = new JFrame();
+    private JButton testButton;
 
     public simontest() throws IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,8 +37,19 @@ public class simontest extends JFrame{
         add(new JLabel(mage));
         add(new JLabel(healer));
 
+        testButton = new JButton("Tutorial");
+        testButton.setSize(300, 100);
+        testButton.setLocation(500, 330);
+        testButton.setBackground(Color.white);
+
+        add(testButton);
+
+        testButton.addActionListener(e -> musicpick.musicStart("themefull"));
+
+        musicpick.musicStart("themefull");
 
 
+/*
         try {
             File yourFile = new File("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Gametest\\Simontest\\theme.wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(yourFile);
@@ -51,6 +64,8 @@ public class simontest extends JFrame{
         catch (Exception e) {
                 //whatevers
         }
+        */
+
 
 
         //BufferedImage mage2 = ImageIO.read(new File("mage.gif"));//funkar inte

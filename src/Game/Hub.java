@@ -115,20 +115,7 @@ public class Hub extends JFrame {
             }
         });
 
-        try {
-            File yourFile = new File("themefull.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(yourFile);
-            Clip clip = (Clip) AudioSystem.getLine(new DataLine.Info(Clip.class, audioIn.getFormat()));
-            clip.open(audioIn);
-            FloatControl gainControl =
-                    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-30.0f); //ändrar volym
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-        catch (Exception e) {
-            //whatevers
-        }
+        musicpick.musicStart("mainmenumusic");
 
         setResizable(false);
         setVisible(true);
