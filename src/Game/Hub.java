@@ -1,5 +1,6 @@
 package Game;
 
+import Fights.ForrestBossFight;
 import Fights.ForrestFight;
 
 import javax.swing.*;
@@ -106,7 +107,7 @@ public class Hub extends JFrame {
 
         //Action Listeners for Tutorial Button
         tutorialButton.addActionListener(e -> dispose());
-        tutorialButton.addActionListener(e -> new ForrestFight());
+        tutorialButton.addActionListener(e -> new ForrestBossFight());
         tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
 
             //Change button color while hovering

@@ -5,8 +5,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class ForrestFight extends JFrame{
-
+public class ForrestBossFight extends JFrame {
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
@@ -28,7 +27,7 @@ public class ForrestFight extends JFrame{
         }
     }
 
-    public ForrestFight(){
+    public ForrestBossFight(){
 
         super();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,23 +40,11 @@ public class ForrestFight extends JFrame{
         ImageIcon background = new ImageIcon("forest.jpg"); //download image
         setContentPane(new JLabel(background)); //set backgrund
 
-        //Wolf Mob gif
-        JLabel wolf1 = new JLabel();
-        wolf1.setIcon(new ImageIcon("forestMob.gif"));
-        Dimension wolfSize = wolf1.getPreferredSize();
-        wolf1.setBounds(850, 320, wolfSize.width, wolfSize.height);
-
-        JLabel wolf2 = new JLabel();
-        wolf2.setIcon(new ImageIcon("forestMob.gif"));
-        wolf2.setBounds(1030, 320, wolfSize.width, wolfSize.height);
-
-        JLabel wolf3 = new JLabel();
-        wolf3.setIcon(new ImageIcon("forestMob.gif"));
-        wolf3.setBounds(900, 400, wolfSize.width, wolfSize.height);
-
-        JLabel wolf4 = new JLabel();
-        wolf4.setIcon(new ImageIcon("forestMob.gif"));
-        wolf4.setBounds(1080, 400, wolfSize.width, wolfSize.height);
+        //Boss gif
+        JLabel boss = new JLabel();
+        boss.setIcon(new ImageIcon("forestBoss.gif"));
+        Dimension bossSize = boss.getPreferredSize();
+        boss.setBounds(750, 220, bossSize.width, bossSize.height);
 
         //Party members
         JLabel warrior = new JLabel();
@@ -120,10 +107,9 @@ public class ForrestFight extends JFrame{
         add(blockButton);
         add(itemButton);
         add(skillButton);
-        add(wolf3);
-        add(wolf4);
-        add(wolf1);
-        add(wolf2);
+
+        add(boss);
+
         add(ranger);
         add(warrior);
         add(mage);
@@ -142,16 +128,7 @@ public class ForrestFight extends JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 attackIndex++;
                 if (attackIndex==1) {
-                    wolf1.setLocation(5000, 5000);
-                }
-                if (attackIndex==2) {
-                    wolf2.setLocation(5000, 5000);
-                }
-                if (attackIndex==3) {
-                    wolf3.setLocation(5000, 5000);
-                }
-                if (attackIndex==4) {
-                    wolf4.setLocation(5000, 5000);
+                    boss.setLocation(5000, 5000);
                 }
             }
         });
@@ -186,7 +163,7 @@ public class ForrestFight extends JFrame{
             }
         });
 
-
         setVisible(true);
     }
+
 }
