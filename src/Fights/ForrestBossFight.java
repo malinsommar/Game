@@ -161,6 +161,8 @@ public class ForrestBossFight extends JFrame {
             }
         });
 
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
     }
 }

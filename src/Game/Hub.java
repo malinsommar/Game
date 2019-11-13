@@ -117,7 +117,8 @@ public class Hub extends JFrame {
 
         musicpick.musicStart("mainmenumusic");
 
-        setResizable(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
     }
 

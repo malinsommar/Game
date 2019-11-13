@@ -186,7 +186,8 @@ public class ForrestFight extends JFrame{
             }
         });
 
-
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
     }
 }
