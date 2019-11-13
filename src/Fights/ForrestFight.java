@@ -1,5 +1,8 @@
 package Fights;
 
+import Armor.PlateArmor;
+import Game.Warrior;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -7,6 +10,7 @@ import java.io.IOException;
 
 public class ForrestFight extends JFrame{
 
+    Warrior warr = new Warrior();
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
@@ -152,6 +156,8 @@ public class ForrestFight extends JFrame{
                 }
                 if (attackIndex==4) {
                     wolf4.setLocation(5000, 5000);
+                    String item = "PlateArmor";
+                    warr.newArmor(item);
                 }
             }
         });
