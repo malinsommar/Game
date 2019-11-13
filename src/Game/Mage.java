@@ -5,7 +5,7 @@ import Weapons.MageStartWeapon;
 
 import java.util.ArrayList;
 
-public class Mage extends Party {
+public class Mage{
 
     ArrayList mageWeapon = new ArrayList();
     ArrayList mageArmor = new ArrayList();

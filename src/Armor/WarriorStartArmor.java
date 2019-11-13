@@ -1,11 +1,13 @@
 package Armor;
 
-public class WarriorStartArmor {
+import Game.Warrior;
+
+public class WarriorStartArmor extends Warrior {
 
     public WarriorStartArmor(){
         String name = "Rusty Armor";
-        int block = 5;
+        int blockUp = 5;
         String rarety = "common";
-        System.out.println("Warrior got a "+name+". Block: " + 5+". Raraty: "+rarety);
+        System.out.println("Warrior got a "+name+". Block: " + blockUp+". Raraty: "+rarety);
     }
 }
