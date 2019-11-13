@@ -2,6 +2,7 @@ package Game;
 
 import Fights.ForrestFight;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -105,7 +106,6 @@ public class NewGame extends JFrame{
         //ActionListeners
         startButton.addActionListener(e -> dispose());
         startButton.addActionListener(e -> new ForrestFight());
-
 
         setVisible(true);
     }
