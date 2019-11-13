@@ -1,5 +1,6 @@
 package Game;
 
+import Armor.PlateArmor;
 import Armor.WarriorStartArmor;
 import Weapons.WarriorStartWeapon;
 
@@ -45,6 +46,7 @@ public class Warrior {
         itemFrame.setTitle("New Item found!");
         importFont();
 
+        //Buttons
         JButton yes = new JButton("Yes");
         yes.setLocation(30,60);
         yes.setFont(pixelMplus);
@@ -53,20 +55,28 @@ public class Warrior {
         no.setLocation(60,60);
         no.setFont(pixelMplus);
 
+        //Text
         JLabel text = new JLabel("Do you want to replace warrior's " + warriorArmor.get(0).name + " with " + item + "?");
         text.setFont(pixelMplus);
         Dimension size = text.getPreferredSize();
         text.setBounds(350, 10, size.width, size.height);
 
+        //Add all items
+        itemFrame.add(no);
+        itemFrame.add(yes);
+        itemFrame.add(text);
+
+        //Action Listeners
+        yes.addActionListener(e -> warriorArmor.remove(0));
+        yes.addActionListener(e ->warriorArmor.add(new PlateArmor()));
+        yes.addActionListener(e ->itemFrame.dispose());
+
+        no.addActionListener(e ->itemFrame.dispose());
+
         itemFrame.setVisible(true);
 
-        int choice = sc.nextInt(); //detta ska vara en knapp senare
-        if (choice == 1) {
-            warriorArmor.remove(0);
-            //warriorArmor.add(new item);
         }
 
-    }
 
     public void importFont() {
         try {
