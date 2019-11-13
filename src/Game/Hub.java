@@ -1,5 +1,6 @@
 package Game;
 
+import Fights.ForrestBossFight;
 import Fights.ForrestFight;
 
 import javax.swing.*;
@@ -22,26 +23,7 @@ public class Hub extends JFrame {
         setLayout(null);
         setSize(1900, 1080);
         setTitle("Alterborne");
-
-
-        //Import font
-        try {
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }
-
-        try {
-            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }
+        importFont();
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
@@ -106,7 +88,7 @@ public class Hub extends JFrame {
 
         //Action Listeners for Tutorial Button
         tutorialButton.addActionListener(e -> dispose());
-        tutorialButton.addActionListener(e -> new ForrestFight());
+        tutorialButton.addActionListener(e -> new ForrestBossFight());
         tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
 
             //Change button color while hovering
@@ -134,5 +116,25 @@ public class Hub extends JFrame {
 
         setResizable(false);
         setVisible(true);
+    }
+
+    public void importFont() {
+        try {
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
+
+        try {
+            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
     }
 }
