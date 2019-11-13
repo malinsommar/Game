@@ -2,6 +2,7 @@ package Fights;
 
 import Armor.PlateArmor;
 import Game.Warrior;
+import Game.musicpick;
 
 import javax.swing.*;
 import java.awt.*;
@@ -191,6 +192,8 @@ public class ForrestFight extends JFrame{
                 skillButton.setBackground(Color.white);
             }
         });
+
+        musicpick.musicStart("forest1");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
