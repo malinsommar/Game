@@ -1,5 +1,7 @@
 package Fights;
 
+import Game.musicpick;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -160,6 +162,8 @@ public class ForrestBossFight extends JFrame {
                 skillButton.setBackground(Color.white);
             }
         });
+
+        musicpick.musicStart("forest2");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
