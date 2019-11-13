@@ -1,6 +1,8 @@
 package Weapons;
 
-public class WarriorStartWeapon {
+import Game.Warrior;
+
+public class WarriorStartWeapon extends Warrior {
 
     public WarriorStartWeapon(){
 

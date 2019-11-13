@@ -5,7 +5,7 @@ import Weapons.RangerStartWeapon;
 
 import java.util.ArrayList;
 
-public class Ranger extends Party {
+public class Ranger {
 
     ArrayList rangerWeapon = new ArrayList();
     ArrayList rangerArmor = new ArrayList();

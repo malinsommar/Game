@@ -5,7 +5,7 @@ import Weapons.HealerStartWeapon;
 
 import java.util.ArrayList;
 
-public class Healer extends Party {
+public class Healer {
 
     ArrayList healerWeapon = new ArrayList();
     ArrayList healerArmor = new ArrayList();

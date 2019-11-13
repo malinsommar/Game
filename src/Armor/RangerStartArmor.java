@@ -4,8 +4,8 @@ public class RangerStartArmor {
 
     public RangerStartArmor(){
         String name = "Broken leather armor";
-        int block = 0;
+        int blockUp = 0;
         String rarety = "common";
-        System.out.println("Ranger got a "+name+". Block: " + block+". Raraty: "+rarety);
+        System.out.println("Ranger got a "+name+". Block: " + blockUp+". Raraty: "+rarety);
     }
 }
