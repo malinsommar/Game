@@ -1,9 +1,8 @@
 package Game;
 
-public abstract class Party{
+public class Enemies {
 
     BasicSkills basicSkills;
-
 
     public void setActionStrategy(BasicSkills basicSkills){
 
