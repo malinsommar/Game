@@ -23,26 +23,7 @@ public class Hub extends JFrame {
         setLayout(null);
         setSize(1900, 1080);
         setTitle("Alterborne");
-
-
-        //Import font
-        try {
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }
-
-        try {
-            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }
+        importFont();
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
@@ -135,5 +116,25 @@ public class Hub extends JFrame {
 
         setResizable(false);
         setVisible(true);
+    }
+
+    public void importFont() {
+        try {
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
+
+        try {
+            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
     }
 }

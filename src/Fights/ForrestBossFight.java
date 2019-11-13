@@ -44,7 +44,7 @@ public class ForrestBossFight extends JFrame {
         JLabel boss = new JLabel();
         boss.setIcon(new ImageIcon("forestBoss.gif"));
         Dimension bossSize = boss.getPreferredSize();
-        boss.setBounds(750, 220, bossSize.width, bossSize.height);
+        boss.setBounds(750, 100, bossSize.width, bossSize.height);
 
         //Party members
         JLabel warrior = new JLabel();
