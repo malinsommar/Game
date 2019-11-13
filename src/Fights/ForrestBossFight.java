@@ -12,7 +12,6 @@ public class ForrestBossFight extends JFrame {
     JButton itemButton;
     JButton skillButton;
     //JLabel attacked;
-    int attackIndex = 0;
 
 
     public void importFont() {
@@ -44,7 +43,7 @@ public class ForrestBossFight extends JFrame {
         JLabel boss = new JLabel();
         boss.setIcon(new ImageIcon("forestBoss.gif"));
         Dimension bossSize = boss.getPreferredSize();
-        boss.setBounds(750, 40, bossSize.width, bossSize.height);
+        boss.setBounds(800, 90, bossSize.width, bossSize.height);
 
         //Party members
         JLabel warrior = new JLabel();
@@ -126,10 +125,9 @@ public class ForrestBossFight extends JFrame {
                 attackButton.setBackground(Color.white);
             }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                attackIndex++;
-                if (attackIndex==1) {
+
                     boss.setLocation(5000, 5000);
-                }
+
             }
         });
 
