@@ -36,12 +36,12 @@ public class Hub extends JFrame {
         gameName.setFont(pixelMplus2);
 
         Dimension size = gameName.getPreferredSize();
-        gameName.setBounds(350, 10, size.width, size.height);
+        gameName.setBounds(350, 30, size.width, size.height);
 
         //New run Button
         newRunButton = new JButton("New Game");
         newRunButton.setSize(300, 100);
-        newRunButton.setLocation(500, 210);
+        newRunButton.setLocation(500, 240);
         newRunButton.setFont(pixelMplus);
         newRunButton.setBackground(Color.white);
         newRunButton.setBorder(null); //Remove border around button
@@ -50,7 +50,7 @@ public class Hub extends JFrame {
         //Tutorial Button
         tutorialButton = new JButton("Tutorial");
         tutorialButton.setSize(300, 100);
-        tutorialButton.setLocation(500, 330);
+        tutorialButton.setLocation(500, 360);
         tutorialButton.setFont(pixelMplus);
         tutorialButton.setBackground(Color.white);
         tutorialButton.setBorder(null); //Remove border around button
@@ -60,7 +60,7 @@ public class Hub extends JFrame {
         //Exit Button
         exitButton = new JButton("Exit game");
         exitButton.setSize(300, 100);
-        exitButton.setLocation(500, 450);
+        exitButton.setLocation(500, 480);
         exitButton.setFont(pixelMplus);
         exitButton.setBackground(Color.white);
         exitButton.setBorder(null); //Remove border around button

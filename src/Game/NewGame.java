@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class NewGame extends JFrame{
 
-    JLabel backStory,backStory2,backStory3;
+    JLabel backStory,backStory2,backStory3,yourParty;
     JButton startButton;
     Font pixelMplus,pixelMplus2;
 
@@ -29,24 +29,30 @@ public class NewGame extends JFrame{
         backStory.setFont(pixelMplus);
         backStory.setForeground(Color.white);
         Dimension size = backStory.getPreferredSize();
-        backStory.setBounds(170, 50, size.width, size.height);
+        backStory.setBounds(170, 100, size.width, size.height);
 
         backStory2 = new JLabel("This is a backstory. very nice. This is a backstory. very nice.");
         backStory2.setFont(pixelMplus);
         backStory2.setForeground(Color.white);
         Dimension size2 = backStory2.getPreferredSize();
-        backStory2.setBounds(170, 80, size2.width, size2.height);
+        backStory2.setBounds(170, 130, size2.width, size2.height);
 
-        backStory3 = new JLabel("This is your party.");
-        backStory3.setFont(pixelMplus2);
+        backStory3 = new JLabel("This is a backstory. very cool. This is a backstory. very cool.");
+        backStory3.setFont(pixelMplus);
         backStory3.setForeground(Color.white);
-        Dimension size3 = backStory3.getPreferredSize();
-        backStory3.setBounds(200, 120, size3.width, size3.height);
+        Dimension size3 = backStory.getPreferredSize();
+        backStory3.setBounds(170, 70, size3.width, size3.height);
+
+        yourParty = new JLabel("This is your party.");
+        yourParty.setFont(pixelMplus2);
+        yourParty.setForeground(Color.white);
+        Dimension size4 = yourParty.getPreferredSize();
+        yourParty.setBounds(200, 220, size4.width, size4.height);
 
         //Start Button
         startButton = new JButton("Save the world");
         startButton.setSize(300,100);
-        startButton.setLocation(500,550);
+        startButton.setLocation(500,600);
         startButton.setFont(pixelMplus);
         startButton.setForeground(Color.white);
         startButton.setBackground(Color.darkGray);
@@ -68,6 +74,7 @@ public class NewGame extends JFrame{
         add(backStory);
         add(backStory2);
         add(backStory3);
+        add(yourParty);
 
         // ** Start of Party-members **
 
@@ -96,10 +103,10 @@ public class NewGame extends JFrame{
         Dimension healerSize = healer.getPreferredSize();
         
         //Set bounds (location and size)
-        warrior.setBounds(140, 250, warriorSize.width, warriorSize.height);
-        ranger.setBounds(340, 250, rangerSize.width, rangerSize.height);
-        mage.setBounds(540, 250, mageSize.width, mageSize.height);
-        healer.setBounds(740, 250, healerSize.width, healerSize.height);
+        warrior.setBounds(140, 350, warriorSize.width, warriorSize.height);
+        ranger.setBounds(340, 350, rangerSize.width, rangerSize.height);
+        mage.setBounds(540, 350, mageSize.width, mageSize.height);
+        healer.setBounds(740, 350, healerSize.width, healerSize.height);
         
         // ** End of party-members **
 
