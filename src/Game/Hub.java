@@ -89,7 +89,7 @@ public class Hub extends JFrame {
 
         //Action Listeners for Tutorial Button
         tutorialButton.addActionListener(e -> dispose());
-        tutorialButton.addActionListener(e -> new ForrestBossFight());
+        tutorialButton.addActionListener(e -> new Shop());
         tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
 
             //Change button color while hovering
