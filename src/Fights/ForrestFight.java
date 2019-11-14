@@ -1,25 +1,25 @@
 package Fights;
 
-import Armor.PlateArmor;
+import Armor.RangerStartArmor;
 import Game.SetStats;
 import Game.Warrior;
 import Game.musicpick;
+import Gametest.Davidtest.HealthBar.HealthBar;
+import Weapons.RangerStartWeapon;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ForrestFight extends JFrame{
 
     Warrior warr = new Warrior();
     SetStats setStats = new SetStats();
     Font pixelMplus;
-    JButton attackButton;
-    JButton blockButton;
-    JButton itemButton;
-    JButton skillButton;
+    JButton attackButton, blockButton, itemButton, skillButton;
+    HealthBar healthBar = new HealthBar();
     //JLabel attacked;
     int attackIndex = 0;
 
@@ -75,7 +75,7 @@ public class ForrestFight extends JFrame{
 
         //Background picture
         ImageIcon background = new ImageIcon("forest.jpg"); //download image
-        setContentPane(new JLabel(background)); //set backgrund
+        setContentPane(new JLabel(background)); //set background
 
         //Wolf Mob gif
         JLabel wolf1 = new JLabel();
@@ -100,6 +100,7 @@ public class ForrestFight extends JFrame{
         warrior.setIcon(new ImageIcon("warrior.gif"));
         Dimension warriorSize = warrior.getPreferredSize();
         warrior.setBounds(170, 210, warriorSize.width, warriorSize.height);
+
 
         JLabel healer = new JLabel();
         healer.setIcon(new ImageIcon("healer.gif"));
@@ -229,5 +230,25 @@ public class ForrestFight extends JFrame{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         setVisible(true);
+    }
+
+    public static class Ranger {
+
+        ArrayList rangerWeapon = new ArrayList();
+        ArrayList rangerArmor = new ArrayList();
+
+        public int hp=70;
+        public int block=0;
+        public int str=0;
+        public int crit=15;
+        public int dex=5;
+
+        public void setStartEquipment() {
+            rangerWeapon.add(new RangerStartWeapon());
+            rangerArmor.add(new RangerStartArmor());
+        }
+        public void printOutStats(){
+            System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
+        }
     }
 }
