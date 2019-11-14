@@ -1,6 +1,7 @@
 package Fights;
 
 import Armor.PlateArmor;
+import Game.SetStats;
 import Game.Warrior;
 import Game.musicpick;
 
@@ -8,10 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 public class ForrestFight extends JFrame{
 
     Warrior warr = new Warrior();
+    SetStats setStats = new SetStats();
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
@@ -20,6 +23,34 @@ public class ForrestFight extends JFrame{
     //JLabel attacked;
     int attackIndex = 0;
 
+    int warriorCurrentHp,mageCurrentHp,healerCurrentHp,rangerCurrentHp;
+    int warriorDamage,mageDamage,healerDamage,rangerDamage;
+
+
+
+
+    //Wolfs
+    int wolf1Hp = 20;
+    int wolf2Hp = 20;
+    int wolf3Hp = 20;
+    int wolf4Hp = 20;
+
+    int wolfDamage = (int)(Math.random()*5)+10;
+
+
+    private void fight(){
+
+        boolean bothTeamsAlive = true;
+
+        while(bothTeamsAlive){
+
+            if (wolf1Hp < 1 && wolf2Hp < 1 && wolf3Hp < 1 && wolf4Hp < 1 ){
+                bothTeamsAlive=false;
+                //Victory screen
+                }
+
+        }
+    }
 
     public void importFont() {
 

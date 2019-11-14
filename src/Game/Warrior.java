@@ -25,7 +25,6 @@ public class Warrior {
     public int hp = 150;
     public int block = 0;
     public int str = 5;
-    public int inte = 0;
     public int crit = 5;
     public int dex = 0;
 
@@ -35,7 +34,7 @@ public class Warrior {
     }
 
     public void printOutStats() {
-        System.out.println("Hp: " + hp + "\nArmor: " + block + "\nStrength: " + str + "\nIntelligence: " + inte + "\nCrit chance: " + crit + "%\nDexterity: " + dex);
+        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
     }
 
     public void newArmor(String item) {
