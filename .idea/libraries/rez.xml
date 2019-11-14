@@ -3,7 +3,7 @@
     <CLASSES />
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/rez" />
+      <root url="file://$PROJECT_DIR$/src/Gametest/Davidtest/rez" />
     </SOURCES>
   </library>
 </component>
