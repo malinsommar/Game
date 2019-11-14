@@ -63,17 +63,23 @@ public class ForrestFight extends JFrame{
                 //Party turn
                if (i==1){
                    //Warrior
-                   attackButton.addActionListener(e -> enemies[0]=-5);
+                   attackButton.addActionListener(e -> enemies[0]=-warriorDamage);
 
                }
                if (i==2){
                     //Ranger
+                   attackButton.addActionListener(e -> enemies[0]=-rangerDamage);
+
                }
                if (i==3){
                     //Mage
+                   attackButton.addActionListener(e -> enemies[0]=-mageDamage);
+
                }
                if (i==4){
                     //Healer
+                   attackButton.addActionListener(e -> enemies[0]=-healerDamage);
+
                }
                 //Enemie turn
                 if (i==5){
@@ -137,7 +143,8 @@ public class ForrestFight extends JFrame{
         public void isFightOver(){
             if (enemies[0]<1 && enemies[1]<1 && enemies[2]<1 && enemies[3]<1){
                 //Victory screen
-                System.exit(0);
+                String item = "PlateArmor";
+                warr.newArmor(item);
             }
             if(warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1){
                 //Game over
@@ -281,8 +288,7 @@ public class ForrestFight extends JFrame{
                 }
                 if (attackIndex==4) {
                     wolf4.setLocation(5000, 5000);
-                    String item = "PlateArmor";
-                    warr.newArmor(item);
+
                 }
             }
         });
