@@ -13,7 +13,6 @@ public class Ranger {
     public int hp=70;
     public int block=0;
     public int str=0;
-    public int inte=0;
     public int crit=15;
     public int dex=5;
 
@@ -22,6 +21,6 @@ public class Ranger {
         rangerArmor.add(new RangerStartArmor());
     }
     public void printOutStats(){
-        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\nIntelligence: "+inte+"\nCrit chance: "+crit+"%\nDexterity: "+dex);
+        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
     }
 }

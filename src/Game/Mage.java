@@ -13,8 +13,7 @@ public class Mage{
     public int hp=100;
     public int block=0;
     public int str=0;
-    public int inte=5;
-    public int crit=5;
+    int crit=5;
     public int dex=0;
 
     public void setStartEquipment() {
@@ -22,7 +21,7 @@ public class Mage{
         mageArmor.add(new MageStartArmor());
     }
     public void printOutStats(){
-        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\nIntelligence: "+inte+"\nCrit chance: "+crit+"%\nDexterity: "+dex);
+        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
     }
 
 }
