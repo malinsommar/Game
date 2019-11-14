@@ -1,5 +1,9 @@
 package Game;
 
+import Fights.ForrestBossFight;
+import Fights.ForrestFight;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -17,31 +21,10 @@ public class Hub extends JFrame {
 
         super();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout( null);
-        setSize(1900, 1080);
+        setLayout(null);
+        setSize(1920, 1080);
         setTitle("Alterborne");
-
-
-        //Import font
-        try{
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        }
-        catch(IOException | FontFormatException e){
-
-        }
-
-        try{
-            pixelMplus2 =  Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        }
-        catch(IOException | FontFormatException e){
-
-        }
+        importFont();
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
@@ -57,25 +40,31 @@ public class Hub extends JFrame {
 
         //New run Button
         newRunButton = new JButton("New Game");
-        newRunButton.setSize(300,100);
-        newRunButton.setLocation(500,210);
+        newRunButton.setSize(300, 100);
+        newRunButton.setLocation(500, 210);
         newRunButton.setFont(pixelMplus);
         newRunButton.setBackground(Color.white);
+        newRunButton.setBorder(null); //Remove border around button
+        newRunButton.setFocusPainted(false);//Remove border around text in button
 
         //Tutorial Button
         tutorialButton = new JButton("Tutorial");
-        tutorialButton.setSize(300,100);
-        tutorialButton.setLocation(500,330);
+        tutorialButton.setSize(300, 100);
+        tutorialButton.setLocation(500, 330);
         tutorialButton.setFont(pixelMplus);
         tutorialButton.setBackground(Color.white);
+        tutorialButton.setBorder(null); //Remove border around button
+        tutorialButton.setFocusPainted(false);//Remove border around text in button
 
 
         //Exit Button
         exitButton = new JButton("Exit game");
-        exitButton.setSize(300,100);
-        exitButton.setLocation(500,450);
+        exitButton.setSize(300, 100);
+        exitButton.setLocation(500, 450);
         exitButton.setFont(pixelMplus);
         exitButton.setBackground(Color.white);
+        exitButton.setBorder(null); //Remove border around button
+        exitButton.setFocusPainted(false);//Remove border around text in button
 
         // Add all items
         add(gameName);
@@ -83,13 +72,73 @@ public class Hub extends JFrame {
         add(tutorialButton);
         add(exitButton);
 
-        //Action Listeners
+        //Action Listeners for New Run Button
+        //newRunButton.addActionListener(e -> clip.stop());
         newRunButton.addActionListener(e -> dispose());
         newRunButton.addActionListener(e -> new NewGame());
-        tutorialButton.addActionListener(e -> new Tutorial());
-        exitButton.addActionListener(e -> System.exit(0));
+        newRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            //Change button color while hovering
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                newRunButton.setBackground(Color.lightGray);
+            }
+            //Change back when not hovering
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                newRunButton.setBackground(UIManager.getColor("control"));
+            }
+        });
 
-        setResizable(false);
+        //Action Listeners for Tutorial Button
+        tutorialButton.addActionListener(e -> dispose());
+        tutorialButton.addActionListener(e -> new Shop());
+        tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            //Change button color while hovering
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tutorialButton.setBackground(Color.lightGray);
+            }
+            //Change back when not hovering
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tutorialButton.setBackground(UIManager.getColor("control"));
+            }
+        });
+
+        //Action Listeners for Exit button
+        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            //Change button color while hovering
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButton.setBackground(Color.lightGray);
+            }
+            //Change back when not hovering
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButton.setBackground(UIManager.getColor("control"));
+            }
+        });
+
+        musicpick.musicStart("mainmenu");
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
+    }
+
+    public void importFont() {
+        try {
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
+
+        try {
+            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }
     }
 }

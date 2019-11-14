@@ -2,25 +2,20 @@ package Game;
 
 public class SetStats {
 
-    private Party war;
-    private Party mag;
-    private Party ran;
-    private Party hea;
+    Warrior warrior = new Warrior();
+    Mage mage = new Mage();
+    Healer healer = new Healer();
+    Ranger ranger = new Ranger();
 
-    public void setStat(){
 
-        war = new Warrior();
-        mag = new Mage();
-        ran = new Ranger();
-        hea = new Healer();
 
-        war.setActionStrategy(new BasicAttackBlock());
-        mag.setActionStrategy(new BasicAttackBlock());
-        ran.setActionStrategy(new BasicAttackBlock());
-        hea.setActionStrategy(new BasicAttackBlock());
 
-        hea.preformAction();
+    public void setStartPartyStat(){
 
+        warrior.setStartEquipment();
+        mage.setStartEquipment();
+        healer.setStartEquipment();
+        ranger.setStartEquipment();
 
     }
 }
