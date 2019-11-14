@@ -17,7 +17,7 @@ public class ForrestFight extends JFrame{
     Healer healer = new Healer();
     Ranger ranger = new Ranger();
 
-    ArrayList enemies = new ArrayList();
+    ArrayList<Integer> enemies = new ArrayList<Integer>();
 
     SetStats setStats = new SetStats();
 
