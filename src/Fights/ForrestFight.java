@@ -5,6 +5,8 @@ import Game.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -17,7 +19,7 @@ public class ForrestFight extends JFrame{
     Healer healer = new Healer();
     Ranger ranger = new Ranger();
 
-    ArrayList<Integer> enemies = new ArrayList<Integer>();
+    int[] enemies = new int[4];
 
     SetStats setStats = new SetStats();
 
@@ -30,10 +32,6 @@ public class ForrestFight extends JFrame{
 
     int warriorCurrentHp,mageCurrentHp,healerCurrentHp,rangerCurrentHp;
     int warriorDamage,mageDamage,healerDamage,rangerDamage;
-
-
-
-    int wolfDamage = (int)(Math.random()*5)+10;
 
     public void getStats(){
         warr.hp=warriorCurrentHp;
@@ -49,29 +47,24 @@ public class ForrestFight extends JFrame{
 
     private void fight(){
 
-        enemies.add(20);
-        enemies.add(20);
-        enemies.add(20);
-        enemies.add(20);
+        enemies[0]=20;
+        enemies[1]=20;
+        enemies[2]=20;
+        enemies[3]=20;
+
         getStats();
 
-        boolean bothTeamsAlive = true;
+        while(true){
 
-        while(bothTeamsAlive){
-
-            if (enemies.get(0).equals(0) && enemies.get(1).equals(0) && enemies.get(2).equals(0) && enemies.get(3).equals(0)){
-                bothTeamsAlive=false;
-                //Victory screen
-                }
-            if(warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1){
-                bothTeamsAlive=false;
-                //Game over
-            }
             for (int i = 1; i < 9 ; i++) {
+
+                System.out.println("New turn");
 
                 //Party turn
                if (i==1){
                    //Warrior
+                   attackButton.addActionListener(e -> enemies[0]=-5);
+
                }
                if (i==2){
                     //Ranger
@@ -85,20 +78,72 @@ public class ForrestFight extends JFrame{
                 //Enemie turn
                 if (i==5){
                     //Wolf1
+                    wolfAttack();
                 }
                 if (i==6){
                     //wolf2
+                    wolfAttack();
                 }
                 if (i==7){
                     //wolf3
+                    wolfAttack();
                 }
                 if (i==8){
                     //wolf4
+                    wolfAttack();
                 }
             }
             }
         }
 
+        public void wolfAttack(){
+            int target = (int)(Math.random()*4);
+            int wolfDamage = (int)(Math.random()*5)+10;
+
+            if (target==0){
+                if(warriorCurrentHp<1){
+                    wolfAttack();
+                }
+                warriorCurrentHp=-wolfDamage;
+                System.out.println("Wolf attacked warrior, warrior lost "+wolfDamage+" hp.");
+            }
+            if (target==1){
+                if(mageCurrentHp<1){
+                    wolfAttack();
+                }
+                mageCurrentHp=-wolfDamage;
+                System.out.println("Wolf attacked mage, warrior lost "+wolfDamage+" hp.");
+
+            }
+            if (target==2){
+                if(rangerCurrentHp<1){
+                    wolfAttack();
+                }
+                rangerCurrentHp=-wolfDamage;
+                System.out.println("Wolf attacked ranger, warrior lost "+wolfDamage+" hp.");
+
+            }
+            if (target==3){
+                if(healerCurrentHp<1){
+                    wolfAttack();
+                }
+                healerCurrentHp=-wolfDamage;
+                System.out.println("Wolf attacked healer, warrior lost "+wolfDamage+" hp.");
+
+            }
+        }
+
+
+        public void isFightOver(){
+            if (enemies[0]<1 && enemies[1]<1 && enemies[2]<1 && enemies[3]<1){
+                //Victory screen
+                System.exit(0);
+            }
+            if(warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1){
+                //Game over
+                System.exit(0);
+            }
+        }
 
     public void importFont() {
 
@@ -143,7 +188,7 @@ public class ForrestFight extends JFrame{
         wolf4.setIcon(new ImageIcon("forestMob.gif"));
         wolf4.setBounds(1080, 400, wolfSize.width, wolfSize.height);
 
-        //Party members
+        //Party members gif
         JLabel warrior = new JLabel();
         warrior.setIcon(new ImageIcon("warrior.gif"));
         Dimension warriorSize = warrior.getPreferredSize();
