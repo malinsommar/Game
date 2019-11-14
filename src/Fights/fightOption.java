@@ -1,14 +1,20 @@
 package Fights;
 
+import java.lang.reflect.Array;
+
 public class fightOption {
     public int turnOrder = 0;
 
-    public void enemyTurn(){
+    /*public void skills(Array enemies, String spell, int level){
 
-        int target = (int)(Math.random()*4);
-        //if (target
+        if (spell == "firestorm"){
+            for (int i = 0; i < 4 ; i++) {
+                ForrestFight.enemies[i] -= (5 * level);
+
+            }
+        }
 
 
 
-    }
+    }*/
 }
