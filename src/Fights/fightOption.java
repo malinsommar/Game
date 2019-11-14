@@ -5,7 +5,7 @@ import java.lang.reflect.Array;
 public class fightOption {
     public int turnOrder = 0;
 
-    public void skills(Array enemies, String spell, int level){
+    /*public void skills(Array enemies, String spell, int level){
 
         if (spell == "firestorm"){
             for (int i = 0; i < 4 ; i++) {
@@ -16,5 +16,5 @@ public class fightOption {
 
 
 
-    }
+    }*/
 }
