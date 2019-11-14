@@ -1,26 +1,31 @@
 package Fights;
 
 import Armor.PlateArmor;
-import Game.SetStats;
-import Game.Warrior;
-import Game.musicpick;
+import Game.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ForrestFight extends JFrame{
 
     Warrior warr = new Warrior();
+    Mage mage = new Mage();
+    Healer healer = new Healer();
+    Ranger ranger = new Ranger();
+
+    ArrayList enemies = new ArrayList();
+
     SetStats setStats = new SetStats();
+
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
     JButton itemButton;
     JButton skillButton;
-    //JLabel attacked;
     int attackIndex = 0;
 
     int warriorCurrentHp,mageCurrentHp,healerCurrentHp,rangerCurrentHp;
@@ -28,29 +33,72 @@ public class ForrestFight extends JFrame{
 
 
 
-
-    //Wolfs
-    int wolf1Hp = 20;
-    int wolf2Hp = 20;
-    int wolf3Hp = 20;
-    int wolf4Hp = 20;
-
     int wolfDamage = (int)(Math.random()*5)+10;
 
+    public void getStats(){
+        warr.hp=warriorCurrentHp;
+        mage.hp=warriorCurrentHp;
+        healer.hp=warriorCurrentHp;
+        ranger.hp=warriorCurrentHp;
+
+        warr.str=warriorDamage;
+        mage.str=mageDamage;
+        healer.str=healerDamage;
+        ranger.str=rangerDamage;
+    }
 
     private void fight(){
+
+        enemies.add(20);
+        enemies.add(20);
+        enemies.add(20);
+        enemies.add(20);
+        getStats();
 
         boolean bothTeamsAlive = true;
 
         while(bothTeamsAlive){
 
-            if (wolf1Hp < 1 && wolf2Hp < 1 && wolf3Hp < 1 && wolf4Hp < 1 ){
+            if (enemies.get(0).equals(0) && enemies.get(1).equals(0) && enemies.get(2).equals(0) && enemies.get(3).equals(0)){
                 bothTeamsAlive=false;
                 //Victory screen
                 }
+            if(warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1){
+                bothTeamsAlive=false;
+                //Game over
+            }
+            for (int i = 1; i < 9 ; i++) {
 
+                //Party turn
+               if (i==1){
+                   //Warrior
+               }
+               if (i==2){
+                    //Ranger
+               }
+               if (i==3){
+                    //Mage
+               }
+               if (i==4){
+                    //Healer
+               }
+                //Enemie turn
+                if (i==5){
+                    //Wolf1
+                }
+                if (i==6){
+                    //wolf2
+                }
+                if (i==7){
+                    //wolf3
+                }
+                if (i==8){
+                    //wolf4
+                }
+            }
+            }
         }
-    }
+
 
     public void importFont() {
 
@@ -120,7 +168,7 @@ public class ForrestFight extends JFrame{
         //Buttons
         attackButton = new JButton("Attack");
         attackButton.setSize(200, 70);
-        attackButton.setLocation(840, 535);
+        attackButton.setLocation(840, 555);
         attackButton.setFont(pixelMplus);
         attackButton.setBackground(Color.white);
         attackButton.setBorder(null); //Remove border around button
@@ -128,7 +176,7 @@ public class ForrestFight extends JFrame{
 
         blockButton = new JButton("Block");
         blockButton.setSize(200, 70);
-        blockButton.setLocation(1050, 535);
+        blockButton.setLocation(1050, 555);
         blockButton.setFont(pixelMplus);
         blockButton.setBackground(Color.white);
         blockButton.setBorder(null); //Remove border around button
@@ -136,7 +184,7 @@ public class ForrestFight extends JFrame{
 
         itemButton = new JButton("Item");
         itemButton.setSize(200, 70);
-        itemButton.setLocation(1050, 610);
+        itemButton.setLocation(1050, 630);
         itemButton.setFont(pixelMplus);
         itemButton.setBackground(Color.white);
         itemButton.setBorder(null); //Remove border around button
@@ -144,7 +192,7 @@ public class ForrestFight extends JFrame{
 
         skillButton = new JButton("Skill");
         skillButton.setSize(200, 70);
-        skillButton.setLocation(840, 610);
+        skillButton.setLocation(840, 630);
         skillButton.setFont(pixelMplus);
         skillButton.setBackground(Color.white);
         skillButton.setBorder(null); //Remove border around button
