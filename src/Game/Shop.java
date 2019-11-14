@@ -2,6 +2,8 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,9 +21,6 @@ public class Shop extends JFrame {
 
         ImageIcon background = new ImageIcon("tavern.jpg"); //download image
         setContentPane(new JLabel(background)); //set backgrund
-
-
-
 
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
