@@ -8,7 +8,7 @@ public class fightOption {
 
         if (spell.equals("firestorm")){
             for (int i = 0; i < 4 ; i++) {
-                ForrestFight.enemies[i] -= (5 * level);
+                //ForrestFight.enemies[i] -= (5 * level);
 
             }
         }
