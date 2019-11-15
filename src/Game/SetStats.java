@@ -1,14 +1,12 @@
 package Game;
 
-import Fights.ForrestFight;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 public class SetStats {
 
     Warrior warrior = new Warrior();
     Mage mage = new Mage();
-    main.Healer healer = new main.Healer();
-    ForrestFight.Ranger ranger = new ForrestFight.Ranger();
+    Healer healer = new Healer();
+    Ranger ranger = new Ranger();
 
     public void setStartPartyStat(){
 
@@ -18,5 +16,4 @@ public class SetStats {
         ranger.setStartEquipment();
 
     }
-
 }

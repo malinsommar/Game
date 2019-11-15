@@ -267,8 +267,8 @@ public class ForrestFight extends JFrame {
         add(mage);
         add(healer);
 
-        hoverEffect();
 
+        hoverEffect();
         musicpick.musicStart("forest1");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
@@ -304,25 +304,6 @@ public class ForrestFight extends JFrame {
         public void mouseExited (java.awt.event.MouseEvent evt){
         attackButton.setBackground(Color.white);
     }
-
-            /*
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                attackIndex++;
-                if (attackIndex==1) {
-                    wolf1.setLocation(5000, 5000);
-                }
-                if (attackIndex==2) {
-                    wolf2.setLocation(5000, 5000);
-                }
-                if (attackIndex==3) {
-                    wolf3.setLocation(5000, 5000);
-                }
-                if (attackIndex==4) {
-                    wolf4.setLocation(5000, 5000);
-
-                }
-                }
-                */
     });
 
     //Block ActionListeners
