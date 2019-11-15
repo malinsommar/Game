@@ -1,4 +1,4 @@
-package Gametest.Davidtest;
+package Gametest.Davidtest.hubworld;
 
 import javax.swing.*;
 import java.awt.*;
