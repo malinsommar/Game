@@ -150,7 +150,6 @@ public class ForrestFight extends JFrame {
         }
     }
 
-
     public void isFightOver() {
         if (enemies[0] < 1 && enemies[1] < 1 && enemies[2] < 1 && enemies[3] < 1) {
             //Victory screen
