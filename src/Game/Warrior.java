@@ -20,7 +20,7 @@ public class Warrior {
 
     public String name;
     public int blockUp;
-    public int rarety;
+    public int rarity;
 
     public int hp = 150;
     public int block = 0;
