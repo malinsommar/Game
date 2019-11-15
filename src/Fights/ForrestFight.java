@@ -61,6 +61,16 @@ public class ForrestFight extends JFrame{
 
         } catch (IOException | FontFormatException e) {
 
+
+    public void isFightOver() {
+        if (enemies[0] < 1 && enemies[1] < 1 && enemies[2] < 1 && enemies[3] < 1) {
+            //Victory screen
+            String item = "PlateArmor";
+            warr.newArmor(item);
+        }
+        if (warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1) {
+            //Game over
+            System.exit(0);
         }
     }
 
