@@ -1,7 +1,5 @@
 package Game;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class SetStats {
 
@@ -18,5 +16,4 @@ public class SetStats {
         ranger.setStartEquipment();
 
     }
-
 }
