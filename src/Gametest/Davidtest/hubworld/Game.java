@@ -22,7 +22,7 @@ public class Game extends Canvas implements Runnable{
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    private SpriteSheet spriteSheet = new SpriteSheet("./Sprite_sheet.png");
+    private SpriteSheet spriteSheet = new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png");
     public Game() {
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
         setMaximumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));

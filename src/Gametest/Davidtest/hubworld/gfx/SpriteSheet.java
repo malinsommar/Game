@@ -16,12 +16,12 @@ public class SpriteSheet {
         BufferedImage image = null;
         InputStream myImage;
         try {
-            try (myImage = SpriteSheet.class.getResourceAsStream(path)) {
-            }
+            myImage = SpriteSheet.class.getResourceAsStream(path);
+
             image = ImageIO.read(myImage);
         } catch (IOException e) {
             e.printStackTrace(); //create an image
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
         }
         if (image == null) {
@@ -29,7 +29,7 @@ public class SpriteSheet {
         }
         this.path = path;
         this.width = image.getWidth();
-        this.width = image.getHeight();
+        this.height = image.getHeight();
 
         pixels = image.getRGB(0,0,width,height,null,0,width);
 
