@@ -1,5 +1,7 @@
 package Gametest.Davidtest.hubworld;
 
+import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -20,6 +22,7 @@ public class Game extends Canvas implements Runnable{
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    private SpriteSheet spriteSheet = new SpriteSheet("./Sprite_sheet.png");
     public Game() {
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
         setMaximumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
@@ -94,7 +97,7 @@ public class Game extends Canvas implements Runnable{
          tickCount++;
 
          for (int i = 0; i<pixels.length; i++) {
-             pixels[i] = i * tickCount;
+             pixels[i] = i + tickCount;
      }
     }
     public void render() //prints out what the logic in the tick-function has stated should be printed out
