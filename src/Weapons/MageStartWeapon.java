@@ -1,6 +1,8 @@
 package Weapons;
 
-public class MageStartWeapon {
+import Game.Mage;
+
+public class MageStartWeapon extends Mage {
 
     public MageStartWeapon(){
 

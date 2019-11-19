@@ -7,8 +7,12 @@ import java.util.ArrayList;
 
 public class Healer {
 
-    ArrayList healerWeapon = new ArrayList();
-    ArrayList healerArmor = new ArrayList();
+    ArrayList<Healer> healerWeapon = new ArrayList();
+    ArrayList<Healer> healerArmor = new ArrayList();
+
+    public String name;
+    public int blockUp;
+    public int damage;
 
     public int hp=100;
     public int block=0;
@@ -20,7 +24,12 @@ public class Healer {
         healerWeapon.add(new HealerStartWeapon());
         healerArmor.add(new HealerStartArmor());
     }
-    public void printOutStats(){
-        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
+    public int setHp() {
+        int heaHp = hp+healerArmor.get(0).blockUp;
+        return heaHp;
+    }
+    public int setStr() {
+        int heaStr = str+healerWeapon.get(0).damage;
+        return heaStr;
     }
 }

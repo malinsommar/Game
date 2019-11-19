@@ -1,6 +1,8 @@
 package Weapons;
 
-public class RangerStartWeapon {
+import Game.Ranger;
+
+public class RangerStartWeapon extends Ranger {
 
     public RangerStartWeapon(){
         String name = "Wodden bow";

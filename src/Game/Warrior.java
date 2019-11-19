@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class Warrior {
 
-    Scanner sc = new Scanner(System.in);
     Font pixelMplus;
     ArrayList<Warrior> warriorWeapon = new ArrayList();
     ArrayList<Warrior> warriorArmor = new ArrayList();
@@ -33,8 +32,14 @@ public class Warrior {
         warriorArmor.add(new WarriorStartArmor());
     }
 
-    public void printOutStats() {
-        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
+    public int setHp() {
+        int warriorCurrentHp = hp+warriorArmor.get(0).blockUp;
+        return warriorCurrentHp;
+    }
+
+    public int setStr() {
+        int warStr = str+warriorWeapon.get(0).str;
+        return warStr;
     }
 
     public void newArmor(String item) {

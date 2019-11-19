@@ -28,6 +28,11 @@ public class ForrestFight extends JFrame {
     JButton itemButton;
     JButton skillButton;
     JLabel whosTurn;
+    JLabel wolf1;
+    JLabel wolf2;
+    JLabel wolf3;
+    JLabel wolf4;
+    JLabel playersHp;
 
 
     private int warriorCurrentHp, mageCurrentHp, healerCurrentHp, rangerCurrentHp;
@@ -47,20 +52,20 @@ public class ForrestFight extends JFrame {
         setContentPane(new JLabel(background)); //set backgrund
 
         //Wolf Mob gif
-        JLabel wolf1 = new JLabel();
+        wolf1 = new JLabel();
         wolf1.setIcon(new ImageIcon("forestMob.gif"));
         Dimension wolfSize = wolf1.getPreferredSize();
         wolf1.setBounds(850, 320, wolfSize.width, wolfSize.height);
 
-        JLabel wolf2 = new JLabel();
+        wolf2 = new JLabel();
         wolf2.setIcon(new ImageIcon("forestMob.gif"));
         wolf2.setBounds(1030, 320, wolfSize.width, wolfSize.height);
 
-        JLabel wolf3 = new JLabel();
+        wolf3 = new JLabel();
         wolf3.setIcon(new ImageIcon("forestMob.gif"));
         wolf3.setBounds(900, 400, wolfSize.width, wolfSize.height);
 
-        JLabel wolf4 = new JLabel();
+        wolf4 = new JLabel();
         wolf4.setIcon(new ImageIcon("forestMob.gif"));
         wolf4.setBounds(1080, 400, wolfSize.width, wolfSize.height);
 
@@ -145,6 +150,13 @@ public class ForrestFight extends JFrame {
         // ***** Fight *****
         getStats();
 
+        JLabel wolf1Hp = new JLabel("Hp: "+ enemies[0]);
+        wolf1Hp.setFont(pixelMplus);
+        wolf1Hp.setForeground(Color.black);
+        Dimension wolf1HpSize = whosTurn.getPreferredSize();
+        wolf1Hp.setBounds(70, 560, wolf1HpSize.width, wolf1HpSize.height);
+        add(wolf1Hp);
+
         whosTurn = new JLabel("Warrior's turn");
         whosTurn.setFont(pixelMplus);
         whosTurn.setForeground(Color.black);
@@ -152,49 +164,15 @@ public class ForrestFight extends JFrame {
         whosTurn.setBounds(30, 560, whoSize.width, whoSize.height);
         add(whosTurn);
 
+        playersHp = new JLabel("Hp: "+warriorCurrentHp);
+        playersHp.setFont(pixelMplus);
+        playersHp.setForeground(Color.black);
+        Dimension playersHpSize = whosTurn.getPreferredSize();
+        playersHp.setBounds(30, 600, playersHpSize.width, playersHpSize.height);
+        add(playersHp);
+
+
         attackButton.addActionListener(e -> changeTurn());
-
-
-/*
-        String name = whosTurn.getName();
-
-        if (name.equals("Warrior's turn")) {
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -warriorDamage);
-            isFightOver();
-            attackButton.addActionListener(e -> whosTurn = new JLabel("Ranger's turn"));
-        }
-
-        if (name.equals("Ranger's turn")) {
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -rangerDamage);
-            isFightOver();
-            attackButton.addActionListener(e -> whosTurn = new JLabel("Mage's turn"));
-        }
-
-        if (name.equals("Mage's turn")) {
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -mageDamage);
-            isFightOver();
-            attackButton.addActionListener(e -> whosTurn = new JLabel("Healers's turn"));
-        }
-
-        if (name.equals("Healer's turn")) {
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -healerDamage);
-            isFightOver();
-            attackButton.addActionListener(e -> whosTurn = new JLabel("Enemies turn"));
-        }
-
-        if (name.equals("Enemies turn")) {
-            wolfAttack();
-            isFightOver();
-            wolfAttack();
-            isFightOver();
-            wolfAttack();
-            isFightOver();
-            wolfAttack();
-            isFightOver();
-            whosTurn = new JLabel("Warrior's turn");
-        }
-
-         */
 
         setVisible(true);
     }
@@ -202,35 +180,68 @@ public class ForrestFight extends JFrame {
     public void changeTurn(){
 
         if (whosTurn.getText().equals("Warrior's turn")){
+            attackButton.addActionListener(e -> enemies[randomTarget()] = -warriorDamage);
+            mobDeath();
+            //isFightOver();
             whosTurn.setText("Ranger's turn");
+            playersHp.setText("Hp: "+rangerCurrentHp);
         }
         else if (whosTurn.getText().equals("Ranger's turn")){
+            attackButton.addActionListener(e -> enemies[randomTarget()] = -rangerDamage);
+            mobDeath();
+            //isFightOver();
             whosTurn.setText("Mage's turn");
+            playersHp.setText("Hp: "+mageCurrentHp);
         }
         else if (whosTurn.getText().equals("Mage's turn")){
+            attackButton.addActionListener(e -> enemies[randomTarget()] = -mageDamage);
+            mobDeath();
+            //isFightOver();
             whosTurn.setText("Healers's turn");
+            playersHp.setText("Hp: "+healerCurrentHp);
         }
         else if (whosTurn.getText().equals("Healers's turn")){
+            attackButton.addActionListener(e -> enemies[randomTarget()] = -healerDamage);
+            mobDeath();
+            //isFightOver();
             whosTurn.setText("Enemies turn");
         }
         else if (whosTurn.getText().equals("Enemies turn")){
-            whosTurn.setText("Warrior'" +
-                    "s turn");
-        }
+            attackButton.addActionListener(e -> warriorCurrentHp =-10);
+            whosTurn.setText("Warrior'" + "s turn");
+            playersHp.setText("Hp: "+warriorCurrentHp);
 
+        }
+    }
+
+    public void mobDeath(){
+
+        if(enemies[0]<1){
+            wolf1.setVisible(false);
+        }
+        if(enemies[1]<1){
+            wolf2.setVisible(false);
+        }
+        if(enemies[2]<1){
+            wolf3.setVisible(false);
+        }
+        if(enemies[3]<1){
+            wolf4.setVisible(false);
+        }
     }
 
     public void getStats() {
-        warr.hp = warriorCurrentHp;
-        mage.hp = warriorCurrentHp;
-        healer.hp = warriorCurrentHp;
-        ranger.hp = warriorCurrentHp;
+/*
+        warriorCurrentHp = warr.setHp();
+        mageCurrentHp = mage.setHp();
+        healerCurrentHp = healer.setHp();
+        rangerCurrentHp = ranger.setHp();
 
-        warr.str = warriorDamage;
-        mage.str = mageDamage;
-        healer.str = healerDamage;
-        ranger.str = rangerDamage;
-
+        warriorDamage = warr.setStr();
+        mageDamage = mage.setStr();
+        healerDamage = mage.setStr();
+        rangerDamage = ranger.setStr();
+*/
         enemies[0] = 20;
         enemies[1] = 20;
         enemies[2] = 20;
@@ -248,6 +259,9 @@ public class ForrestFight extends JFrame {
         }
         if (target == 3 && enemies[2] < 1) {
             target = 4;
+        }
+        if (target == 4 && enemies[3] <1){
+            target =1;
         }
             return target;
     }
