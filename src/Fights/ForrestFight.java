@@ -19,7 +19,6 @@ public class ForrestFight extends JFrame {
     Mage mage = new Mage();
     Healer healer = new Healer();
     Ranger ranger = new Ranger();
-    Turn turn = new Turn();
     int[] enemies = new int[4];
 
     Font pixelMplus;
