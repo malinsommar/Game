@@ -19,6 +19,7 @@ public class ForrestFight extends JFrame {
     Mage mage = new Mage();
     Healer healer = new Healer();
     Ranger ranger = new Ranger();
+    Turn turn = new Turn();
     int[] enemies = new int[4];
 
     Font pixelMplus;
@@ -33,9 +34,9 @@ public class ForrestFight extends JFrame {
     JLabel wolf4;
     JLabel playersHp;
 
-
     public int warriorCurrentHp, mageCurrentHp, healerCurrentHp, rangerCurrentHp;
     public int warriorDamage, mageDamage, healerDamage, rangerDamage;
+
 
     public ForrestFight() {
 
@@ -146,7 +147,7 @@ public class ForrestFight extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 
-        // *** Fight ***
+        // ***** Fight *****
         getStats();
 
         JLabel wolf1Hp = new JLabel("Hp: "+ enemies[0]);
@@ -231,12 +232,20 @@ public class ForrestFight extends JFrame {
 
     public void getStats() {
 /*
+<<<<<<< HEAD
         warriorCurrentHp = warrior.setHp();
+=======
+        warriorCurrentHp = warr.setHp();
+>>>>>>> d82c39387194bfc9520f935be235e75556a9a31d
         mageCurrentHp = mage.setHp();
         healerCurrentHp = healer.setHp();
         rangerCurrentHp = ranger.setHp();
 
+<<<<<<< HEAD
         warriorDamage = warrior.setStr();
+=======
+        warriorDamage = warr.setStr();
+>>>>>>> d82c39387194bfc9520f935be235e75556a9a31d
         mageDamage = mage.setStr();
         healerDamage = mage.setStr();
         rangerDamage = ranger.setStr();
@@ -262,7 +271,7 @@ public class ForrestFight extends JFrame {
         if (target == 4 && enemies[3] <1){
             target =1;
         }
-        return target;
+            return target;
     }
 
     public void wolfAttack() {
@@ -333,7 +342,7 @@ public class ForrestFight extends JFrame {
 
     public void hoverEffect(){
 
-        //Attack Hover
+    //Attack Hover
         attackButton.addMouseListener(new java.awt.event.MouseAdapter()
 
         {
@@ -347,7 +356,7 @@ public class ForrestFight extends JFrame {
             }
         });
 
-        //Block Hover
+    //Block Hover
         blockButton.addMouseListener(new java.awt.event.MouseAdapter()
 
         {
@@ -359,7 +368,7 @@ public class ForrestFight extends JFrame {
             }
         });
 
-        //Item Hover
+    //Item Hover
         itemButton.addMouseListener(new java.awt.event.MouseAdapter()
 
         {

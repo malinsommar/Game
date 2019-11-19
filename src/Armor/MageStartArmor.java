@@ -1,6 +1,8 @@
 package Armor;
 
-public class MageStartArmor {
+import Game.Mage;
+
+public class MageStartArmor extends Mage {
 
     public MageStartArmor(){
         String name = "Cloth robe";
