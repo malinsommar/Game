@@ -214,7 +214,8 @@ public class ForrestFight extends JFrame {
             whosTurn.setText("Enemies turn");
         }
         else if (whosTurn.getText().equals("Enemies turn")){
-            whosTurn.setText("Warrior's turn");
+            whosTurn.setText("Warrior'" +
+                    "s turn");
         }
 
     }
