@@ -14,6 +14,5 @@ public class SetStats {
         mage.setStartEquipment();
         healer.setStartEquipment();
         ranger.setStartEquipment();
-
     }
 }

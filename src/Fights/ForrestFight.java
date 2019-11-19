@@ -73,6 +73,7 @@ public class ForrestFight extends JFrame {
                     attackButton.addActionListener(e -> enemies[0] = -warriorDamage);
                     attackButton.addActionListener(e -> whosTurn = new JLabel("Ranger's turn"));
 
+
                 }
                 if (i == 2) {
                     //Ranger
