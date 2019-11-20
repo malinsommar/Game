@@ -7,12 +7,14 @@ import Game.Warrior;
 
 public class Turn extends ForestFight {
 
-    Warrior warrior = new Warrior();
-    Mage mage = new Mage();
-    Healer healer = new Healer();
-    Ranger ranger = new Ranger();
+    int whosTurn = 0;
 
     public void getStats() {
+
+        Warrior warrior = new Warrior();
+        Mage mage = new Mage();
+        Healer healer = new Healer();
+        Ranger ranger = new Ranger();
 
         warriorCurrentHp = warrior.setHp();
         mageCurrentHp = mage.setHp();
@@ -26,21 +28,13 @@ public class Turn extends ForestFight {
 
     }
 
-    public int isFightOver() {
-        if (enemies[0] < 1 && enemies[1] < 1 && enemies[2] < 1 && enemies[3] < 1) {
-            //Victory screen
-            int awnser = 1;
-            return awnser;
+    public int plusTurn(){
+        whosTurn++;
 
-        }
-        if (warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1) {
-            //Game over
-            int awnser = 2;
-            return awnser;
-        }
-        //fight not over
-        return 3;
+        return whosTurn;
     }
+
+
 
     public void wolfAttack() {
         int target = (int) (Math.random() * 4);
@@ -79,42 +73,7 @@ public class Turn extends ForestFight {
         }
     }
 
-    public void changeTurn(){
 
-        if (whosTurn.getText().equals("Warrior's turn")){
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -warriorDamage);
-            mobDeath();
-            //isFightOver();
-            whosTurn.setText("Ranger's turn");
-            playersHp.setText("Hp: "+rangerCurrentHp);
-        }
-        else if (whosTurn.getText().equals("Ranger's turn")){
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -rangerDamage);
-            mobDeath();
-            //isFightOver();
-            whosTurn.setText("Mage's turn");
-            playersHp.setText("Hp: "+mageCurrentHp);
-        }
-        else if (whosTurn.getText().equals("Mage's turn")){
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -mageDamage);
-            mobDeath();
-            //isFightOver();
-            whosTurn.setText("Healers's turn");
-            playersHp.setText("Hp: "+healerCurrentHp);
-        }
-        else if (whosTurn.getText().equals("Healers's turn")){
-            attackButton.addActionListener(e -> enemies[randomTarget()] = -healerDamage);
-            mobDeath();
-            //isFightOver();
-            whosTurn.setText("Enemies turn");
-        }
-        else if (whosTurn.getText().equals("Enemies turn")){
-            attackButton.addActionListener(e -> warriorCurrentHp =-10);
-            whosTurn.setText("Warrior'" + "s turn");
-            playersHp.setText("Hp: "+warriorCurrentHp);
-
-        }
-    }
 
     public void mobDeath(){
 

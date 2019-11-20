@@ -12,6 +12,8 @@ public class Healer {
 
     public String name;
     public int blockUp;
+    public int rarity;
+
     public int damage;
 
     public int hp=100;
