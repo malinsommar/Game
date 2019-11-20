@@ -1,5 +1,6 @@
 package Game;
 
+import Armor.WarriorRareArmor;
 import Armor.WarriorStartArmor;
 import Weapons.WarriorStartWeapon;
 
@@ -70,7 +71,7 @@ public class Warrior {
 
         //Action Listeners
         yes.addActionListener(e -> warriorArmor.remove(0));
-        yes.addActionListener(e ->warriorArmor.add(new PlateArmor()));
+        yes.addActionListener(e ->warriorArmor.add(new WarriorRareArmor()));
         yes.addActionListener(e ->itemFrame.dispose());
 
         no.addActionListener(e ->itemFrame.dispose());

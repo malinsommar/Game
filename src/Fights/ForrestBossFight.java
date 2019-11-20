@@ -4,15 +4,21 @@ import Game.musicpick;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-public class ForrestBossFight extends JFrame {
+public class ForrestBossFight extends JFrame implements KeyListener {
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
     JButton itemButton;
     JButton skillButton;
+    JButton fireballButton;
+    JButton firestormButton;
+    JButton arcaneexplosionButton;
+    JButton pyroblastButton;
+
     //JLabel attacked;
 
 
@@ -102,12 +108,50 @@ public class ForrestBossFight extends JFrame {
         skillButton.setBorder(null); //Remove border around button
         skillButton.setFocusPainted(false);//Remove border around text in button
 
+        //
+
+        fireballButton = new JButton("Magic Missile");
+        fireballButton.setSize(200, 70);
+        fireballButton.setLocation(840, 535);
+        fireballButton.setFont(pixelMplus);
+        fireballButton.setBackground(Color.white);
+        fireballButton.setBorder(null); //Remove border around button
+        fireballButton.setFocusPainted(false);//Remove border around text in button
+
+        arcaneexplosionButton = new JButton("Arcane Blast");
+        arcaneexplosionButton.setSize(200, 70);
+        arcaneexplosionButton.setLocation(840, 610);
+        arcaneexplosionButton.setFont(pixelMplus);
+        arcaneexplosionButton.setBackground(Color.white);
+        arcaneexplosionButton.setBorder(null); //Remove border around button
+        arcaneexplosionButton.setFocusPainted(false);//Remove border around text in button
+
+        firestormButton = new JButton("Firestorm");
+        firestormButton.setSize(200, 70);
+        firestormButton.setLocation(1050, 535);
+        firestormButton.setFont(pixelMplus);
+        firestormButton.setBackground(Color.white);
+        firestormButton.setBorder(null); //Remove border around button
+        firestormButton.setFocusPainted(false);//Remove border around text in button
+
+        pyroblastButton = new JButton("Pyroblast");
+        pyroblastButton.setSize(200, 70);
+        pyroblastButton.setLocation(1050, 610);
+        pyroblastButton.setFont(pixelMplus);
+        pyroblastButton.setBackground(Color.white);
+        pyroblastButton.setBorder(null); //Remove border around button
+        pyroblastButton.setFocusPainted(false);//Remove border around text in button
+
 
         //Add Items
         add(attackButton);
         add(blockButton);
         add(itemButton);
         add(skillButton);
+        add(fireballButton);
+        add(firestormButton);
+        add(arcaneexplosionButton);
+        add(pyroblastButton);
 
         add(boss);
 
@@ -158,15 +202,69 @@ public class ForrestBossFight extends JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 skillButton.setBackground(Color.lightGray);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                skillButton.setBackground(Color.white);
-            }
+            public void mouseExited(java.awt.event.MouseEvent evt) { skillButton.setBackground(Color.white); }
         });
+
+/* plan b, button för att gå bakåt
+        fireballButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                attackButton.setBackground(Color.lightGray);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                attackButton.setBackground(Color.white);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backmenu(); }
+        });
+ */
+
+
+        skillButton.addActionListener(e -> skillmenu());
+
+        setFocusable(true);
+
+        addKeyListener(this);
 
         musicpick.musicStart("forest2");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         setVisible(true);
+    }
+
+    public void skillmenu(){
+        attackButton.setVisible(false);
+        blockButton.setVisible(false);
+        itemButton.setVisible(false);
+        skillButton.setVisible(false);
+        fireballButton.setVisible(true);
+        firestormButton.setVisible(true);
+        arcaneexplosionButton.setVisible(true);
+        pyroblastButton.setVisible(true);
+    }
+    public void backmenu() {
+        attackButton.setVisible(true);
+        blockButton.setVisible(true);
+        itemButton.setVisible(true);
+        skillButton.setVisible(true);
+        fireballButton.setVisible(false);
+        firestormButton.setVisible(false);
+        arcaneexplosionButton.setVisible(false);
+        pyroblastButton.setVisible(false);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+        //if(keyEvent.getKeyCode() == KeyEvent.VK_E)
+        backmenu();
+    }
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        backmenu();
+    }
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+        backmenu();
     }
 }

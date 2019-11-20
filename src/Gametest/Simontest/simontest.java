@@ -89,6 +89,7 @@ public class simontest extends JFrame {
         //int health = Warrior.hp;
         //dmg = weapon damage + buffdmg + debuffdmg
         //mage
+        //ta bort level å hämta direkt
         if (spell.equals("firestorm")) {
             for (int i = 0; i < 4; i++) {
                 enemies[i] -= (5 * level);
