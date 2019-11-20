@@ -1,6 +1,6 @@
 package Game;
 
-import Armor.PlateArmor;
+import Armor.WarriorRareArmor;
 import Armor.WarriorStartArmor;
 import Weapons.WarriorStartWeapon;
 
@@ -9,7 +9,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Warrior {
 
@@ -72,7 +71,7 @@ public class Warrior {
 
         //Action Listeners
         yes.addActionListener(e -> warriorArmor.remove(0));
-        yes.addActionListener(e ->warriorArmor.add(new PlateArmor()));
+        yes.addActionListener(e ->warriorArmor.add(new WarriorRareArmor()));
         yes.addActionListener(e ->itemFrame.dispose());
 
         no.addActionListener(e ->itemFrame.dispose());

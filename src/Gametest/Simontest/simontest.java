@@ -1,7 +1,6 @@
 package Gametest.Simontest;
 
-import Game.Warrior;
-import Game.musicpick;
+import Game.*;
 import javafx.scene.canvas.GraphicsContext;
 
 import javax.imageio.ImageIO;
@@ -25,7 +24,14 @@ public class simontest extends JFrame {
     int[] enemies = new int[4];
     int level = 5;
 
+    Warrior warrpizza =new Warrior();
+    Mage magepizza = new Mage();
+    Healer healerpizza = new Healer();
+    Ranger rangerpizza = new Ranger();
+    int[] partypizza = new int[4];
+
     public simontest() {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -56,7 +62,7 @@ public class simontest extends JFrame {
         add(testButton);
         add(testButton2);
         testButton.addActionListener(e -> spelltest("firestorm", level));
-        testButton2.addActionListener(e -> spelltest("fireblast", level));
+        testButton2.addActionListener(e -> spelltest("fireball", level));
 
         //testButton.addActionListener(e -> musicpick.musicStart("theme"));
 
@@ -83,6 +89,7 @@ public class simontest extends JFrame {
         //int health = Warrior.hp;
         //dmg = weapon damage + buffdmg + debuffdmg
         //mage
+        //ta bort level å hämta direkt
         if (spell.equals("firestorm")) {
             for (int i = 0; i < 4; i++) {
                 enemies[i] -= (5 * level);
@@ -99,7 +106,6 @@ public class simontest extends JFrame {
                 enemies[i] -= (5 * level);
                 System.out.println("enemy nr " + i + " has " + enemies[i]);
             }
-
         }
         //warrior
         else if (spell.equals("concussive blow")) {
@@ -121,11 +127,45 @@ public class simontest extends JFrame {
             System.out.println("insults the enemy, it is sure to attack them");
         }
         //ranger
-        else if (spell.equals("arrow shotshot blast")) {
+        else if (spell.equals("arrow shootshoot blast boomboom")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        else if (spell.equals("poison arrow")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        else if (spell.equals("stealth")) {
+            enemies[0] -= (20 * level);
+            System.out.println("hides, their next normal attack will be a backstab");
+            //normal attack blir backstab
+        }
+        else if (spell.equals("disengaged shot")) {
             enemies[0] -= (20 * level);
             System.out.println("enemy nr " + 0 + " has " + enemies[0]);
         }
         //healer
+        else if (spell.equals("heal")) {
+            //glöm inte Warrior warrpizza =new Warrior();
+            warrpizza.hp += (40 * level);
+            if (warrpizza.hp > 150){warrpizza.hp = 150;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
+        else if (spell.equals("overheal")) {
+            warrpizza.hp += (30 * level);
+            if (warrpizza.hp > 180){warrpizza.hp = 180;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
+        else if (spell.equals("group heal")) {
+            //glöm inte party
+            warrpizza.hp += (30 * level);
+            for (int i = 0; i < 4; i++) {
+                partypizza[i] -= (5 * level);
+                System.out.println("enemy nr " + i + " has " + partypizza[i]);
+            }
+            if (warrpizza.hp > 180){warrpizza.hp = 180;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
     }
 
 
@@ -165,11 +205,4 @@ public class simontest extends JFrame {
         Dimension warriorsize = warrior.getPreferredSize();
         warrior.setBounds(100, 100, warriorsize.width, warriorsize.height);
          */
-
-
-    public static void main (String[]args) throws IOException {
-
-        new simontest();
-
-    }
 }
