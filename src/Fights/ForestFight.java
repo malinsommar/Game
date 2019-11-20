@@ -9,9 +9,7 @@ import java.io.IOException;
 
 public class ForestFight extends JFrame {
 
-    int[] enemies = {20,20,20,20};
-
-    int turns = 1;
+    private int turns = 1;
 
     private Font pixelMplus;
     private JButton attackButton;
@@ -27,15 +25,23 @@ public class ForestFight extends JFrame {
     private JLabel wolf2Hp;
     private JLabel wolf3Hp;
     private JLabel wolf4Hp;
+
+    private int wolf1Int;
+    private int wolf2Int;
+    private int wolf3Int;
+    private int wolf4Int;
+
+
     private JLabel warrior;
     private JLabel mage;
     private JLabel healer;
     private JLabel ranger;
 
     private JLabel playersHp;
+    private JLabel wolfAttackLine;
 
     public int warriorCurrentHp=150, mageCurrentHp=100, healerCurrentHp=100, rangerCurrentHp=70;
-    public int warriorDamage =10, mageDamage=10, healerDamage=10, rangerDamage=10;
+    public int warriorDamage =10, mageDamage=8, healerDamage=5, rangerDamage=7;
 
     public ForestFight(){
 
@@ -53,6 +59,11 @@ public class ForestFight extends JFrame {
         importWolfGif();
         importPartyGif();
         importButtons();
+
+        wolf1Int = 20;
+        wolf2Int = 20;
+        wolf3Int = 20;
+        wolf4Int = 20;
 
         add(attackButton);
         add(blockButton);
@@ -86,131 +97,211 @@ public class ForestFight extends JFrame {
         playersHp = new JLabel("Hp: "+warriorCurrentHp);
         playersHp.setFont(pixelMplus);
         playersHp.setForeground(Color.black);
-        Dimension playersHpSize = whosTurn.getPreferredSize();
+        Dimension playersHpSize = playersHp.getPreferredSize();
         playersHp.setBounds(30, 600, playersHpSize.width, playersHpSize.height);
         add(playersHp);
 
-        wolf1Hp = new JLabel("Wolf 1: "+ enemies[0]);
+        wolf1Hp = new JLabel("Wolf 1: "+ wolf1Int);
         wolf1Hp.setFont(pixelMplus);
         wolf1Hp.setForeground(Color.black);
-        Dimension wolf1HpSize = whosTurn.getPreferredSize();
+        Dimension wolf1HpSize = wolf1Hp.getPreferredSize();
         wolf1Hp.setBounds(620, 560, wolf1HpSize.width, wolf1HpSize.height);
         add(wolf1Hp);
 
-        wolf2Hp = new JLabel("Wolf 2: "+ enemies[1]);
+        wolf2Hp = new JLabel("Wolf 2: "+ wolf2Int);
         wolf2Hp.setFont(pixelMplus);
         wolf2Hp.setForeground(Color.black);
-        Dimension wolf2HpSize = whosTurn.getPreferredSize();
+        Dimension wolf2HpSize = wolf2Hp.getPreferredSize();
         wolf2Hp.setBounds(620, 595, wolf2HpSize.width, wolf2HpSize.height);
         add(wolf2Hp);
 
-        wolf3Hp = new JLabel("Wolf 3: "+ enemies[2]);
+        wolf3Hp = new JLabel("Wolf 3: "+ wolf3Int);
         wolf3Hp.setFont(pixelMplus);
         wolf3Hp.setForeground(Color.black);
-        Dimension wolf3HpSize = whosTurn.getPreferredSize();
+        Dimension wolf3HpSize = wolf3Hp.getPreferredSize();
         wolf3Hp.setBounds(620, 630, wolf3HpSize.width, wolf3HpSize.height);
         add(wolf3Hp);
 
-
-        wolf4Hp = new JLabel("Wolf 4: "+ enemies[3]);
+        wolf4Hp = new JLabel("Wolf 4: "+ wolf4Int);
         wolf4Hp.setFont(pixelMplus);
         wolf4Hp.setForeground(Color.black);
-        Dimension wolf4HpSize = whosTurn.getPreferredSize();
+        Dimension wolf4HpSize = wolf4Hp.getPreferredSize();
         wolf4Hp.setBounds(620, 665, wolf4HpSize.width, wolf4HpSize.height);
         add(wolf4Hp);
 
+        wolfAttackLine = new JLabel("Your turn");
+        wolfAttackLine.setFont(pixelMplus);
+        wolfAttackLine.setForeground(Color.white);
+        Dimension wolfAttackLineSize = wolfAttackLine.getPreferredSize();
+        wolfAttackLine.setBounds(30, 60, wolfAttackLineSize.width, wolfAttackLineSize.height);
+        add(wolfAttackLine);
 
         attackButton.addActionListener(e -> changeTurn());
 
         setVisible(true);
     }
 
-
     public void changeTurn(){
 
-        if (turns==1 && warriorCurrentHp>1){
-            attackButton.addActionListener(e -> enemies[randomTarget()]-=warriorDamage);
-            //mobDeath();
-            //isFightOver();
-            updateHp();
+        if (turns==1 && warriorCurrentHp>=1){
+            warriorAttackWolf();
             whosTurn.setText("Ranger's turn");
             playersHp.setText("Hp: "+rangerCurrentHp);
         }
         if (turns==1 && warriorCurrentHp<1){
             turns++;
         }
-        if (turns ==2 && rangerCurrentHp>1){
-            attackButton.addActionListener(e -> enemies[randomTarget()]-=rangerDamage);
-            //mobDeath();
-            //isFightOver();
-            updateHp();
+
+        if (turns ==2 && rangerCurrentHp>=1){
+            rangerAttackWolf();
             whosTurn.setText("Mage's turn");
             playersHp.setText("Hp: "+mageCurrentHp);
         }
-        if (turns==1 && rangerCurrentHp<1){
+        else if (turns==2 && rangerCurrentHp<1){
             turns++;
         }
-        if (turns==3 && mageCurrentHp>1){
-            attackButton.addActionListener(e -> enemies[randomTarget()]-=mageDamage);
-            //mobDeath();
-            //isFightOver();
-            updateHp();
+
+        if (turns==3 && mageCurrentHp>=1){
+            mageAttackWolf();
             whosTurn.setText("Healers's turn");
             playersHp.setText("Hp: "+healerCurrentHp);
         }
-        if (turns==1 && mageCurrentHp<1){
+        if (turns==3 && mageCurrentHp<1){
             turns++;
         }
-        if (turns ==4 && healerCurrentHp>1){
-            attackButton.addActionListener(e -> enemies[randomTarget()]-=healerDamage);
-            //mobDeath();
-            //isFightOver();
-            updateHp();
+
+        if (turns ==4 && healerCurrentHp>=1){
+            healerAttackWolf();
             playersHp.setText(" ");
             whosTurn.setText("Wolf 1 turn");
         }
-        if (turns==1 && healerCurrentHp<1){
+        if (turns==4 && healerCurrentHp<1){
             turns++;
         }
-        if(turns==5 && enemies[0]>1){
-            attackButton.addActionListener(e -> warriorCurrentHp = warriorCurrentHp-10);
+
+        //    *****ENEMIES TURN******
+
+        //Wolf 1
+        if(turns==5 && wolf1Int>=1){
+            wolfAttack();
             whosTurn.setText("Wolf 2 turn");
         }
-        if (turns==1 && enemies[0]<1){
+        if (turns==5 && wolf1Int<1){
             turns++;
         }
-        if(turns==6 && enemies[1]>1){
-            attackButton.addActionListener(e -> warriorCurrentHp = warriorCurrentHp-10);
+
+        //Wolf 2
+        if(turns==6 && wolf2Int>=1){
+            wolfAttack();
             whosTurn.setText("Wolf 3 turn");
         }
-        if (turns==1 && enemies[1]<1){
+        if (turns==6 && wolf2Int<1){
             turns++;
         }
-        if(turns==7 && enemies[2]>1){
-            attackButton.addActionListener(e -> warriorCurrentHp = warriorCurrentHp-10);
+
+        //Wolf3
+        if(turns==7 && wolf3Int>=1){
+            wolfAttack();
             whosTurn.setText("Wolf 4 turn");
         }
-        if (turns==1 && enemies[2]<1){
+        if (turns==7 && wolf3Int<1){
             turns++;
         }
-        if(turns==8 && enemies[3]>1){
-            attackButton.addActionListener(e -> warriorCurrentHp = warriorCurrentHp-10);
+
+        //Wolf 4
+        if(turns==8 && wolf4Int>=1){
+            wolfAttack();
             whosTurn.setText("Warrior'" + "s turn");
             playersHp.setText("Hp: "+warriorCurrentHp);
+            wolfAttackLine.setText("Your turn");
             turns=0;
         }
-        if (turns==1 && enemies[3]<1){
+        if (turns==8 && wolf4Int<1){
             turns=0;
         }
-        plusTurn();
+        turns++;
     }
 
-    public void updateHp(){
-        wolf1Hp = new JLabel("Wolf 1: "+ enemies[0]);
-        wolf2Hp = new JLabel("Wolf 2: "+ enemies[1]);
-        wolf3Hp = new JLabel("Wolf 3: "+ enemies[2]);
-        wolf4Hp = new JLabel("Wolf 4: "+ enemies[3]);
+    public void warriorAttackWolf(){
+        int target = randomTarget();
 
+        if (target == 1){
+            wolf1Int = wolf1Int-warriorDamage;
+            wolf1Hp.setText("Wolf 1: "+ wolf1Int);
+        }
+        if (target == 2){
+            wolf2Int=wolf2Int-warriorDamage;
+            wolf2Hp.setText("Wolf 2: "+ wolf2Int);
+        }
+        if (target == 3){
+            wolf3Int=wolf3Int-warriorDamage;
+            wolf3Hp.setText("Wolf 3: "+ wolf3Int);
+        }
+        if (target == 4){
+            wolf4Int=wolf4Int-warriorDamage;
+            wolf4Hp.setText("Wolf 4: "+ wolf4Int);
+        }
+    }
+
+    public void mageAttackWolf(){
+        int target = randomTarget();
+        if (target == 1){
+            wolf1Int-=mageDamage;
+            wolf1Hp.setText("Wolf 1: "+ wolf1Int);
+        }
+        if (target == 2){
+            wolf2Int-=mageDamage;
+            wolf2Hp.setText("Wolf 2: "+ wolf2Int);
+        }
+        if (target == 3){
+            wolf3Int-=mageDamage;
+            wolf3Hp.setText("Wolf 3: "+ wolf3Int);
+        }
+        if (target == 4){
+            wolf4Int-=mageDamage;
+            wolf4Hp.setText("Wolf 4: "+ wolf4Int);
+        }
+    }
+
+    public void rangerAttackWolf(){
+        int target = randomTarget();
+
+        if (target == 1){
+            wolf1Int-=rangerDamage;
+            wolf1Hp.setText("Wolf 1: "+ wolf1Int);
+        }
+        if (target == 2){
+            wolf2Int-=rangerDamage;
+            wolf2Hp.setText("Wolf 2: "+ wolf2Int);
+        }
+        if (target == 3){
+            wolf3Int-=rangerDamage;
+            wolf3Hp.setText("Wolf 3: "+ wolf3Int);
+        }
+        if (target == 4){
+            wolf4Int-=rangerDamage;
+            wolf4Hp.setText("Wolf 4: "+ wolf4Int);
+        }
+    }
+
+    public void healerAttackWolf(){
+        int target = randomTarget();
+        if (target == 1){
+            wolf1Int-=healerDamage;
+            wolf1Hp.setText("Wolf 1: "+ wolf1Int);
+        }
+        if (target == 2){
+            wolf2Int-=healerDamage;
+            wolf2Hp.setText("Wolf 2: "+ wolf2Int);
+        }
+        if (target == 3){
+            wolf3Int-=healerDamage;
+            wolf3Hp.setText("Wolf 3: "+ wolf3Int);
+        }
+        if (target == 4){
+            wolf4Int-=healerDamage;
+            wolf4Hp.setText("Wolf 4: "+ wolf4Int);
+        }
     }
 
     public void getStats() {
@@ -232,14 +323,8 @@ public class ForestFight extends JFrame {
 
     }
 
-    public int plusTurn(){
-        turns++;
-
-        return turns;
-    }
-
     public void isFightOver() {
-        if (enemies[0] < 1 && enemies[1] < 1 && enemies[2] < 1 && enemies[3] < 1) {
+        if (wolf1Int < 1 && wolf2Int < 1 && wolf3Int < 1 && wolf4Int < 1) {
             //Victory screen
             new NewGame();
             dispose();
@@ -261,64 +346,61 @@ public class ForestFight extends JFrame {
             if (warriorCurrentHp < 1) {
                 wolfAttack();
             }
-            warriorCurrentHp = -wolfDamage;
-            System.out.println("Wolf attacked warrior, warrior lost " + wolfDamage + " hp.");
+            warriorCurrentHp=warriorCurrentHp-wolfDamage;
+            wolfAttackLine.setText("Wolf attacked warrior, warrior lost " + wolfDamage + " hp.");
         }
         if (target == 1) {
             if (mageCurrentHp < 1) {
                 wolfAttack();
             }
-            mageCurrentHp = -wolfDamage;
-            System.out.println("Wolf attacked mage, warrior lost " + wolfDamage + " hp.");
-
+            mageCurrentHp =mageCurrentHp-wolfDamage;
+            wolfAttackLine.setText("Wolf attacked mage, warrior lost " + wolfDamage + " hp.");
         }
         if (target == 2) {
             if (rangerCurrentHp < 1) {
                 wolfAttack();
             }
-            rangerCurrentHp = -wolfDamage;
-            System.out.println("Wolf attacked ranger, warrior lost " + wolfDamage + " hp.");
-
+            rangerCurrentHp =rangerCurrentHp-wolfDamage;
+            wolfAttackLine.setText("Wolf attacked ranger, warrior lost " + wolfDamage + " hp.");
         }
         if (target == 3) {
             if (healerCurrentHp < 1) {
                 wolfAttack();
             }
-            healerCurrentHp = -wolfDamage;
-            System.out.println("Wolf attacked healer, warrior lost " + wolfDamage + " hp.");
-
+            healerCurrentHp=healerCurrentHp-wolfDamage;
+            wolfAttackLine.setText("Wolf attacked healer, warrior lost " + wolfDamage + " hp.");
         }
     }
 
     public void mobDeath(){
 
-        if(enemies[0]<1){
+        if(wolf1Int<1){
             wolf1.setVisible(false);
         }
-        if(enemies[1]<1){
+        if(wolf2Int<1){
             wolf2.setVisible(false);
         }
-        if(enemies[2]<1){
+        if(wolf3Int<1){
             wolf3.setVisible(false);
         }
-        if(enemies[3]<1){
+        if(wolf4Int<1){
             wolf4.setVisible(false);
         }
     }
 
     public int randomTarget(){
-        int target = (int) (Math.random() * 4);
+        int target = (int) (Math.random() * 4)+1;
 
-        if (target == 1 && enemies[0] < 1) {
+        if (target == 1 && wolf1Int < 1) {
             target = 2;
         }
-        if (target == 2 && enemies[1] < 1) {
+        else if (target == 2 && wolf2Int < 1) {
             target = 3;
         }
-        if (target == 3 && enemies[2] < 1) {
+        else if (target == 3 && wolf3Int < 1) {
             target = 4;
         }
-        if (target == 4 && enemies[3] <1){
+        else if (target == 4 && wolf4Int < 1) {
             target =1;
         }
         return target;
