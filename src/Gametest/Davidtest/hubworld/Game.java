@@ -1,5 +1,6 @@
 package Gametest.Davidtest.hubworld;
 
+import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
 
 import javax.swing.*;
@@ -22,7 +23,10 @@ public class Game extends Canvas implements Runnable{
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    private SpriteSheet spriteSheet = new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png");
+
+    private Screen screen;
+    public InputHandler input;
+
     public Game() {
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
         setMaximumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
@@ -37,6 +41,10 @@ public class Game extends Canvas implements Runnable{
         frame.setResizable(false);//Not resizable
         frame.setLocationRelativeTo(null);//center the frame
         frame.setVisible(true);
+    }
+    public void init() {
+        screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
+        input = new InputHandler(this);
     }
     private synchronized void start() {
         running = true;
@@ -57,9 +65,11 @@ public class Game extends Canvas implements Runnable{
         long lastTimer = System.currentTimeMillis(); //a variable for when to reset the data
         double delta = 0; //a variable of how many nano-seconds have gone by so far. Once it has hit 1 second, 1 will be subtracted
 
+         init(); //calls the screen-render before the game-loop starts
+
         while (running) {
             long now = System.nanoTime(); //The current time that will be checked against lastTime
-            delta +=(now - lastTime) / nsPerTick; //subtract the current time with the last time and then divide the result with how many nanoseconds there are within a tick
+            delta += (now - lastTime) / nsPerTick; //subtract the current time with the last time and then divide the result with how many nanoseconds there are within a tick
             lastTime = now; //repeats the method by giving 'lastTime' the same value as 'now'
             boolean shouldRender = true;
 
@@ -71,11 +81,11 @@ public class Game extends Canvas implements Runnable{
             }
 
             try {
-                Thread.sleep(3);
+                //A 'sleep' method that pauses the current thread to keep it from overloading the system. in this case the frames are lowered based on the assigned sleep-value
+                Thread.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                //A 'sleep' method that pauses the current thread to keep it from overloading the system. in this case the frames are lowered based on the assigned sleep-value
-            }
+                          }
 
             if (shouldRender) {
                 frames++; //Adds to the frames by one
@@ -85,7 +95,7 @@ public class Game extends Canvas implements Runnable{
             if (System.currentTimeMillis() - lastTimer > 1000) //If current time in milliseconds minus the time for the last update is greater than a thousand (one second): update.
             {
                 lastTimer += 1000; //gives lastTimer the value of one second
-                System.out.println(frames + " frames, " + ticks + " ticks");
+                System.out.println(ticks + " ticks, " + frames + " frames");
                 frames = 0; //reset value of frames
                 ticks = 0; //reset value of updates
                 //the variables will now be reset once every second instead of it all being presented rapidly
@@ -96,10 +106,20 @@ public class Game extends Canvas implements Runnable{
      {
          tickCount++;
 
-         for (int i = 0; i<pixels.length; i++) {
-             pixels[i] = i + tickCount;
+         if (input.up.isPressed()) {
+             screen.yOffset--;
+         }
+         if (input.down.isPressed()) {
+             screen.yOffset++;
+         }
+         if (input.left.isPressed()) {
+             screen.xOffset--;
+         }
+         if (input.right.isPressed()) {
+             screen.xOffset++;
+         }
      }
-    }
+
     public void render() //prints out what the logic in the tick-function has stated should be printed out
     {
         BufferStrategy bs = getBufferStrategy(); //an Object to organize the data in the canvas
@@ -107,10 +127,12 @@ public class Game extends Canvas implements Runnable{
             createBufferStrategy(3); //reducing tearing in the image. Higher value would require higher processing-power
             return;
         }
+
+        screen.render(pixels,0,WIDTH);
+
         Graphics g = bs.getDrawGraphics(); //a graphic-object
-
+        g.drawRect(0,0,getWidth(),getHeight());
         g.drawImage(image,0,0,getWidth(),getHeight(),null);
-
         g.dispose(); //free up space
         bs.show();
     }
