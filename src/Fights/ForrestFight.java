@@ -1,17 +1,11 @@
 package Fights;
 
-import Armor.PlateArmor;
 import Game.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class ForrestFight extends JFrame {
 

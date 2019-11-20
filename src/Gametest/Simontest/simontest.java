@@ -29,12 +29,6 @@ public class simontest extends JFrame {
     Healer healerpizza = new Healer();
     Ranger rangerpizza = new Ranger();
     int[] partypizza = new int[4];
-    /*
-    partypizza[0] = new Warrior();
-    partypizza[1] = new Mage();
-    partypizza[2] = new Healer();
-    partypizza[3] = new Ranger();
-     */
 
     public simontest() {
 

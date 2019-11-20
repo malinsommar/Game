@@ -1,6 +1,5 @@
 package Game;
 
-import Armor.PlateArmor;
 import Armor.WarriorStartArmor;
 import Weapons.WarriorStartWeapon;
 
@@ -9,7 +8,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Warrior {
 
