@@ -1,5 +1,6 @@
 package Gametest.Davidtest.hubworld;
 
+import Gametest.Davidtest.hubworld.gfx.Colours;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
 
@@ -23,7 +24,7 @@ public class Game extends Canvas implements Runnable{
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-
+    private int[] colours = new int[6*6*6];
     private Screen screen;
     public InputHandler input;
 
@@ -43,6 +44,22 @@ public class Game extends Canvas implements Runnable{
         frame.setVisible(true);
     }
     public void init() {
+        int index = 0;
+        //red
+        for (int r = 0; r<6; r++) {
+            //green
+            for (int g=0; g<6; g++) {
+                //blue
+                for (int b = 0; b < 6; b++) {
+                    //transparent colors
+                    int rr = (r*255/5);
+                    int gg = (g*255/5);
+                    int bb= (b*255/5);
+
+                    colours[index++] = rr << 16 | gg << 8 | bb;
+                }
+            }
+        }
         screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
         input = new InputHandler(this);
     }
@@ -127,9 +144,17 @@ public class Game extends Canvas implements Runnable{
             createBufferStrategy(3); //reducing tearing in the image. Higher value would require higher processing-power
             return;
         }
-
-        screen.render(pixels,0,WIDTH);
-
+        for (int y = 0; y < 32; y++) {
+            for (int x = 0; x < 32; x++) {
+                screen.render(x<<3, y<<3, 0, Colours.get(555, 500, 050, 005));
+            }
+        }
+        for (int y = 0; y< screen.height; y++) {
+            for (int x = 0; x < screen.width; x++) {
+                int colourCode = screen.pixels[x + y * screen.width];
+                if (colourCode < 255) pixels[x + y * WIDTH] = colours[colourCode];
+            }
+        }
         Graphics g = bs.getDrawGraphics(); //a graphic-object
         g.drawRect(0,0,getWidth(),getHeight());
         g.drawImage(image,0,0,getWidth(),getHeight(),null);
