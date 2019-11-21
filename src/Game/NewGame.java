@@ -117,7 +117,7 @@ public class NewGame extends JFrame {
         startButton.addActionListener(e -> dispose());
         startButton.addActionListener(e -> new ForestFight());
 
-        musicpick.musicStart("theme");
+        musicpick.musicStart("theme","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
