@@ -33,17 +33,12 @@ public class ForestFight extends JFrame {
     private JLabel healer;
     private JLabel ranger;
 
-    JLabel warriorEnergy;
-    JLabel mageEnergy;
-    JLabel rangerEnergy;
-    JLabel healerEnergy;
-    int warriorEnergyInt = 5;
-    int mageEnergyInt = 5;
-    int rangerEnergyInt = 5;
-    int healerEnergyInt = 5;
 
-    int attackCost = 2;
-    int blockCost = 2;
+    JLabel energy;
+    int warriorEnergyInt=5;
+    int mageEnergyInt;
+    int rangerEnergyInt;
+    int healerEnergyInt;
 
     JLabel player1Hp;
     JLabel player2Hp;
@@ -75,22 +70,23 @@ public class ForestFight extends JFrame {
         wolf3Int = 20;
         wolf4Int = 20;
 
+        energy = new JLabel("Energy: "+warriorEnergyInt);
+        energy.setFont(pixelMplus);
+        energy.setForeground(Color.black);
+        Dimension energySize = energy.getPreferredSize();
+        energy.setBounds(30, 640, energySize.width, energySize.height);
+        add(energy);
+
         importWolfGif();
         importPartyGif();
         importButtons();
         hpLabels();
-        energyLabels();
 
         add(attackButton);
         add(blockButton);
         add(itemButton);
         add(skillButton);
         add(endTurnButton);
-
-        add(warriorEnergy);
-        add(mageEnergy);
-        add(rangerEnergy);
-        add(healerEnergy);
 
         add(wolf3);
         add(wolf4);
@@ -137,32 +133,51 @@ public class ForestFight extends JFrame {
 
         if (turns==1 && warriorCurrentHp>0){
             warriorEnergyInt+=5;
+            if (warriorEnergyInt>10){
+                warriorEnergyInt=10;
+            }
             whosTurn.setText("Warrior's turn");
             playersHp.setText("Hp: "+warriorCurrentHp);
+            energy.setText("Energy: "+warriorEnergyInt);
+
         }
         if (turns==1 && warriorCurrentHp<1){
             turns=2;
         }
         if (turns==2 && rangerCurrentHp>0){
             rangerEnergyInt+=5;
+            if (rangerEnergyInt>10){
+                rangerEnergyInt=10;
+            }
             whosTurn.setText("Ranger's turn");
             playersHp.setText("Hp: "+rangerCurrentHp);
+            energy.setText("Energy: "+rangerEnergyInt);
         }
         if (turns==2 && rangerCurrentHp<1){
             turns=3;
         }
         if (turns==3 && mageCurrentHp>0){
             mageEnergyInt+=5;
+            if (mageEnergyInt>10){
+                mageEnergyInt=10;
+            }
             whosTurn.setText("Mage's turn");
             playersHp.setText("Hp: "+mageCurrentHp);
+            energy.setText("Energy: "+mageEnergyInt);
+
         }
         if (turns==3 && mageCurrentHp<1){
             turns=4;
         }
         if (turns==4 && healerCurrentHp>0){
             healerEnergyInt+=5;
+            if (healerEnergyInt>10){
+                healerEnergyInt=10;
+            }
             whosTurn.setText("Healer's turn");
             playersHp.setText("Hp: "+healerCurrentHp);
+            energy.setText("Energy: "+healerEnergyInt);
+
         }
         if (turns==4 && healerCurrentHp<1){
             turns=5;
@@ -171,6 +186,7 @@ public class ForestFight extends JFrame {
         if (turns==5 && wolf1Int>0){
             whosTurn.setText("Wolf 1 turn");
             playersHp.setText("Hp: "+wolf1Int);
+            wolfAttack();
         }
         if (turns==1 && wolf1Int<1){
             turns=6;
@@ -178,6 +194,7 @@ public class ForestFight extends JFrame {
         if (turns==6 && wolf2Int>0){
             whosTurn.setText("Wolf 2 turn");
             playersHp.setText("Hp: "+wolf2Int);
+            wolfAttack();
         }
         if (turns==6 && wolf2Int<1){
             turns=7;
@@ -185,7 +202,7 @@ public class ForestFight extends JFrame {
         if (turns==7 && wolf3Int>0){
             whosTurn.setText("Wolf 3 turn");
             playersHp.setText("Hp: "+wolf3Int);
-
+            wolfAttack();
         }
         if (turns==7 && wolf4Int<1){
             turns=8;
@@ -193,6 +210,7 @@ public class ForestFight extends JFrame {
         if (turns==8 && wolf4Int>0){
             whosTurn.setText("Wolf 4 turn");
             playersHp.setText("Hp: "+wolf4Int);
+            wolfAttack();
             turns=0;
         }
         if (turns==8 && wolf4Int<1){
@@ -202,23 +220,31 @@ public class ForestFight extends JFrame {
     }
     private void blockPressed(){
 
-        if(turns==1){
+        if(turns==1 && warriorEnergyInt>1){
+            warriorEnergyInt=warriorEnergyInt-2;
+            energy.setText("Energy: "+warriorEnergyInt);
             warriorCurrentHp+=5;
             player1Hp.setText("Warrior: "+warriorCurrentHp);
             playersHp.setText("Hp:"+warriorCurrentHp);
         }
-        else if(turns==2){
+        else if(turns==2 && rangerEnergyInt>1){
+            rangerEnergyInt=rangerEnergyInt-2;
+            energy.setText("Energy: "+rangerEnergyInt);
             rangerCurrentHp+=5;
             player3Hp.setText("Ranger:  "+rangerCurrentHp);
             playersHp.setText("Hp: "+rangerCurrentHp);
         }
-        else if(turns==3){
+        else if(turns==3 && mageEnergyInt>1){
+            mageEnergyInt=mageEnergyInt-2;
+            energy.setText("Energy: "+mageEnergyInt);
             mageCurrentHp+=5;
             player2Hp.setText("Mage:    "+mageCurrentHp);
             playersHp.setText("Hp: "+mageCurrentHp);
 
         }
-        else if(turns==4){
+        else if(turns==4 && healerEnergyInt>1){
+            healerEnergyInt=healerEnergyInt-2;
+            energy.setText("Energy: "+healerEnergyInt);
             healerCurrentHp+=5;
             player4Hp.setText("Healer:  "+healerCurrentHp);
             playersHp.setText("Hp: "+healerCurrentHp);
@@ -227,22 +253,30 @@ public class ForestFight extends JFrame {
 
     public void attackPressed(){
 
-        if(turns==1){
+        if(turns==1 && warriorEnergyInt>1){
+            warriorEnergyInt=warriorEnergyInt-2;
+            energy.setText("Energy: "+warriorEnergyInt);
             warriorAttackWolf();
             mobDeath();
             isFightOver();
         }
-        else if(turns==2){
+        else if(turns==2 && rangerEnergyInt>1){
+            rangerEnergyInt=rangerEnergyInt-2;
+            energy.setText("Energy: "+rangerEnergyInt);
             rangerAttackWolf();
             mobDeath();
             isFightOver();
         }
-        else if(turns==3){
+        else if(turns==3 && mageEnergyInt>1){
+            mageEnergyInt=mageEnergyInt-2;
+            energy.setText("Energy: "+mageEnergyInt);
             mageAttackWolf();
             mobDeath();
             isFightOver();
         }
-        else if(turns==4){
+        else if(turns==4 && healerEnergyInt>1){
+            healerEnergyInt=healerEnergyInt-2;
+            energy.setText("Energy: "+healerEnergyInt);
             healerAttackWolf();
             mobDeath();
             isFightOver();
@@ -529,36 +563,6 @@ public class ForestFight extends JFrame {
         player4Hp.setForeground(Color.black);
         Dimension player4HpSize = player4Hp.getPreferredSize();
         player4Hp.setBounds(410, 665, player4HpSize.width, player4HpSize.height);
-    }
-
-    public void energyLabels(){
-
-        warriorEnergy = new JLabel("Energy: "+warriorEnergyInt);
-        warriorEnergy.setFont(pixelMplus);
-        warriorEnergy.setForeground(Color.black);
-        Dimension warriorEnergySize = warriorEnergy.getPreferredSize();
-        warriorEnergy.setBounds(30, 640, warriorEnergySize.width, warriorEnergySize.height);
-
-        mageEnergy = new JLabel("Energy: "+mageEnergyInt);
-        mageEnergy.setFont(pixelMplus);
-        mageEnergy.setForeground(Color.black);
-        Dimension mageEnergySize = mageEnergy.getPreferredSize();
-        mageEnergy.setBounds(410, 560, mageEnergySize.width, mageEnergySize.height);
-        mageEnergy.setVisible(false);
-
-        rangerEnergy = new JLabel("Energy: "+rangerEnergyInt);
-        rangerEnergy.setFont(pixelMplus);
-        rangerEnergy.setForeground(Color.black);
-        Dimension rangerEnergySize = rangerEnergy.getPreferredSize();
-        rangerEnergy.setBounds(410, 560, rangerEnergySize.width, rangerEnergySize.height);
-        rangerEnergy.setVisible(false);
-
-        healerEnergy = new JLabel("Energy: "+healerEnergyInt);
-        healerEnergy.setFont(pixelMplus);
-        healerEnergy.setForeground(Color.black);
-        Dimension healerEnergySize = warriorEnergy.getPreferredSize();
-        healerEnergy.setBounds(410, 560, healerEnergySize.width, healerEnergySize.height);
-        healerEnergy.setVisible(false);
     }
 
     public void importButtons(){
