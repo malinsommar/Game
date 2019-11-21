@@ -1,6 +1,6 @@
 package Gametest.Simontest;
 
-import Game.musicpick;
+import Game.*;
 import javafx.scene.canvas.GraphicsContext;
 
 import javax.imageio.ImageIO;
@@ -13,13 +13,25 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Scanner;
 
-public class simontest extends JFrame{
+public class simontest extends JFrame {
 
+    Scanner sc = new Scanner(System.in);
     JFrame testFrame = new JFrame();
     private JButton testButton;
+    private JButton testButton2;
+    int[] enemies = new int[4];
+    int level = 5;
 
-    public simontest() throws IOException {
+    Warrior warrpizza =new Warrior();
+    Mage magepizza = new Mage();
+    Healer healerpizza = new Healer();
+    Ranger rangerpizza = new Ranger();
+    int[] partypizza = new int[4];
+
+    public simontest() {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -37,16 +49,124 @@ public class simontest extends JFrame{
         add(new JLabel(mage));
         add(new JLabel(healer));
 
-        testButton = new JButton("Tutorial");
+        testButton = new JButton("firestorm");
         testButton.setSize(300, 100);
-        testButton.setLocation(500, 330);
+        testButton.setLocation(200, 330);
         testButton.setBackground(Color.white);
 
+        testButton2 = new JButton("fireblast");
+        testButton2.setSize(300, 100);
+        testButton2.setLocation(100, 330);
+        testButton2.setBackground(Color.white);
+
         add(testButton);
+        add(testButton2);
+        testButton.addActionListener(e -> spelltest("firestorm", level));
+        testButton2.addActionListener(e -> spelltest("fireball", level));
 
-        testButton.addActionListener(e -> musicpick.musicStart("themefull"));
+        //testButton.addActionListener(e -> musicpick.musicStart("theme"));
 
-        musicpick.musicStart("themefull");
+        //musicpick.musicStart("theme");
+
+
+        //////////////////////////////////////////////////////////////////
+
+        setLayout(new FlowLayout()); //Default layout
+        setSize(1900, 500);
+
+        setVisible(true);
+        sethp();
+    }
+
+    public void sethp() {
+        enemies[0] = 100;
+        enemies[1] = 100;
+        enemies[2] = 100;
+        enemies[3] = 100;
+    }
+
+    public void spelltest(String spell, int level) {
+        //int health = Warrior.hp;
+        //dmg = weapon damage + buffdmg + debuffdmg
+        //mage
+        //ta bort level å hämta direkt
+        if (spell.equals("firestorm")) {
+            for (int i = 0; i < 4; i++) {
+                enemies[i] -= (5 * level);
+                System.out.println("enemy nr " + i + " has " + enemies[i]);
+            }
+        } else if (spell.equals("fireball")) {
+            enemies[0] -= (10 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        } else if (spell.equals("pyroblast")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        } else if (spell.equals("arcane explosion")) {
+            for (int i = 0; i < 4; i++) {
+                enemies[i] -= (5 * level);
+                System.out.println("enemy nr " + i + " has " + enemies[i]);
+            }
+        }
+        //warrior
+        else if (spell.equals("concussive blow")) {
+            enemies[0] -= (3 * level);
+            //stunned 0 true
+            System.out.println("stunned the enemy, skipping it's next turn");
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        else if (spell.equals("battlecry")) {
+            //buffdmg = 5
+            System.out.println("shouts loudly, inspireing their allies");
+        }
+        else if (spell.equals("demoralizing shout")) {
+            //debuffdmg = 5
+            System.out.println("shouts loudly, striking fear in the hearths of their enemies");
+        }
+        else if (spell.equals("taunt")) {
+            //taunted = true
+            System.out.println("insults the enemy, it is sure to attack them");
+        }
+        //ranger
+        else if (spell.equals("arrow shootshoot blast boomboom")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        else if (spell.equals("poison arrow")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        else if (spell.equals("stealth")) {
+            enemies[0] -= (20 * level);
+            System.out.println("hides, their next normal attack will be a backstab");
+            //normal attack blir backstab
+        }
+        else if (spell.equals("disengaged shot")) {
+            enemies[0] -= (20 * level);
+            System.out.println("enemy nr " + 0 + " has " + enemies[0]);
+        }
+        //healer
+        else if (spell.equals("heal")) {
+            //glöm inte Warrior warrpizza =new Warrior();
+            warrpizza.hp += (40 * level);
+            if (warrpizza.hp > 150){warrpizza.hp = 150;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
+        else if (spell.equals("overheal")) {
+            warrpizza.hp += (30 * level);
+            if (warrpizza.hp > 180){warrpizza.hp = 180;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
+        else if (spell.equals("group heal")) {
+            //glöm inte party
+            warrpizza.hp += (30 * level);
+            for (int i = 0; i < 4; i++) {
+                partypizza[i] -= (5 * level);
+                System.out.println("enemy nr " + i + " has " + partypizza[i]);
+            }
+            if (warrpizza.hp > 180){warrpizza.hp = 180;}
+            System.out.println("the warrior nr " + 0 + " has " + warrpizza.hp);
+        }
+    }
 
 
 /*
@@ -85,18 +205,4 @@ public class simontest extends JFrame{
         Dimension warriorsize = warrior.getPreferredSize();
         warrior.setBounds(100, 100, warriorsize.width, warriorsize.height);
          */
-
-
-        setLayout(new FlowLayout()); //Default layout
-        setSize(1920, 1080);
-
-        setVisible(true);
-
-    }
-
-    public static void main (String[]args) throws IOException {
-
-        new simontest();
-
-    }
 }

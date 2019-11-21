@@ -1,9 +1,5 @@
 package Game;
 
-import Fights.ForrestBossFight;
-import Fights.ForrestFight;
-
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;

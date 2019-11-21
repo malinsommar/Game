@@ -26,6 +26,7 @@ public class musicpick {
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             i = 5;
+
         } catch (Exception e) {
             //whatevers
         }

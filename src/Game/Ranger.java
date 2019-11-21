@@ -2,13 +2,17 @@ package Game;
 
 import Armor.RangerStartArmor;
 import Weapons.RangerStartWeapon;
+import org.w3c.dom.ranges.Range;
 
 import java.util.ArrayList;
 
 public class Ranger {
 
-    ArrayList rangerWeapon = new ArrayList();
-    ArrayList rangerArmor = new ArrayList();
+    ArrayList<Ranger> rangerWeapon = new ArrayList();
+    ArrayList<Ranger> rangerArmor = new ArrayList();
+
+    public int blockUp;
+    public int damage;
 
     public int hp=70;
     public int block=0;
@@ -20,7 +24,13 @@ public class Ranger {
         rangerWeapon.add(new RangerStartWeapon());
         rangerArmor.add(new RangerStartArmor());
     }
-    public void printOutStats(){
-        System.out.println("Hp: "+hp+"\nArmor: "+block+"\nStrength: "+str+"\n\nCrit chance: "+crit+"%\nDexterity: "+dex);
+
+    public int setHp() {
+        int rangHp = hp+rangerArmor.get(0).blockUp;
+        return rangHp;
+    }
+    public int setStr() {
+        int rangStr = str+rangerWeapon.get(0).damage;
+        return rangStr;
     }
 }

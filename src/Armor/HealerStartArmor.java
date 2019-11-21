@@ -1,6 +1,8 @@
 package Armor;
 
-public class HealerStartArmor {
+import Game.Healer;
+
+public class HealerStartArmor extends Healer {
 
     public HealerStartArmor(){
         String name = "Cloth scraps";

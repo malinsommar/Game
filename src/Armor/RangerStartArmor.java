@@ -1,6 +1,8 @@
 package Armor;
 
-public class RangerStartArmor {
+import Game.Ranger;
+
+public class RangerStartArmor extends Ranger {
 
     public RangerStartArmor(){
         String name = "Broken leather armor";

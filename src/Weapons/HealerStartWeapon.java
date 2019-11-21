@@ -1,6 +1,8 @@
 package Weapons;
 
-public class HealerStartWeapon {
+import Game.Healer;
+
+public class HealerStartWeapon extends Healer {
 
     public HealerStartWeapon(){
         String name = "Wooden staff";
