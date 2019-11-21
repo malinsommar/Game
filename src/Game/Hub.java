@@ -11,7 +11,6 @@ public class Hub extends JFrame {
     private JLabel gameName;
     private JButton tutorialButton, newRunButton, exitButton;
     Font pixelMplus;
-    Font pixelMplus2;
 
     public Hub() {
 
@@ -29,7 +28,7 @@ public class Hub extends JFrame {
         //Title of game
         gameName = new JLabel("Alterborne");
         gameName.setForeground(Color.white);
-        gameName.setFont(pixelMplus2);
+        gameName.setFont((pixelMplus.deriveFont(100f)));
 
         Dimension size = gameName.getPreferredSize();
         gameName.setBounds(350, 30, size.width, size.height);
@@ -38,7 +37,7 @@ public class Hub extends JFrame {
         newRunButton = new JButton("New Game");
         newRunButton.setSize(300, 100);
         newRunButton.setLocation(500, 240);
-        newRunButton.setFont(pixelMplus);
+        newRunButton.setFont((pixelMplus.deriveFont(30f)));
         newRunButton.setBackground(Color.white);
         newRunButton.setBorder(null); //Remove border around button
         newRunButton.setFocusPainted(false);//Remove border around text in button
@@ -47,7 +46,7 @@ public class Hub extends JFrame {
         tutorialButton = new JButton("Tutorial");
         tutorialButton.setSize(300, 100);
         tutorialButton.setLocation(500, 360);
-        tutorialButton.setFont(pixelMplus);
+        tutorialButton.setFont((pixelMplus.deriveFont(30f)));
         tutorialButton.setBackground(Color.white);
         tutorialButton.setBorder(null); //Remove border around button
         tutorialButton.setFocusPainted(false);//Remove border around text in button
@@ -57,7 +56,7 @@ public class Hub extends JFrame {
         exitButton = new JButton("Exit game");
         exitButton.setSize(300, 100);
         exitButton.setLocation(500, 480);
-        exitButton.setFont(pixelMplus);
+        exitButton.setFont((pixelMplus.deriveFont(30f)));
         exitButton.setBackground(Color.white);
         exitButton.setBorder(null); //Remove border around button
         exitButton.setFocusPainted(false);//Remove border around text in button
@@ -120,21 +119,8 @@ public class Hub extends JFrame {
 
     public void importFont() {
         try {
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
+            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf"));
         } catch (IOException | FontFormatException e) {
-
-        }
-
-        try {
-            pixelMplus2 = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(120f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
         }
     }
 }
