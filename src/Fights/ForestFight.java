@@ -12,10 +12,12 @@ public class ForestFight extends JFrame {
     private int turns = 1;
 
     private Font pixelMplus;
+
     private JButton attackButton;
     private JButton blockButton;
     private JButton itemButton;
     private JButton skillButton;
+
     private JLabel whosTurn;
     private JLabel wolf1;
     private JLabel wolf2;
@@ -25,23 +27,18 @@ public class ForestFight extends JFrame {
     private JLabel wolf2Hp;
     private JLabel wolf3Hp;
     private JLabel wolf4Hp;
-
-    private int wolf1Int;
-    private int wolf2Int;
-    private int wolf3Int;
-    private int wolf4Int;
-
-
     private JLabel warrior;
     private JLabel mage;
     private JLabel healer;
     private JLabel ranger;
 
     private JLabel playersHp;
-    private JLabel wolfAttackLine;
+    private JLabel attackLine;
 
-    public int warriorCurrentHp=150, mageCurrentHp=100, healerCurrentHp=100, rangerCurrentHp=70;
-    public int warriorDamage =10, mageDamage=8, healerDamage=5, rangerDamage=7;
+    private int wolf1Int, wolf2Int, wolf3Int, wolf4Int;
+
+    public int warriorCurrentHp = 30, mageCurrentHp = 30, healerCurrentHp= 30, rangerCurrentHp=30;
+    public int warriorDamage=10, mageDamage=8, healerDamage=5, rangerDamage=6;
 
     public ForestFight(){
 
@@ -129,13 +126,14 @@ public class ForestFight extends JFrame {
         wolf4Hp.setBounds(620, 665, wolf4HpSize.width, wolf4HpSize.height);
         add(wolf4Hp);
 
-        wolfAttackLine = new JLabel("Your turn");
-        wolfAttackLine.setFont(pixelMplus);
-        wolfAttackLine.setForeground(Color.white);
-        Dimension wolfAttackLineSize = wolfAttackLine.getPreferredSize();
-        wolfAttackLine.setBounds(30, 60, wolfAttackLineSize.width, wolfAttackLineSize.height);
-        add(wolfAttackLine);
+        attackLine = new JLabel("Your turn");
+        //attackLine.setFont(pixelMplus);
+        attackLine.setForeground(Color.white);
+        Dimension attackLineSize = attackLine.getPreferredSize();
+        attackLine.setBounds(30, 60, attackLineSize.width, attackLineSize.height);
+        add(attackLine);
 
+        itemButton.addActionListener(e -> System.exit(0)); //ska bort
         attackButton.addActionListener(e -> changeTurn());
 
         setVisible(true);
@@ -145,6 +143,8 @@ public class ForestFight extends JFrame {
 
         if (turns==1 && warriorCurrentHp>=1){
             warriorAttackWolf();
+            mobDeath();
+            isFightOver();
             whosTurn.setText("Ranger's turn");
             playersHp.setText("Hp: "+rangerCurrentHp);
         }
@@ -154,15 +154,19 @@ public class ForestFight extends JFrame {
 
         if (turns ==2 && rangerCurrentHp>=1){
             rangerAttackWolf();
+            mobDeath();
+            isFightOver();
             whosTurn.setText("Mage's turn");
             playersHp.setText("Hp: "+mageCurrentHp);
         }
-        else if (turns==2 && rangerCurrentHp<1){
+        if (turns==2 && rangerCurrentHp<1){
             turns++;
         }
 
         if (turns==3 && mageCurrentHp>=1){
             mageAttackWolf();
+            mobDeath();
+            isFightOver();
             whosTurn.setText("Healers's turn");
             playersHp.setText("Hp: "+healerCurrentHp);
         }
@@ -172,6 +176,8 @@ public class ForestFight extends JFrame {
 
         if (turns ==4 && healerCurrentHp>=1){
             healerAttackWolf();
+            mobDeath();
+            isFightOver();
             playersHp.setText(" ");
             whosTurn.setText("Wolf 1 turn");
         }
@@ -213,7 +219,7 @@ public class ForestFight extends JFrame {
             wolfAttack();
             whosTurn.setText("Warrior'" + "s turn");
             playersHp.setText("Hp: "+warriorCurrentHp);
-            wolfAttackLine.setText("Your turn");
+            attackLine.setText("Your turn");
             turns=0;
         }
         if (turns==8 && wolf4Int<1){
@@ -285,7 +291,9 @@ public class ForestFight extends JFrame {
     }
 
     public void healerAttackWolf(){
+
         int target = randomTarget();
+
         if (target == 1){
             wolf1Int-=healerDamage;
             wolf1Hp.setText("Wolf 1: "+ wolf1Int);
@@ -311,15 +319,15 @@ public class ForestFight extends JFrame {
         Healer healer = new Healer();
         Ranger ranger = new Ranger();
 
-        warriorCurrentHp = warrior.setHp();
-        mageCurrentHp = mage.setHp();
-        healerCurrentHp = healer.setHp();
-        rangerCurrentHp = ranger.setHp();
+        warriorCurrentHp=warrior.setHp();
+        mageCurrentHp=mage.setHp();
+        healerCurrentHp=healer.setHp();
+        rangerCurrentHp=ranger.setHp();
 
-        warriorDamage = warrior.setStr();
-        mageDamage = mage.setStr();
-        healerDamage = mage.setStr();
-        rangerDamage = ranger.setStr();
+        warriorDamage=warrior.setStr();
+        mageDamage=mage.setStr();
+        healerDamage=healer.setStr();
+        rangerDamage=ranger.setStr();
 
     }
 
@@ -335,55 +343,74 @@ public class ForestFight extends JFrame {
             new Hub();
             dispose();
         }
-        //fight not over
+        //else fight not over
     }
 
     public void wolfAttack() {
         int target = (int) (Math.random() * 4);
         int wolfDamage = (int) (Math.random() * 5) + 10;
 
-        if (target == 0) {
-            if (warriorCurrentHp < 1) {
-                wolfAttack();
+        while (true) {
+            if (target == 0) {
+                if (warriorCurrentHp < 1) {
+                    target=1;
+                }
+                if (warriorCurrentHp >0) {
+                    warriorCurrentHp = warriorCurrentHp - wolfDamage;
+                    attackLine.setText("Wolf attacked warrior, warrior lost " + wolfDamage + " hp.");
+                    break;
+                }
             }
-            warriorCurrentHp=warriorCurrentHp-wolfDamage;
-            wolfAttackLine.setText("Wolf attacked warrior, warrior lost " + wolfDamage + " hp.");
-        }
-        if (target == 1) {
-            if (mageCurrentHp < 1) {
-                wolfAttack();
+            if (target == 1) {
+                if (mageCurrentHp < 1) {
+                    target = 2;
+                }
+                if (mageCurrentHp >0) {
+                    mageCurrentHp = mageCurrentHp - wolfDamage;
+                    attackLine.setText("Wolf attacked mage, warrior lost " + wolfDamage + " hp.");
+                    break;
+                }
             }
-            mageCurrentHp =mageCurrentHp-wolfDamage;
-            wolfAttackLine.setText("Wolf attacked mage, warrior lost " + wolfDamage + " hp.");
-        }
-        if (target == 2) {
-            if (rangerCurrentHp < 1) {
-                wolfAttack();
+            if (target == 2) {
+                if (rangerCurrentHp < 1) {
+                    target = 3;
+                }
+                if (rangerCurrentHp >0) {
+                    rangerCurrentHp = rangerCurrentHp - wolfDamage;
+                    attackLine.setText("Wolf attacked ranger, warrior lost " + wolfDamage + " hp.");
+                    break;
+                }
             }
-            rangerCurrentHp =rangerCurrentHp-wolfDamage;
-            wolfAttackLine.setText("Wolf attacked ranger, warrior lost " + wolfDamage + " hp.");
-        }
-        if (target == 3) {
-            if (healerCurrentHp < 1) {
-                wolfAttack();
+            if (target == 3) {
+                if (healerCurrentHp < 1) {
+                    target = 0;
+
+                }
+                if (healerCurrentHp >0) {
+                    healerCurrentHp = healerCurrentHp - wolfDamage;
+                    attackLine.setText("Wolf attacked healer, warrior lost " + wolfDamage + " hp.");
+                    break;
+                }
             }
-            healerCurrentHp=healerCurrentHp-wolfDamage;
-            wolfAttackLine.setText("Wolf attacked healer, warrior lost " + wolfDamage + " hp.");
         }
     }
 
     public void mobDeath(){
 
-        if(wolf1Int<1){
+        if(wolf1Int<=0){
+            wolf1Hp = new JLabel("Wolf 1: 0");
             wolf1.setVisible(false);
         }
-        if(wolf2Int<1){
+        if(wolf2Int<=0){
+            wolf2Hp = new JLabel("Wolf 2: 0");
             wolf2.setVisible(false);
         }
-        if(wolf3Int<1){
+        if(wolf3Int<=0){
+            wolf3Hp = new JLabel("Wolf 3: 0");
             wolf3.setVisible(false);
         }
-        if(wolf4Int<1){
+        if(wolf4Int<=0){
+            wolf4Hp = new JLabel("Wolf 4: 0");
             wolf4.setVisible(false);
         }
     }
@@ -394,13 +421,13 @@ public class ForestFight extends JFrame {
         if (target == 1 && wolf1Int < 1) {
             target = 2;
         }
-        else if (target == 2 && wolf2Int < 1) {
+        if (target == 2 && wolf2Int < 1) {
             target = 3;
         }
-        else if (target == 3 && wolf3Int < 1) {
+        if (target == 3 && wolf3Int < 1) {
             target = 4;
         }
-        else if (target == 4 && wolf4Int < 1) {
+        if (target == 4 && wolf4Int < 1) {
             target =1;
         }
         return target;
