@@ -65,7 +65,7 @@ public class LoseScreen extends JFrame {
         countinueButton.addActionListener(e -> dispose());
         //countinueButton.addActionListener(e -> new ForestFight());
 
-        musicpick.musicStart("gwyn");
+        musicpick.musicStart("gwyn","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
