@@ -31,7 +31,7 @@ public class Hub extends JFrame {
         gameName.setFont((pixelMplus.deriveFont(100f)));
 
         Dimension size = gameName.getPreferredSize();
-        gameName.setBounds(350, 30, size.width, size.height);
+        gameName.setBounds(400, 30, size.width, size.height);
 
         //New run Button
         newRunButton = new JButton("New Game");

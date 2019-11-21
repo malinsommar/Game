@@ -16,6 +16,10 @@ public class NewGame extends JFrame {
     JButton startButton;
     Font pixelMplus;
 
+    Warrior w = new Warrior();
+    Mage m = new Mage();
+    Ranger r = new Ranger();
+    Healer h = new Healer();
 
     public NewGame() {
 
@@ -25,6 +29,7 @@ public class NewGame extends JFrame {
         getContentPane().setBackground(Color.darkGray);
 
         importFont();
+        setBeginnerEquipment();
 
         //Backstory text
         backStory = new JLabel("This is a backstory. very cool. This is a backstory. very cool.");
@@ -122,6 +127,13 @@ public class NewGame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         setVisible(true);
+    }
+
+    public void setBeginnerEquipment(){
+        w.setStartEquipment();
+        m.setStartEquipment();
+        r.setStartEquipment();
+        h.setStartEquipment();
     }
 
     public void importFont() {
