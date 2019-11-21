@@ -12,9 +12,9 @@ public class musicpick {
     private static Clip clip;
     private static int i = 0;
 
-    public static void musicStart(String pick) {
+    public static void musicStart(String pick, String soundType) {
         try {
-            if (i > 0) {
+            if (i > 0 && soundType == "music" ) {
                 clip.stop();
             }
             File yourFile = new File(pick + ".wav");

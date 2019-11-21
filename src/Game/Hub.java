@@ -110,7 +110,7 @@ public class Hub extends JFrame {
             }
         });
 
-        musicpick.musicStart("mainmenu");
+        musicpick.musicStart("mainmenu","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
