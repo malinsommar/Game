@@ -18,13 +18,12 @@ public class Warrior {
 
     public String name;
     public int blockUp;
+    public int damage;
     public int rarity;
 
     public int hp = 150;
     public int block = 0;
     public int str = 5;
-    public int crit = 5;
-    public int dex = 0;
 
     public void setStartEquipment() {
         warriorWeapon.add(new WarriorStartWeapon());
@@ -32,13 +31,11 @@ public class Warrior {
     }
 
     public int setHp() {
-        int warriorCurrentHp = hp+warriorArmor.get(0).blockUp;
-        return warriorCurrentHp;
+        return hp+warriorArmor.get(0).blockUp;
     }
 
     public int setStr() {
-        int warStr = str+warriorWeapon.get(0).str;
-        return warStr;
+        return str+warriorWeapon.get(0).damage;
     }
 
     public void newArmor(String item) {

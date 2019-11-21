@@ -9,6 +9,11 @@ import java.io.IOException;
 
 public class ForestFight extends JFrame {
 
+    Warrior w = new Warrior();
+    Mage m = new Mage();
+    Healer h = new Healer();
+    Ranger r = new Ranger();
+
     private int turns = 1;
 
     private Font pixelMplus;
@@ -109,7 +114,7 @@ public class ForestFight extends JFrame {
         add(player4Hp);
 
         hoverEffect();
-        musicpick.musicStart("forest1");
+        musicpick.musicStart("forest1"); //("forest1","music");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 
@@ -186,7 +191,9 @@ public class ForestFight extends JFrame {
         if (turns==5 && wolf1Int>0){
             whosTurn.setText("Wolf 1 turn");
             playersHp.setText("Hp: "+wolf1Int);
+            energy.setText("  ");
             wolfAttack();
+            partyDeath();
         }
         if (turns==1 && wolf1Int<1){
             turns=6;
@@ -194,7 +201,9 @@ public class ForestFight extends JFrame {
         if (turns==6 && wolf2Int>0){
             whosTurn.setText("Wolf 2 turn");
             playersHp.setText("Hp: "+wolf2Int);
+            energy.setText("  ");
             wolfAttack();
+            partyDeath();
         }
         if (turns==6 && wolf2Int<1){
             turns=7;
@@ -202,7 +211,9 @@ public class ForestFight extends JFrame {
         if (turns==7 && wolf3Int>0){
             whosTurn.setText("Wolf 3 turn");
             playersHp.setText("Hp: "+wolf3Int);
+            energy.setText("  ");
             wolfAttack();
+            partyDeath();
         }
         if (turns==7 && wolf4Int<1){
             turns=8;
@@ -210,7 +221,9 @@ public class ForestFight extends JFrame {
         if (turns==8 && wolf4Int>0){
             whosTurn.setText("Wolf 4 turn");
             playersHp.setText("Hp: "+wolf4Int);
+            energy.setText("  ");
             wolfAttack();
+            partyDeath();
             turns=0;
         }
         if (turns==8 && wolf4Int<1){
@@ -369,21 +382,15 @@ public class ForestFight extends JFrame {
 
     public void getStats() {
 
-        Warrior warrior = new Warrior();
-        Mage mage = new Mage();
-        Healer healer = new Healer();
-        Ranger ranger = new Ranger();
+        warriorCurrentHp=w.setHp();
+        mageCurrentHp=m.setHp();
+        healerCurrentHp=h.setHp();
+        rangerCurrentHp=r.setHp();
 
-        warriorCurrentHp=warrior.setHp();
-        mageCurrentHp=mage.setHp();
-        healerCurrentHp=healer.setHp();
-        rangerCurrentHp=ranger.setHp();
-
-        warriorDamage=warrior.setStr();
-        mageDamage=mage.setStr();
-        healerDamage=healer.setStr();
-        rangerDamage=ranger.setStr();
-
+        warriorDamage=w.setStr();
+        mageDamage=m.setStr();
+        healerDamage=h.setStr();
+        rangerDamage=r.setStr();
     }
 
     public void isFightOver() {
