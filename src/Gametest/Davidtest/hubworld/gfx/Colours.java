@@ -11,8 +11,8 @@ public class Colours {
         //if a negative number is assigned during the process of choosing colors it won't render
         if (colour < 0) return 255;
         int r = colour / 100%10;
-        int g = colour / 100%10;
-        int b = colour / 100%10;
-        return r * 26 + g * 6 + b;
+        int g = colour / 10%10;
+        int b = colour % 10;
+        return r * 36 + g * 6 + b;
     }
 }

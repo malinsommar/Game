@@ -26,7 +26,7 @@ public class Screen {
         pixels = new int[width * height];
     }
     //render the tiles and colours
-    public void render(int xPos, int yPos, int tile, int colour) {
+    public void render(int xPos, int yPos, int tile, int colour, boolean mirrorX, boolean mirrorY) {
         xPos -= xOffset;
         yPos -= yOffset;
 
@@ -36,6 +36,7 @@ public class Screen {
         for (int y = 0; y < 8; y++) {
             if (y + yPos < 0 || y + yPos >= height) continue;
             int ySheet = y;
+            if (mirrorY) ySheet = 7 - y;
             for (int x = 0; x < 8; x++) {
                 if (x + xPos < 0 || x + xPos >= width) continue;
                 int xSheet = x;
