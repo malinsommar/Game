@@ -51,12 +51,12 @@ public class ForestFight extends JFrame {
     private JLabel player4Hp;
 
     private JLabel playersHp;
-    private JLabel playerStr;
 
     private int wolf1Int, wolf2Int, wolf3Int, wolf4Int;
 
-    private int warriorCurrentHp=w.hp+w.blockUp, mageCurrentHp=m.hp+m.blockUp, healerCurrentHp=h.hp+h.blockUp, rangerCurrentHp=r.hp+r.blockUp;
-    private int warriorDamage=w.str+w.damage+5, mageDamage=m.str+m.damage+5, healerDamage=h.str+h.damage+5, rangerDamage=r.str+r.damage+5;
+    private int warriorCurrentHp = w.hp, mageCurrentHp = m.hp, healerCurrentHp = h.hp, rangerCurrentHp = r.hp;
+    private int warriorDamage = w.combinedDamage, mageDamage = m.combinedDamage, healerDamage = h.combinedDamage, rangerDamage = r.combinedDamage;
+    private int warriorBlock = w.combinedBlock, mageBlock = m.combinedBlock, healerBlock = h.combinedBlock, rangerBlock = r.combinedBlock;
 
     public ForestFight(){
 
@@ -66,6 +66,7 @@ public class ForestFight extends JFrame {
         setSize(1920, 1080);
         setTitle("Forest Fight");
         importFont();
+        System.out.println(w.combinedBlock);
 
         //Background picture
         ImageIcon background = new ImageIcon("forest.jpg"); //download image
@@ -129,6 +130,7 @@ public class ForestFight extends JFrame {
         itemButton.addActionListener(e -> System.exit(0)); //ska bort
         attackButton.addActionListener(e -> attackPressed());
         blockButton.addActionListener(e -> blockPressed());
+
         endTurnButton.addActionListener(e-> startNewTurn());
 
         setVisible(true);
@@ -196,7 +198,7 @@ public class ForestFight extends JFrame {
             wolfAttack();
             partyDeath();
         }
-        if (turns==1 && wolf1Int<1){
+        if (turns==5 && wolf1Int<1){
             turns=6;
         }
         if (turns==6 && wolf2Int>0){
@@ -300,7 +302,7 @@ public class ForestFight extends JFrame {
     private void warriorAttackWolf() {
 
         while (true) {
-            int target = randomTarget();
+            int target = (int) (Math.random() * 4)+1;
 
             if (target == 1 && wolf1Int > 0) {
                 wolf1Int = wolf1Int - warriorDamage;
@@ -328,7 +330,7 @@ public class ForestFight extends JFrame {
     private void mageAttackWolf(){
 
         while (true) {
-            int target = randomTarget();
+            int target = (int) (Math.random() * 4)+1;
 
             if (target == 1 && wolf1Int > 0) {
                 wolf1Int = wolf1Int - mageDamage;
@@ -355,7 +357,7 @@ public class ForestFight extends JFrame {
 
     private void rangerAttackWolf(){
         while (true) {
-            int target = randomTarget();
+            int target = (int) (Math.random() * 4)+1;
 
             if (target == 1 && wolf1Int > 0) {
                 wolf1Int = wolf1Int - rangerDamage;
@@ -383,7 +385,7 @@ public class ForestFight extends JFrame {
     private void healerAttackWolf(){
 
         while (true) {
-            int target = randomTarget();
+            int target = (int) (Math.random() * 4)+1;
 
             if (target == 1 && wolf1Int > 0) {
                 wolf1Int = wolf1Int - healerDamage;
@@ -511,26 +513,6 @@ public class ForestFight extends JFrame {
             healer.setVisible(false);
         }
     }
-
-
-    private int randomTarget(){
-        int target = (int) (Math.random() * 4)+1;
-
-        if (target == 1 && wolf1Int < 1) {
-            target = 2;
-        }
-        if (target == 2 && wolf2Int < 1) {
-            target = 3;
-        }
-        if (target == 3 && wolf3Int < 1) {
-            target = 4;
-        }
-        if (target == 4 && wolf4Int < 1) {
-            target =1;
-        }
-        return target;
-    }
-
     private void hpLabels(){
         playersHp = new JLabel("Hp: "+warriorCurrentHp);
         playersHp.setFont(pixelMplus);
@@ -697,7 +679,6 @@ public class ForestFight extends JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 attackButton.setBackground(Color.lightGray);
             }
-
             //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 attackButton.setBackground(Color.white);

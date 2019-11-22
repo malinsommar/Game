@@ -5,7 +5,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-
 public class Hub extends JFrame {
 
     private JLabel gameName;
@@ -19,7 +18,10 @@ public class Hub extends JFrame {
         setLayout(null);
         setSize(1920, 1080);
         setTitle("Alterborne");
+
         importFont();
+        importNewGameButtons();
+        hover();
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
@@ -29,10 +31,25 @@ public class Hub extends JFrame {
         gameName = new JLabel("Alterborne");
         gameName.setForeground(Color.white);
         gameName.setFont((pixelMplus.deriveFont(100f)));
-
         Dimension size = gameName.getPreferredSize();
         gameName.setBounds(400, 30, size.width, size.height);
 
+        add(gameName);
+        add(newRunButton);
+        add(tutorialButton);
+        add(exitButton);
+
+        newRunButton.addActionListener(e -> dispose());
+        newRunButton.addActionListener(e -> new NewGame());
+        exitButton.addActionListener(e -> System.exit(0));
+
+        musicpick.musicStart("mainmenu","music");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
+        setVisible(true);
+    }
+
+    public void importNewGameButtons(){
         //New run Button
         newRunButton = new JButton("New Game");
         newRunButton.setSize(300, 100);
@@ -60,61 +77,42 @@ public class Hub extends JFrame {
         exitButton.setBackground(Color.white);
         exitButton.setBorder(null); //Remove border around button
         exitButton.setFocusPainted(false);//Remove border around text in button
+    }
 
-        // Add all items
-        add(gameName);
-        add(newRunButton);
-        add(tutorialButton);
-        add(exitButton);
+    public void hover(){
 
-        //Action Listeners for New Run Button
-        //newRunButton.addActionListener(e -> clip.stop());
-        newRunButton.addActionListener(e -> dispose());
-        newRunButton.addActionListener(e -> new NewGame());
+        //new run button
         newRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
             //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 newRunButton.setBackground(Color.lightGray);
             }
-            //Change back when not hovering
+            //Change back when exiting
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 newRunButton.setBackground(UIManager.getColor("control"));
             }
         });
 
-        //Action Listeners for Tutorial Button
-        tutorialButton.addActionListener(e -> dispose());
-        tutorialButton.addActionListener(e -> new Shop());
+        //Tutorial Button
         tutorialButton.addMouseListener(new java.awt.event.MouseAdapter() {
 
-            //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tutorialButton.setBackground(Color.lightGray);
             }
-            //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tutorialButton.setBackground(UIManager.getColor("control"));
             }
         });
 
-        //Action Listeners for Exit button
-        exitButton.addActionListener(e -> System.exit(0));
+        //Exit button
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 exitButton.setBackground(Color.lightGray);
             }
-            //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 exitButton.setBackground(UIManager.getColor("control"));
             }
         });
-
-        musicpick.musicStart("mainmenu","music");
-
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
-        setVisible(true);
     }
 
     public void importFont() {
