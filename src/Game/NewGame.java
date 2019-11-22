@@ -12,21 +12,47 @@ import java.io.IOException;
 
 public class NewGame extends JFrame {
 
-    JLabel backStory, backStory2, backStory3, yourParty;
-    JButton startButton;
+    private JLabel backStory, backStory2, backStory3, yourParty;
+    private JButton startButton;
     Font pixelMplus;
 
+    private JLabel warrior, mage, healer,ranger;
 
     public NewGame() {
 
+        super("New Game");
         setLayout(null);
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.darkGray);
+        musicpick.musicStart("theme","music");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
 
         importFont();
+        importLabels();
+        importButton();
+        importGifs();
 
-        //Backstory text
+        add(warrior);
+        add(ranger);
+        add(mage);
+        add(healer);
+        add(startButton);
+        add(backStory);
+        add(backStory2);
+        add(backStory3);
+        add(yourParty);
+
+        //ActionListeners
+        startButton.addActionListener(e -> dispose());
+        startButton.addActionListener(e -> new ForestFight());
+
+        setVisible(true);
+    }
+
+    public void importLabels(){
+
         backStory = new JLabel("This is a backstory. very cool. This is a backstory. very cool.");
         backStory.setFont((pixelMplus.deriveFont(30f)));
         backStory.setForeground(Color.white);
@@ -50,8 +76,10 @@ public class NewGame extends JFrame {
         yourParty.setForeground(Color.white);
         Dimension size4 = yourParty.getPreferredSize();
         yourParty.setBounds(200, 220, size4.width, size4.height);
+    }
 
-        //Start Button
+    public void importButton(){
+
         startButton = new JButton("Save the world");
         startButton.setSize(300, 100);
         startButton.setLocation(500, 600);
@@ -72,32 +100,20 @@ public class NewGame extends JFrame {
                 startButton.setBackground(Color.darkGray);
             }
         });
+    }
 
-        add(startButton);
-        add(backStory);
-        add(backStory2);
-        add(backStory3);
-        add(yourParty);
-
-        // ** Start of Party-members **
-
+    public void importGifs(){
         //Create a label
-        JLabel warrior = new JLabel();
-        JLabel ranger = new JLabel();
-        JLabel mage = new JLabel();
-        JLabel healer = new JLabel();
+        warrior = new JLabel();
+        ranger = new JLabel();
+        mage = new JLabel();
+        healer = new JLabel();
 
         //Add a picture to the label
         warrior.setIcon(new ImageIcon("warrior.gif"));
         ranger.setIcon(new ImageIcon("ranger.gif"));
         mage.setIcon(new ImageIcon("mage.gif"));
         healer.setIcon(new ImageIcon("healer.gif"));
-
-        //Add party-members
-        add(warrior);
-        add(ranger);
-        add(mage);
-        add(healer);
 
         //Get size
         Dimension warriorSize = warrior.getPreferredSize();
@@ -110,18 +126,6 @@ public class NewGame extends JFrame {
         ranger.setBounds(340, 350, rangerSize.width, rangerSize.height);
         mage.setBounds(540, 350, mageSize.width, mageSize.height);
         healer.setBounds(740, 350, healerSize.width, healerSize.height);
-
-        // ** End of party-members **
-
-        //ActionListeners
-        startButton.addActionListener(e -> dispose());
-        startButton.addActionListener(e -> new ForestFight());
-
-        musicpick.musicStart("theme");
-
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
-        setVisible(true);
     }
 
     public void importFont() {

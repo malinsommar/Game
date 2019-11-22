@@ -1,36 +1,44 @@
 package Game;
 
-import Armor.RangerStartArmor;
-import Weapons.RangerStartWeapon;
-import org.w3c.dom.ranges.Range;
-
-import java.util.ArrayList;
-
 public class Ranger {
 
-    ArrayList<Ranger> rangerWeapon = new ArrayList();
-    ArrayList<Ranger> rangerArmor = new ArrayList();
+    String currentWeaponName = "Simple bow";
+    public int currentWeaponDamage = 5;
 
-    public int blockUp;
-    public int damage;
+    String currentArmorName = "Broken leather armor";
+    public int currentArmorBlock = 0;
 
-    public int hp=70;
-    public int block=0;
-    public int str=0;
-    public int crit=15;
-    public int dex=5;
+    public int hp = 70;
+    public int block = 0;
+    public int damage = 0;
 
-    public void setStartEquipment() {
-        rangerWeapon.add(new RangerStartWeapon());
-        rangerArmor.add(new RangerStartArmor());
+    public int combinedBlock = block + currentArmorBlock;
+    public int combinedDamage = damage + currentWeaponDamage;
+
+    //All ranger weapons
+    public void rangerRareWeapon(){
+        currentWeaponName = "Elven bow";
+        currentWeaponDamage = 8;
     }
-
-    public int setHp() {
-        int rangHp = hp+rangerArmor.get(0).blockUp;
-        return rangHp;
+    public void rangerEpicWeapon(){
+        currentWeaponName = "Dragonslayer's bow";
+        currentWeaponDamage = 11;
     }
-    public int setStr() {
-        int rangStr = str+rangerWeapon.get(0).damage;
-        return rangStr;
+    public void rangerLegendaryWeapon(){
+        currentWeaponName = "Bullseye bow";
+        currentWeaponDamage = 15;
+    }
+    //All ranger armors
+    public void rangerRareArmor(){
+        currentArmorName = "Fine leather armor";
+        currentArmorBlock = 2;
+    }
+    public void rangerEpicArmor(){
+        currentArmorName = "Elven leather armor";
+        currentArmorBlock = 4;
+    }
+    public void rangerLegendaryArmor(){
+        currentArmorName = "Demonskin armor";
+        currentArmorBlock = 8;
     }
 }

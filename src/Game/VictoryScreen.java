@@ -1,10 +1,9 @@
 package Game;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,7 +11,8 @@ public class VictoryScreen extends JFrame {
 
     JLabel youWon, wonBread;
     JButton countinueButton;
-    Font pixelMplus, pixelMplus2;
+    Font pixelMplus;
+    private int textDelay = 0;
 
     public VictoryScreen() {
         setLayout(null);
@@ -22,7 +22,6 @@ public class VictoryScreen extends JFrame {
         ImageIcon picwin = new ImageIcon("C:\\Users\\96simben\\Documents\\GitHub\\Game\\newGameBackground.jpg");
         setContentPane(new JLabel(picwin));
 
-        //importFont();
         try {pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf"));
         } catch(IOException | FontFormatException e){}
 
@@ -42,6 +41,7 @@ public class VictoryScreen extends JFrame {
         countinueButton.setSize(300, 100);
         countinueButton.setLocation(500, 600);
         countinueButton.setForeground(Color.white);
+        countinueButton.setFont(pixelMplus.deriveFont(50f));
         countinueButton.setBackground(Color.darkGray);
         countinueButton.setBorder(null);
         countinueButton.setFocusPainted(false);
@@ -56,30 +56,36 @@ public class VictoryScreen extends JFrame {
             }
         });
 
-        add(youWon);
-        add(wonBread);
-        add(countinueButton);
-
+        timer.setRepeats(true);
+        timer.setCoalesce(true);
+        timer.setInitialDelay(500);
+        timer.start();
 
         //countinue
         countinueButton.addActionListener(e -> dispose());
         //countinueButton.addActionListener(e -> new ForestFight());
 
-        musicpick.musicStart("shop");
+        musicpick.musicStart("Victory","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         setVisible(true);
     }
 
-    //ta bort och kalla på metoden i newgame istället?
-    public void importFont() {
-        try {
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf"));
-            //GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
+    Timer timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            textDelay++;
+            if (textDelay == 1){
+                add(youWon);
+            }
+            else if (textDelay == 4){
+                add(wonBread);
+            }
+            else if (textDelay == 7){
+                add(countinueButton);
+            }
+            repaint();
         }
-    }
+    });
 }
