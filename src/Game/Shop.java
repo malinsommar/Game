@@ -16,7 +16,7 @@ public class Shop extends JFrame {
         setLayout(null);
         setSize(1920, 1080);
         setTitle("Shop");
-        musicpick.musicStart("shop");
+        musicpick.musicStart("shop", "music");
         importFont();
 
         ImageIcon background = new ImageIcon("tavern.jpg"); //download image

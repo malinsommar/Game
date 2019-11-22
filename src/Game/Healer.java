@@ -1,37 +1,44 @@
 package Game;
 
-import Armor.HealerStartArmor;
-import Weapons.HealerStartWeapon;
-
-import java.util.ArrayList;
-
 public class Healer {
 
-    ArrayList<Healer> healerWeapon = new ArrayList();
-    ArrayList<Healer> healerArmor = new ArrayList();
+    String currentWeaponName = "Wodden staff";
+    public int currentWeaponDamage = 5;
 
-    public String name;
-    public int blockUp;
-    public int rarity;
+    String currentArmorName = "Cloth scraps";
+    public int currentArmorBlock = 5;
 
-    public int damage;
+    public int hp = 100;
+    public int block = 0;
+    public int damage = 0;
 
-    public int hp=100;
-    public int block=0;
-    public int str=0;
-    public int crit=5;
-    public int dex=0;
+    public int combinedBlock = block + currentArmorBlock;
+    public int combinedDamage = damage + currentWeaponDamage;
 
-    public void setStartEquipment() {
-        healerWeapon.add(new HealerStartWeapon());
-        healerArmor.add(new HealerStartArmor());
+    //All healer weapons
+    public void healerRareWeapon(){
+        currentWeaponName = "Stick of truth";
+        currentWeaponDamage = 7;
     }
-    public int setHp() {
-        int heaHp = hp+healerArmor.get(0).blockUp;
-        return heaHp;
+    public void healerEpicWeapon(){
+        currentWeaponName = "Cleric's blessed walking stick";
+        currentWeaponDamage = 9;
     }
-    public int setStr() {
-        int heaStr = str+healerWeapon.get(0).damage;
-        return heaStr;
+    public void healerLegendaryWeapon(){
+        currentWeaponName = "Root of the world tree";
+        currentWeaponDamage = 11;
+    }
+    //All healer armors
+    public void healerRareArmor(){
+        currentArmorName = "Priests robe";
+        currentArmorBlock = 2;
+    }
+    public void healerEpicArmor(){
+        currentArmorName = "Clerics armor";
+        currentArmorBlock = 5;
+    }
+    public void healerLegendaryArmor(){
+        currentArmorName = "Plate armor of Parl'ont the crusader";
+        currentArmorBlock = 9;
     }
 }

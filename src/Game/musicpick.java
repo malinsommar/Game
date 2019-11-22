@@ -1,20 +1,16 @@
 package Game;
 
-import Armor.HealerStartArmor;
-import Weapons.HealerStartWeapon;
-
 import javax.sound.sampled.*;
 import java.io.File;
-import java.util.ArrayList;
 
 public class musicpick {
 
     private static Clip clip;
     private static int i = 0;
 
-    public static void musicStart(String pick) {
+    public static void musicStart(String pick, String soundType) {
         try {
-            if (i > 0) {
+            if (i > 0 && soundType == "music" ) {
                 clip.stop();
             }
             File yourFile = new File(pick + ".wav");

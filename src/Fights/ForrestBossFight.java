@@ -226,7 +226,7 @@ public class ForrestBossFight extends JFrame implements KeyListener {
 
         addKeyListener(this);
 
-        musicpick.musicStart("forest2");
+        musicpick.musicStart("forest2","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);

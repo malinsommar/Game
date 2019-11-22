@@ -1,94 +1,44 @@
 package Game;
 
-import Armor.WarriorRareArmor;
-import Armor.WarriorStartArmor;
-import Weapons.WarriorStartWeapon;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Warrior {
 
-    Font pixelMplus;
-    ArrayList<Warrior> warriorWeapon = new ArrayList();
-    ArrayList<Warrior> warriorArmor = new ArrayList();
+    String currentWeaponName = "Wodden Sword";
+    public int currentWeaponDamage = 5;
 
-    public String name;
-    public int blockUp;
-    public int rarity;
+    String currentArmorName = "Rusty Armor";
+    public int currentArmorBlock = 3;
 
     public int hp = 150;
-    public int block = 0;
-    public int str = 5;
-    public int crit = 5;
-    public int dex = 0;
+    public int block = 3;
+    public int damage = 5;
 
-    public void setStartEquipment() {
-        warriorWeapon.add(new WarriorStartWeapon());
-        warriorArmor.add(new WarriorStartArmor());
+    public int combinedBlock = block + currentArmorBlock;
+    public int combinedDamage = damage + currentWeaponDamage;
+
+    //All warrior weapons
+    public void warriorRareWeapon(){
+        currentWeaponName = "Iron sword";
+        currentWeaponDamage = 8;
     }
-
-    public int setHp() {
-        int warriorCurrentHp = hp+warriorArmor.get(0).blockUp;
-        return warriorCurrentHp;
+    public void warriorEpicWeapon(){
+        currentWeaponName = "Tempered steel blade";
+        currentWeaponDamage = 11;
     }
-
-    public int setStr() {
-        int warStr = str+warriorWeapon.get(0).str;
-        return warStr;
+    public void warriorLegendaryWeapon(){
+        currentWeaponName = "Sword of a thousand truths";
+        currentWeaponDamage = 15;
     }
-
-    public void newArmor(String item) {
-
-        JFrame itemFrame = new JFrame();
-        itemFrame.setLayout(null);
-        itemFrame.setSize(200, 100);
-        itemFrame.setTitle("New Item found!");
-        importFont();
-
-        //Buttons
-        JButton yes = new JButton("Yes");
-        yes.setLocation(30,60);
-        yes.setFont(pixelMplus);
-
-        JButton no = new JButton("No");
-        no.setLocation(60,60);
-        no.setFont(pixelMplus);
-
-        //Text
-        JLabel text = new JLabel("Do you want to replace warrior's " + warriorArmor.get(0).name + " with " + item + "?");
-        text.setFont(pixelMplus);
-        Dimension size = text.getPreferredSize();
-        text.setBounds(350, 10, size.width, size.height);
-
-        //Add all items
-        itemFrame.add(no);
-        itemFrame.add(yes);
-        itemFrame.add(text);
-
-        //Action Listeners
-        yes.addActionListener(e -> warriorArmor.remove(0));
-        yes.addActionListener(e ->warriorArmor.add(new WarriorRareArmor()));
-        yes.addActionListener(e ->itemFrame.dispose());
-
-        no.addActionListener(e ->itemFrame.dispose());
-
-        itemFrame.setVisible(true);
-
-        }
-
-
-    public void importFont() {
-        try {
-            pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }
+    //All warrior armors
+    public void warriorRareArmor(){
+        currentArmorName = "Shiny Armor";
+        currentArmorBlock = 7;
+    }
+    public void warriorEpicArmor(){
+        currentArmorName = "Hardened Armor";
+        currentArmorBlock = 9;
+    }
+    public void warriorLegendaryArmor(){
+        currentArmorName = "Royal Enchanted Armor";
+        currentArmorBlock = 11;
     }
 }
