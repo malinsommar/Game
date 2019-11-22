@@ -20,7 +20,8 @@ public class musicpick {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-30.0f); //ändrar volym
             clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            //ljudeffecter fuckar upp denna
+            //clip.loop(Clip.LOOP_CONTINUOUSLY);
             i = 5;
 
         } catch (Exception e) {

@@ -77,12 +77,15 @@ public class VictoryScreen extends JFrame {
         public void actionPerformed(ActionEvent ae) {
             textDelay++;
             if (textDelay == 1){
+                musicpick.musicStart("ding","");
                 add(youWon);
             }
             else if (textDelay == 3){
+                musicpick.musicStart("ding","");
                 add(wonBread);
             }
             else if (textDelay == 6){
+                musicpick.musicStart("ding","");
                 add(countinueButton);
             }
             repaint();
