@@ -79,10 +79,10 @@ public class VictoryScreen extends JFrame {
             if (textDelay == 1){
                 add(youWon);
             }
-            else if (textDelay == 4){
+            else if (textDelay == 3){
                 add(wonBread);
             }
-            else if (textDelay == 7){
+            else if (textDelay == 6){
                 add(countinueButton);
             }
             repaint();
