@@ -1,36 +1,44 @@
 package Game;
 
-import Armor.MageStartArmor;
-import Weapons.MageStartWeapon;
-
-import java.util.ArrayList;
-
 public class Mage{
 
-    ArrayList<Mage> mageWeapon = new ArrayList();
-    ArrayList<Mage> mageArmor = new ArrayList();
+    String currentWeaponName = "Wodden wand";
+    public int currentWeaponDamage = 5;
 
-    public int blockUp; //The block from the armor
-    public int damage; //The damage from the weapon
+    String currentArmorName = "Cloth robe";
+    public int currentArmorBlock = 0;
 
-    public int hp=100;
-    public int block=0;
-    public int str=0;
-    int crit=5;
-    public int dex=0;
+    public int hp = 100;
+    public int block = 0;
+    public int damage = 0;
 
-    public void setStartEquipment() {
-        mageWeapon.add(new MageStartWeapon());
-        mageArmor.add(new MageStartArmor());
+    public int combinedBlock = block + currentArmorBlock;
+    public int combinedDamage = damage + currentWeaponDamage;
+
+    //All mage weapons
+    public void mageRareWeapon(){
+        currentWeaponName = "Ivory fire wand";
+        currentWeaponDamage = 7;
     }
-
-    public int setHp() {
-        int mageHp = hp+mageArmor.get(0).blockUp;
-        return mageHp;
+    public void mageEpicWeapon(){
+        currentWeaponName= "Enchanted mana wand";
+        currentWeaponDamage = 9;
     }
-    public int setStr() {
-        int mageStr = str+mageWeapon.get(0).damage;
-        return mageStr;
+    public void mageLegendaryWeapon(){
+        currentWeaponName = "Pyromaniac's tinderbox";
+        currentWeaponDamage = 11;
     }
-
+    //All mage armors
+    public void mageRareArmor(){
+        currentArmorName = "Mooncloth robe";
+        currentArmorBlock = 2;
+    }
+    public void mageEpicArmor(){
+        currentArmorName = "Enchanted robe";
+        currentArmorBlock = 4;
+    }
+    public void mageLegendaryArmor(){
+        currentArmorName = "Robe of the archmage";
+        currentArmorBlock = 6;
+    }
 }
