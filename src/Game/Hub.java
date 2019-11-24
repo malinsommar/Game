@@ -7,17 +7,16 @@ import java.io.IOException;
 
 public class Hub extends JFrame {
 
-    private JLabel gameName;
+    private JLabel gameName, gameName2;
     private JButton tutorialButton, newRunButton, exitButton;
     Font pixelMplus;
 
     public Hub() {
 
-        super();
+        super("Alterborne");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setSize(1920, 1080);
-        setTitle("Alterborne");
 
         importFont();
         importNewGameButtons();
@@ -41,6 +40,7 @@ public class Hub extends JFrame {
 
         newRunButton.addActionListener(e -> dispose());
         newRunButton.addActionListener(e -> new NewGame());
+        tutorialButton.addActionListener(e-> new RouteScreen());
         exitButton.addActionListener(e -> System.exit(0));
 
         musicpick.musicStart("mainmenu","music");
@@ -89,7 +89,7 @@ public class Hub extends JFrame {
             }
             //Change back when exiting
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                newRunButton.setBackground(UIManager.getColor("control"));
+                newRunButton.setBackground(Color.white);
             }
         });
 
@@ -100,7 +100,7 @@ public class Hub extends JFrame {
                 tutorialButton.setBackground(Color.lightGray);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                tutorialButton.setBackground(UIManager.getColor("control"));
+                tutorialButton.setBackground(Color.white);
             }
         });
 
@@ -110,7 +110,7 @@ public class Hub extends JFrame {
                 exitButton.setBackground(Color.lightGray);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitButton.setBackground(UIManager.getColor("control"));
+                exitButton.setBackground(Color.white);
             }
         });
     }
