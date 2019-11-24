@@ -1,6 +1,9 @@
-package Gametest.Davidtest.hubworld;
+package Gametest.Davidtest.hubworld.hub;
 
+import Gametest.Davidtest.hubworld.Levels.Level1;
+import Gametest.Davidtest.hubworld.entities.Player;
 import Gametest.Davidtest.hubworld.gfx.Colours;
+import Gametest.Davidtest.hubworld.gfx.Fonts;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
 
@@ -27,7 +30,8 @@ public class Game extends Canvas implements Runnable{
     private int[] colours = new int[6*6*6];
     private Screen screen;
     public InputHandler input;
-
+    public Level1 level1;
+    public  Player player;
     public Game() {
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
         setMaximumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
@@ -62,6 +66,9 @@ public class Game extends Canvas implements Runnable{
         }
         screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
         input = new InputHandler(this);
+        level1 = new Level1(64,64);
+        player = new Player(level1,0,0,input);
+        level1.addEntity(player);
     }
     private synchronized void start() {
         running = true;
@@ -123,18 +130,7 @@ public class Game extends Canvas implements Runnable{
      {
          tickCount++;
 
-         if (input.up.isPressed()) {
-             screen.yOffset--;
-         }
-         if (input.down.isPressed()) {
-             screen.yOffset++;
-         }
-         if (input.left.isPressed()) {
-             screen.xOffset--;
-         }
-         if (input.right.isPressed()) {
-             screen.xOffset++;
-         }
+             level1.tick();
      }
 
     public void render() //prints out what the logic in the tick-function has stated should be printed out
@@ -144,23 +140,36 @@ public class Game extends Canvas implements Runnable{
             createBufferStrategy(3); //reducing tearing in the image. Higher value would require higher processing-power
             return;
         }
-        for (int y = 0; y < 32; y++) {
-            for (int x = 0; x < 32; x++) {
-                screen.render(x<<3, y<<3, 0, Colours.get(555, 505, 055, 550) true, false);
+
+        int xOffset = player.x - (screen.width/2);
+        int yOffset = player.y - (screen.height/2);
+
+        level1.renderTiles(screen, xOffset, yOffset);
+
+        for (int x = 0; x < level1.width; x++) {
+            int colour = Colours.get(-1,-1,-1,000);
+            if (x % 10 == 0 && x != 0) {
+                colour = Colours.get(-1,-1,-1,500);
             }
+            Fonts.render((x%10)+"", screen, 0 + (x*8), 0, colour);
         }
-        for (int y = 0; y< screen.height; y++) {
+
+        level1.renderEntities(screen);
+
+          for (int y = 0; y < screen.height; y++) {
             for (int x = 0; x < screen.width; x++) {
                 int colourCode = screen.pixels[x + y * screen.width];
                 if (colourCode < 255) pixels[x + y * WIDTH] = colours[colourCode];
             }
         }
+
         Graphics g = bs.getDrawGraphics(); //a graphic-object
-        g.drawRect(0,0,getWidth(),getHeight());
         g.drawImage(image,0,0,getWidth(),getHeight(),null);
         g.dispose(); //free up space
         bs.show();
     }
+
+
     public static void main(String[]args) {
         new Game().start();
     }

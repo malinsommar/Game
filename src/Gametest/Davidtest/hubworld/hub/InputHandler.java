@@ -1,4 +1,6 @@
-package Gametest.Davidtest.hubworld;
+package Gametest.Davidtest.hubworld.hub;
+
+import Gametest.Davidtest.hubworld.hub.Game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
