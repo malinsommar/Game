@@ -84,20 +84,22 @@ public class NewGame extends JFrame {
         startButton.setSize(300, 100);
         startButton.setLocation(500, 600);
         startButton.setFont((pixelMplus.deriveFont(30f)));
-        startButton.setForeground(Color.white);
-        startButton.setBackground(Color.darkGray);
+        startButton.setForeground(Color.darkGray);
+        startButton.setBackground(Color.WHITE);
         startButton.setBorder(null); //Remove border around button
         startButton.setFocusPainted(false);//Remove border around text in button
 
         startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             //Change button color while hovering
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                startButton.setBackground(Color.gray);
+                startButton.setBackground(Color.darkGray);
+                startButton.setForeground(Color.white);
             }
 
             //Change back when not hovering
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                startButton.setBackground(Color.darkGray);
+                startButton.setBackground(Color.white);
+                startButton.setForeground(Color.darkGray);
             }
         });
     }
