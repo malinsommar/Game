@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
@@ -28,6 +29,7 @@ public class simontest extends JFrame {
     Mage magepizza = new Mage();
     Healer healerpizza = new Healer();
     Ranger rangerpizza = new Ranger();
+    JLabel pizza = new JLabel(new ImageIcon("warrior.gif"));
     int[] partypizza = new int[4];
 
     public simontest() {
@@ -40,6 +42,7 @@ public class simontest extends JFrame {
         //Icon mage = new ImageIcon("mage.gif");
         //add(new JLabel(mage));
 
+        /*
         ImageIcon warrior = new ImageIcon("warrior.gif");
         ImageIcon ranger = new ImageIcon("ranger.gif");
         ImageIcon mage = new ImageIcon("mage.gif");
@@ -48,13 +51,17 @@ public class simontest extends JFrame {
         add(new JLabel(ranger));
         add(new JLabel(mage));
         add(new JLabel(healer));
+         */
+        add(pizza);
+
+
 
         testButton = new JButton("firestorm");
         testButton.setSize(300, 100);
         testButton.setLocation(200, 330);
         testButton.setBackground(Color.white);
 
-        testButton2 = new JButton("fireblast");
+        testButton2 = new JButton("attack");
         testButton2.setSize(300, 100);
         testButton2.setLocation(100, 330);
         testButton2.setBackground(Color.white);
@@ -62,7 +69,22 @@ public class simontest extends JFrame {
         add(testButton);
         add(testButton2);
         testButton.addActionListener(e -> spelltest("firestorm", level));
-        testButton2.addActionListener(e -> spelltest("fireball", level));
+        testButton2.addActionListener(e -> {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        attack();
+                        System.out.println("begins the attack");
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                        System.out.println("error");
+                    }
+                }
+            });
+    });
+
+
+
 
         //testButton.addActionListener(e -> musicpick.musicStart("theme"));
 
@@ -76,6 +98,7 @@ public class simontest extends JFrame {
 
         setVisible(true);
         sethp();
+
     }
 
     public void sethp() {
@@ -83,6 +106,28 @@ public class simontest extends JFrame {
         enemies[1] = 100;
         enemies[2] = 100;
         enemies[3] = 100;
+    }
+
+
+
+    public void attack() throws InterruptedException {
+        int cloudx = 100;
+        int cloudy = 200;
+        pizza.setLocation(cloudx, cloudy);
+        while (cloudx < 90000) {
+            cloudx += 100;
+            //pizza.repaint();
+            pizza.revalidate();
+            Thread.sleep(30);
+            System.out.println("has moved");
+        }
+        while (cloudx > 100) {
+            cloudx -= 10;
+            //pizza.repaint();
+            pizza.revalidate();
+            Thread.sleep(30);
+            System.out.println("moves backwards");
+        }
     }
 
     public void spelltest(String spell, int level) {
