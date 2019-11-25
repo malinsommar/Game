@@ -118,6 +118,11 @@ public class ForestFight extends JFrame {
         setVisible(true);
     }
 
+    public void usePotion(){
+
+
+    }
+
     private void startNewTurn(){
         turns++;
 
