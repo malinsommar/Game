@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
@@ -25,10 +26,15 @@ public class simontest extends JFrame {
     int[] enemies = new int[4];
     int level = 5;
 
+    public int cloudx = 100;
+    public int cloudy = 200;
+    int phase = 1;
+
     Warrior warrpizza =new Warrior();
     Mage magepizza = new Mage();
     Healer healerpizza = new Healer();
     Ranger rangerpizza = new Ranger();
+    private Image piz = new ImageIcon("warrior.gif").getImage();
     JLabel pizza = new JLabel(new ImageIcon("warrior.gif"));
     int[] partypizza = new int[4];
 
@@ -53,15 +59,14 @@ public class simontest extends JFrame {
         add(new JLabel(healer));
          */
         add(pizza);
-
-
+        pizza.setLocation(cloudx,100);
 
         testButton = new JButton("firestorm");
         testButton.setSize(300, 100);
         testButton.setLocation(200, 330);
         testButton.setBackground(Color.white);
 
-        testButton2 = new JButton("attack");
+        testButton2 = new JButton("move");
         testButton2.setSize(300, 100);
         testButton2.setLocation(100, 330);
         testButton2.setBackground(Color.white);
@@ -69,19 +74,7 @@ public class simontest extends JFrame {
         add(testButton);
         add(testButton2);
         testButton.addActionListener(e -> spelltest("firestorm", level));
-        testButton2.addActionListener(e -> {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        attack();
-                        System.out.println("begins the attack");
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                        System.out.println("error");
-                    }
-                }
-            });
-    });
+        testButton2.addActionListener(e -> {timer.start(); });
 
 
 
@@ -92,6 +85,10 @@ public class simontest extends JFrame {
 
 
         //////////////////////////////////////////////////////////////////
+
+        timer.setRepeats(true);
+        timer.setCoalesce(true);
+        timer.setInitialDelay(10);
 
         setLayout(new FlowLayout()); //Default layout
         setSize(1900, 500);
@@ -106,28 +103,6 @@ public class simontest extends JFrame {
         enemies[1] = 100;
         enemies[2] = 100;
         enemies[3] = 100;
-    }
-
-
-
-    public void attack() throws InterruptedException {
-        int cloudx = 100;
-        int cloudy = 200;
-        pizza.setLocation(cloudx, cloudy);
-        while (cloudx < 90000) {
-            cloudx += 100;
-            //pizza.repaint();
-            pizza.revalidate();
-            Thread.sleep(30);
-            System.out.println("has moved");
-        }
-        while (cloudx > 100) {
-            cloudx -= 10;
-            //pizza.repaint();
-            pizza.revalidate();
-            Thread.sleep(30);
-            System.out.println("moves backwards");
-        }
     }
 
     public void spelltest(String spell, int level) {
@@ -214,25 +189,6 @@ public class simontest extends JFrame {
     }
 
 
-/*
-        try {
-            File yourFile = new File("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\Gametest\\Simontest\\theme.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(yourFile);
-            Clip clip = (Clip) AudioSystem.getLine(new DataLine.Info(Clip.class, audioIn.getFormat()));
-            clip.open(audioIn);
-            FloatControl gainControl =
-                    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-30.0f); //ändrar volym
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-        catch (Exception e) {
-                //whatevers
-        }
-        */
-
-
-
         //BufferedImage mage2 = ImageIO.read(new File("mage.gif"));//funkar inte
         //mage2.getGraphics().drawImage(mage2 ,500, 500, null);//funkar inte
 
@@ -250,4 +206,38 @@ public class simontest extends JFrame {
         Dimension warriorsize = warrior.getPreferredSize();
         warrior.setBounds(100, 100, warriorsize.width, warriorsize.height);
          */
+
+
+    Timer timer = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            /*rush past
+                cloudx += 30;
+                pizza.setLocation(cloudx, 100);
+
+            if (cloudx > 1000) {
+                pizza.setVisible(false);
+            }
+            if (cloudx > 2000) {
+                cloudx = 100;
+                pizza.setLocation(cloudx,100);
+                pizza.setVisible(true);
+                timer.stop();
+            }
+             */
+            if (phase == 0){
+                cloudx += 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx > 200) {
+                phase = 1;
+                }}
+            else if (phase == 1){
+                cloudx -= 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx < 100) {
+                    phase = 0;
+                    timer.stop();
+                }}
+            }
+        });
 }
