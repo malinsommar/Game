@@ -39,6 +39,6 @@ public class Ranger {
     }
     public void rangerLegendaryArmor(){
         currentArmorName = "Demonskin armor";
-        currentArmorBlock = 20;
+        currentArmorBlock = 18;
     }
 }
