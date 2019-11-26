@@ -11,7 +11,10 @@ public class Shop extends JFrame {
 
     private Font pixelMplus;
     private JButton back, potion1, potion2, potion3, potion4, potion5, potion6, potion7, potion8, potion9, potion10, potion11, potion12;
-    private JLabel currentAction, goldLabel, health, block, energy, strength;
+    private JButton healerWeapon1, healerWeapon2, healerWeapon3, warriorWeapon1, warriorWeapon2, warriorWeapon3, rangerWeapon1, rangerWeapon2, rangerWeapon3, mageWeapon1, mageWeapon2, mageWeapon3;
+    private JButton healerArmor1, healerArmor2, healerArmor3, warriorArmor1, warriorArmor2, warriorArmor3, rangerArmor1, rangerArmor2, rangerArmor3, mageArmor1, mageArmor2, mageArmor3;
+
+    private JLabel currentAction, goldLabel, health, block, energy, strength, warrior, healer, ranger, mage;
 
     private int currentGold=inv.gold;
 
@@ -47,6 +50,35 @@ public class Shop extends JFrame {
         add(potion10);
         add(potion11);
         add(potion12);
+        add(warriorArmor1);
+        add(warriorArmor2);
+        add(warriorArmor3);
+        add(warriorWeapon1);
+        add(warriorWeapon2);
+        add(warriorWeapon3);
+        add(rangerArmor1);
+        add(rangerArmor2);
+        add(rangerArmor3);
+        add(rangerWeapon1);
+        add(rangerWeapon2);
+        add(rangerWeapon3);
+        add(mageArmor1);
+        add(mageArmor2);
+        add(mageArmor3);
+        add(mageWeapon1);
+        add(mageWeapon2);
+        add(mageWeapon3);
+        add(healerArmor1);
+        add(healerArmor2);
+        add(healerArmor3);
+        add(healerWeapon1);
+        add(healerWeapon2);
+        add(healerWeapon3);
+
+        add(warrior);
+        add(mage);
+        add(healer);
+        add(ranger);
 
         //ActionListeners
         back.addActionListener(e -> dispose());
@@ -164,7 +196,7 @@ public class Shop extends JFrame {
 
     public void addLabels(){
 
-        currentAction = new JLabel("Shopkeeper: Are you gonna buy something or what?");
+        currentAction = new JLabel("Shopkeeper: Are you gonna buy something or what?             ");
         currentAction.setFont((pixelMplus.deriveFont(30f)));
         currentAction.setForeground(Color.black);
         Dimension currentActionSize = currentAction.getPreferredSize();
@@ -199,6 +231,30 @@ public class Shop extends JFrame {
         strength.setForeground(Color.black);
         Dimension strengthSize = strength.getPreferredSize();
         strength.setBounds(950, 500, strengthSize.width, strengthSize.height);
+
+        warrior = new JLabel("Warrior");
+        warrior.setFont((pixelMplus.deriveFont(40f)));
+        warrior.setForeground(Color.black);
+        Dimension warriorSize = warrior.getPreferredSize();
+        warrior.setBounds(200, 100, warriorSize.width, warriorSize.height);
+
+        mage = new JLabel("Mage");
+        mage.setFont((pixelMplus.deriveFont(40f)));
+        mage.setForeground(Color.black);
+        Dimension mageSize = mage.getPreferredSize();
+        mage.setBounds(607, 100, mageSize.width, mageSize.height);
+
+        ranger = new JLabel("Ranger");
+        ranger.setFont((pixelMplus.deriveFont(40f)));
+        ranger.setForeground(Color.black);
+        Dimension rangerSize = ranger.getPreferredSize();
+        ranger.setBounds(210, 320, rangerSize.width, rangerSize.height);
+
+        healer = new JLabel("Healer");
+        healer.setFont((pixelMplus.deriveFont(40f)));
+        healer.setForeground(Color.black);
+        Dimension healerSize = healer.getPreferredSize();
+        healer.setBounds(585, 320, healerSize.width, healerSize.height);
     }
 
     private void addButtons(){
@@ -307,6 +363,174 @@ public class Shop extends JFrame {
         potion12.setBackground(Color.white);
         potion12.setBorder(null);
         potion12.setFocusPainted(false);
+        //Warrior stuff
+        warriorArmor1 = new JButton(inv.warriorRareArmorPic);
+        warriorArmor1.setSize(53, 64);
+        warriorArmor1.setLocation(175, 155);
+        warriorArmor1.setBackground(Color.white);
+        warriorArmor1.setBorder(null);
+        warriorArmor1.setFocusPainted(false);
+
+        warriorArmor2 = new JButton(inv.warriorEpicArmorPic);
+        warriorArmor2.setSize(53, 64);
+        warriorArmor2.setLocation(235, 155);
+        warriorArmor2.setBackground(Color.white);
+        warriorArmor2.setBorder(null);
+        warriorArmor2.setFocusPainted(false);
+
+        warriorArmor3 = new JButton(inv.warriorLegendaryArmorPic);
+        warriorArmor3.setSize(53, 64);
+        warriorArmor3.setLocation(295, 155);
+        warriorArmor3.setBackground(Color.white);
+        warriorArmor3.setBorder(null);
+        warriorArmor3.setFocusPainted(false);
+
+        warriorWeapon1 = new JButton(inv.warriorRareWeaponPic);
+        warriorWeapon1.setSize(53, 64);
+        warriorWeapon1.setLocation(175, 225);
+        warriorWeapon1.setBackground(Color.white);
+        warriorWeapon1.setBorder(null);
+        warriorWeapon1.setFocusPainted(false);
+
+        warriorWeapon2 = new JButton(inv.warriorEpicWeaponPic);
+        warriorWeapon2.setSize(53, 64);
+        warriorWeapon2.setLocation(235, 225);
+        warriorWeapon2.setBackground(Color.white);
+        warriorWeapon2.setBorder(null);
+        warriorWeapon2.setFocusPainted(false);
+
+        warriorWeapon3 = new JButton(inv.warriorLegendaryWeaponPic);
+        warriorWeapon3.setSize(53, 64);
+        warriorWeapon3.setLocation(295, 225);
+        warriorWeapon3.setBackground(Color.white);
+        warriorWeapon3.setBorder(null);
+        warriorWeapon3.setFocusPainted(false);
+
+        rangerArmor1 = new JButton(inv.rangerRareArmorPic);
+        rangerArmor1.setSize(53, 64);
+        rangerArmor1.setLocation(175, 375);
+        rangerArmor1.setBackground(Color.white);
+        rangerArmor1.setBorder(null);
+        rangerArmor1.setFocusPainted(false);
+
+        rangerArmor2 = new JButton(inv.rangerEpicArmorPic);
+        rangerArmor2.setSize(53, 64);
+        rangerArmor2.setLocation(235, 375);
+        rangerArmor2.setBackground(Color.white);
+        rangerArmor2.setBorder(null);
+        rangerArmor2.setFocusPainted(false);
+
+        rangerArmor3 = new JButton(inv.rangerLegendaryArmorPic);
+        rangerArmor3.setSize(53, 64);
+        rangerArmor3.setLocation(295, 375);
+        rangerArmor3.setBackground(Color.white);
+        rangerArmor3.setBorder(null);
+        rangerArmor3.setFocusPainted(false);
+
+        rangerWeapon1 = new JButton(inv.rangerRareWeaponPic);
+        rangerWeapon1.setSize(53, 64);
+        rangerWeapon1.setLocation(175, 445);
+        rangerWeapon1.setBackground(Color.white);
+        rangerWeapon1.setBorder(null);
+        rangerWeapon1.setFocusPainted(false);
+
+        rangerWeapon2 = new JButton(inv.rangerEpicWeaponPic);
+        rangerWeapon2.setSize(53, 64);
+        rangerWeapon2.setLocation(235, 445);
+        rangerWeapon2.setBackground(Color.white);
+        rangerWeapon2.setBorder(null);
+        rangerWeapon2.setFocusPainted(false);
+
+        rangerWeapon3 = new JButton(inv.rangerLegendaryWeaponPic);
+        rangerWeapon3.setSize(53, 64);
+        rangerWeapon3.setLocation(295, 445);
+        rangerWeapon3.setBackground(Color.white);
+        rangerWeapon3.setBorder(null);
+        rangerWeapon3.setFocusPainted(false);
+
+        mageArmor1 = new JButton(inv.mageRareArmorPic);
+        mageArmor1.setSize(53, 64);
+        mageArmor1.setLocation(555, 155);
+        mageArmor1.setBackground(Color.white);
+        mageArmor1.setBorder(null);
+        mageArmor1.setFocusPainted(false);
+
+        mageArmor2 = new JButton(inv.mageEpicArmorPic);
+        mageArmor2.setSize(53, 64);
+        mageArmor2.setLocation(615, 155);
+        mageArmor2.setBackground(Color.white);
+        mageArmor2.setBorder(null);
+        mageArmor2.setFocusPainted(false);
+
+        mageArmor3 = new JButton(inv.mageLegendaryArmorPic);
+        mageArmor3.setSize(53, 64);
+        mageArmor3.setLocation(675, 155);
+        mageArmor3.setBackground(Color.white);
+        mageArmor3.setBorder(null);
+        mageArmor3.setFocusPainted(false);
+
+        mageWeapon1 = new JButton(inv.mageRareWeaponPic);
+        mageWeapon1.setSize(53, 64);
+        mageWeapon1.setLocation(555, 225);
+        mageWeapon1.setBackground(Color.white);
+        mageWeapon1.setBorder(null);
+        mageWeapon1.setFocusPainted(false);
+
+        mageWeapon2 = new JButton(inv.mageEpicWeaponPic);
+        mageWeapon2.setSize(53, 64);
+        mageWeapon2.setLocation(615, 225);
+        mageWeapon2.setBackground(Color.white);
+        mageWeapon2.setBorder(null);
+        mageWeapon2.setFocusPainted(false);
+
+        mageWeapon3 = new JButton(inv.mageLegendaryWeaponPic);
+        mageWeapon3.setSize(53, 64);
+        mageWeapon3.setLocation(675, 225);
+        mageWeapon3.setBackground(Color.white);
+        mageWeapon3.setBorder(null);
+        mageWeapon3.setFocusPainted(false);
+
+        healerArmor1 = new JButton(inv.healerRareArmorPic);
+        healerArmor1.setSize(53, 64);
+        healerArmor1.setLocation(555, 375);
+        healerArmor1.setBackground(Color.white);
+        healerArmor1.setBorder(null);
+        healerArmor1.setFocusPainted(false);
+
+        healerArmor2 = new JButton(inv.healerEpicArmorPic);
+        healerArmor2.setSize(53, 64);
+        healerArmor2.setLocation(615, 375);
+        healerArmor2.setBackground(Color.white);
+        healerArmor2.setBorder(null);
+        healerArmor2.setFocusPainted(false);
+
+        healerArmor3 = new JButton(inv.healerLegendaryArmorPic);
+        healerArmor3.setSize(53, 64);
+        healerArmor3.setLocation(675, 375);
+        healerArmor3.setBackground(Color.white);
+        healerArmor3.setBorder(null);
+        healerArmor3.setFocusPainted(false);
+
+        healerWeapon1 = new JButton(inv.healerRareWeaponPic);
+        healerWeapon1.setSize(53, 64);
+        healerWeapon1.setLocation(555, 445);
+        healerWeapon1.setBackground(Color.white);
+        healerWeapon1.setBorder(null);
+        healerWeapon1.setFocusPainted(false);
+
+        healerWeapon2 = new JButton(inv.healerEpicWeaponPic);
+        healerWeapon2.setSize(53, 64);
+        healerWeapon2.setLocation(615, 445);
+        healerWeapon2.setBackground(Color.white);
+        healerWeapon2.setBorder(null);
+        healerWeapon2.setFocusPainted(false);
+
+        healerWeapon3 = new JButton(inv.healerLegendaryWeaponPic);
+        healerWeapon3.setSize(53, 64);
+        healerWeapon3.setLocation(675, 445);
+        healerWeapon3.setBackground(Color.white);
+        healerWeapon3.setBorder(null);
+        healerWeapon3.setFocusPainted(false);
     }
 
     private void hoverEffect() {
@@ -423,6 +647,202 @@ public class Shop extends JFrame {
 
             }public void mouseExited(java.awt.event.MouseEvent evt) {
                 currentAction.setText("Shopkeeper: Buy something, you wont regret it!");
+            }
+        });
+        //Warrior's things
+        warriorArmor1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shiny Armor, Block: 6.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: That's a real shiny armor!");
+            }
+        });
+        warriorArmor2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Hardened Armor, Block: 10.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: You like that one?");
+            }
+        });
+        warriorArmor3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Royal Enchanted Armor, Block: 20.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: No need to worry in that armor!");
+            }
+        });
+        warriorWeapon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Iron sword, Attack: 8.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Give it a swing!");
+            }
+        });
+        warriorWeapon2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Tempered steel blade, Attack: 15.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: I take good care of my wares!");
+            }
+        });
+        warriorWeapon3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Sword of a thousand truths, Attack: 27.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Watch out, it's sharp!");
+            }
+        });
+        //Mage
+        mageArmor1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Mooncloth robe, Block: 2.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: You would look great in that one!");
+            }
+        });
+        mageArmor2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Enchanted robe, Block: 4.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Feel how soft it is!");
+            }
+        });
+        mageArmor3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Robe of the archmage, Block: 6.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Don't you love the look of that one?");
+            }
+        });
+        mageWeapon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Ivory fire wand, Attack: 7.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: You wanna try it?");
+            }
+        });
+        mageWeapon2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Enchanted mana wand, Attack: 15.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: If you wanna try it, do it outside..");
+            }
+        });
+        mageWeapon3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Pyromaniac's tinderbox, Attack: 30.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: That's the most powerful weapon i know of.");
+            }
+        });
+        //Healer
+        healerArmor1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Priests robe, Block: 2.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: I love the colors on that one.");
+            }
+        });
+        healerArmor2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Clerics armor, Block: 8.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: That's a nice armor.");
+            }
+        });
+        healerArmor3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Plate armor of Parl'ont the crusader, Block: 13.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Do you want to try it on?");
+            }
+        });
+        healerWeapon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Stick of truth, Attack: 7.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Such a nice staff.");
+            }
+        });
+        healerWeapon2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Cleric's blessed walking stick, Attack: 13.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: You can use it as a walking stick!");
+            }
+        });
+        healerWeapon3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Root of the world tree, Attack: 23.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: I wonder if it's really from that tree..?");
+            }
+        });
+        //Ranger
+        rangerArmor1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Fine leather armor, Block: 5.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: The leatherworker made that from my own cow!");
+            }
+        });
+        rangerArmor2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Elven leather armor, Block: 11.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: The elves are kind of #$@&%* actually..");
+            }
+        });
+        rangerArmor3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Demonskin armor, Block: 20.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: Does demons really have skin..?");
+            }
+        });
+        rangerWeapon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Elven bow, Attack: 8.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: The elves are great weapon makers!");
+            }
+        });
+        rangerWeapon2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Dragonslayer's bow, Attack: 16.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: The tales say it killed the last dragon!");
+            }
+        });
+        rangerWeapon3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Bullseye's bow, Attack: 26.");
+
+            }public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentAction.setText("Shopkeeper: You can hit anything with that bow!");
             }
         });
     }
