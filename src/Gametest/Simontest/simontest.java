@@ -23,12 +23,15 @@ public class simontest extends JFrame {
     JFrame testFrame = new JFrame();
     private JButton testButton;
     private JButton testButton2;
+    private JButton takedamagebutton;
     int[] enemies = new int[4];
     int level = 5;
 
     public int cloudx = 100;
     public int cloudy = 200;
-    int phase = 1;
+    public int startpostitionwarrior = cloudx;
+    int phase = 0;
+    int timepast = 0;
 
     Warrior warrpizza =new Warrior();
     Mage magepizza = new Mage();
@@ -76,19 +79,27 @@ public class simontest extends JFrame {
         testButton.addActionListener(e -> spelltest("firestorm", level));
         testButton2.addActionListener(e -> {timer.start(); });
 
-
+        takedamagebutton = new JButton("takedamage");
+        takedamagebutton.setSize(300, 100);
+        takedamagebutton.setLocation(100, 330);
+        takedamagebutton.setBackground(Color.white);
+        add(takedamagebutton);
+        takedamagebutton.addActionListener(e -> {takedamage.start(); });
 
 
         //testButton.addActionListener(e -> musicpick.musicStart("theme"));
 
         //musicpick.musicStart("theme");
 
-
         //////////////////////////////////////////////////////////////////
 
         timer.setRepeats(true);
         timer.setCoalesce(true);
         timer.setInitialDelay(10);
+        takedamage.setRepeats(true);
+        takedamage.setCoalesce(true);
+        takedamage.setInitialDelay(10);
+
 
         setLayout(new FlowLayout()); //Default layout
         setSize(1900, 500);
@@ -240,4 +251,55 @@ public class simontest extends JFrame {
                 }}
             }
         });
+
+    Timer takedamage = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (phase == 0){
+                cloudx -= 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx < startpostitionwarrior - 100) {
+                    phase = 1;
+                }}
+            else if (phase == 1){
+                cloudx += 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx > startpostitionwarrior) {
+                    phase = 2;
+                }}
+            else if (phase == 2){
+                pizza.setVisible(false);
+                timepast++;
+                if(timepast > 100){
+                    musicpick.musicStart("ding", "");
+                    timepast = 0;
+                    phase = 3;
+                }
+            }
+            else if (phase == 3){
+                pizza.setVisible(true);
+                timepast++;
+                if(timepast > 100){
+                    timepast = 0;
+                    phase = 4;
+                }
+            }
+            else if (phase == 4){
+                pizza.setVisible(false);
+                timepast++;
+                if(timepast > 100){
+                    musicpick.musicStart("ding", "");
+                    timepast = 0;
+                    phase = 5;
+                }
+            }
+            else if (phase == 5){
+                pizza.setVisible(true);
+                takedamage.stop();
+                timepast++;
+                phase = 0;
+
+            }
+    }
+});
 }
