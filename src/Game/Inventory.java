@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Inventory {
 
-    int gold = 20;
+    public int gold = 20;
 
     public ImageIcon minorHealthGif = new ImageIcon("minorHealth.gif");
     public ImageIcon lesserHealthGif = new ImageIcon("lesserHealth.gif");
