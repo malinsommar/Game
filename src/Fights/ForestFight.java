@@ -71,7 +71,9 @@ public class ForestFight extends JFrame {
         whosTurn = new JLabel("Warrior's turn");
         whosTurn.setFont(pixelMplus);
         whosTurn.setForeground(Color.black);
+        whosTurn.setBackground(Color.blue);
         Dimension whoSize = whosTurn.getPreferredSize();
+        //whosTurn.setMaximumSize(new Dimension(whoSize.width+100,whoSize.height+100));
         whosTurn.setBounds(30, 560, whoSize.width, whoSize.height);
         add(whosTurn);
 
@@ -585,7 +587,7 @@ public class ForestFight extends JFrame {
         Dimension player3HpSize = player3Hp.getPreferredSize();
         player3Hp.setBounds(405, 630, player3HpSize.width, player3HpSize.height);
 
-        player4Hp = new JLabel("Healer:  "+ rangerCurrentHp);
+        player4Hp = new JLabel("Healer:  "+ healerCurrentHp);
         player4Hp.setFont(pixelMplus);
         player4Hp.setForeground(Color.black);
         Dimension player4HpSize = player4Hp.getPreferredSize();
