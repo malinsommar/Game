@@ -24,6 +24,7 @@ public class simontest extends JFrame {
     private JButton testButton;
     private JButton testButton2;
     private JButton takedamagebutton;
+    private JButton magespellbutton;
     int[] enemies = new int[4];
     int level = 5;
 
@@ -86,6 +87,17 @@ public class simontest extends JFrame {
         add(takedamagebutton);
         takedamagebutton.addActionListener(e -> {takedamage.start(); });
 
+
+
+        magespellbutton = new JButton("takedamage");
+        magespellbutton.setSize(300, 100);
+        magespellbutton.setLocation(100, 330);
+        magespellbutton.setBackground(Color.white);
+        add(magespellbutton);
+        magespellbutton.addActionListener(e -> {magespell.start(); });
+        magespell.setRepeats(true);
+        magespell.setCoalesce(true);
+        magespell.setInitialDelay(10);
 
         //testButton.addActionListener(e -> musicpick.musicStart("theme"));
 
@@ -237,6 +249,7 @@ public class simontest extends JFrame {
             }
              */
             if (phase == 0){
+                if(cloudx == 100)musicpick.musicStart("warriorattack", "");
                 cloudx += 30;
                 pizza.setLocation(cloudx, 100);
                 if (cloudx > 200) {
@@ -259,6 +272,7 @@ public class simontest extends JFrame {
                 cloudx -= 30;
                 pizza.setLocation(cloudx, 100);
                 if (cloudx < startpostitionwarrior - 100) {
+                    musicpick.musicStart("warriorattacked", "");
                     phase = 1;
                 }}
             else if (phase == 1){
@@ -302,4 +316,24 @@ public class simontest extends JFrame {
             }
     }
 });
+
+    Timer magespell = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (phase == 0){
+                if(cloudx == 100)musicpick.musicStart("warriorattack", "");
+                cloudx += 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx > 200) {
+                    phase = 1;
+                }}
+            else if (phase == 1){
+                cloudx -= 30;
+                pizza.setLocation(cloudx, 100);
+                if (cloudx < 100) {
+                    phase = 0;
+                    timer.stop();
+                }}
+        }
+    });
 }
