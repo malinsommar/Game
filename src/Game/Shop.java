@@ -33,8 +33,8 @@ public class Shop extends JFrame {
         addLabels();
         hoverEffect();
 
-      /*  ImageIcon background = new ImageIcon("forest.jpg");
-        setContentPane(new JLabel(background));*/
+        ImageIcon background = new ImageIcon("white.jpg");
+        setContentPane(new JLabel(background));
 
         add(back);
         add(currentAction);
@@ -420,7 +420,7 @@ public class Shop extends JFrame {
     public void addLabels(){
 
         currentAction = new JLabel("Shopkeeper: Are you gonna buy something or what?             ");
-        currentAction.setFont((pixelMplus.deriveFont(30f)));
+        currentAction.setFont((pixelMplus.deriveFont(27f)));
         currentAction.setForeground(Color.black);
         Dimension currentActionSize = currentAction.getPreferredSize();
         currentAction.setBounds(40, 550, currentActionSize.width, currentActionSize.height);
@@ -485,7 +485,7 @@ public class Shop extends JFrame {
         back = new JButton("Exit shop");
         back.setBounds(20,600,300,100);
         back.setFont(pixelMplus.deriveFont(30f));
-        back.setBackground(Color.white);
+        back.setBackground(Color.lightGray);
         back.setForeground(Color.black);
         back.setBorder(null);
         back.setFocusPainted(false);
