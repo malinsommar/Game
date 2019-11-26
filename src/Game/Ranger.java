@@ -22,23 +22,23 @@ public class Ranger {
     }
     public void rangerEpicWeapon(){
         currentWeaponName = "Dragonslayer's bow";
-        currentWeaponDamage = 11;
+        currentWeaponDamage = 16;
     }
     public void rangerLegendaryWeapon(){
         currentWeaponName = "Bullseye bow";
-        currentWeaponDamage = 15;
+        currentWeaponDamage = 26;
     }
     //All ranger armors
     public void rangerRareArmor(){
         currentArmorName = "Fine leather armor";
-        currentArmorBlock = 2;
+        currentArmorBlock = 5;
     }
     public void rangerEpicArmor(){
         currentArmorName = "Elven leather armor";
-        currentArmorBlock = 4;
+        currentArmorBlock = 11;
     }
     public void rangerLegendaryArmor(){
         currentArmorName = "Demonskin armor";
-        currentArmorBlock = 8;
+        currentArmorBlock = 20;
     }
 }
