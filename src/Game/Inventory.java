@@ -57,7 +57,6 @@ public class Inventory {
     public ImageIcon rangerEpicArmorPic = new ImageIcon("rangerEpicArmor.gif");
     public ImageIcon rangerLegendaryArmorPic = new ImageIcon("rangerLegendaryArmor.gif");
 
-
     int minorHealingPotion = 10, lesserHealingPotion = 30, majorHealingPotion = 60;
     int ownedMinorHealingPotion = 1, ownedLesserHealingPotion = 0, ownedMajorHealingPotion = 0;
 
@@ -69,7 +68,6 @@ public class Inventory {
 
     int minorStrengthPotion = 5, lesserStrengthPotion = 10, majorStrengthPotion = 20;
     int ownedMinorStrengthPotion = 5, ownedLesserStrengthPotion = 10, ownedMajorStrengthPotion = 20;
-
 
     public void addPotion(int potion) {
 
