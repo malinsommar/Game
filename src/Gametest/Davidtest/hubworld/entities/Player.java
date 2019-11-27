@@ -9,7 +9,9 @@ import Gametest.Davidtest.hubworld.hub.InputHandler;
 public class Player extends Mob {
 
     private InputHandler input;
-    private int colour = Colours.get(-1,111,145,543);
+    private int colour = Colours.get(-1,111,145,543); //Assign colour for character which will be calculated within the Colours-class
+    //assign size to character
+    private int scale = 1; //Player size
 
     public Player(Level1 level1, int x, int y, InputHandler input) {
         super(level1, "Player", x, y, 1);
@@ -18,7 +20,11 @@ public class Player extends Mob {
 
 
     @Override
+    //updates isPressed method based on player-input every time the tick counts up by one
     public void tick() {
+        /*up, down, left and right are identified with keyboard-inputs the xa or ya based on axel. When an assigned
+        button is pressed, the xa or ya subs or adds by one, updating the movement*/
+
         int xa = 0;
         int ya = 0;
         if (input.up.isPressed()){
@@ -35,6 +41,7 @@ public class Player extends Mob {
         if (input.right.isPressed()) {
             xa++;
         }
+        //sets the default value of isMoving to false if character isn't moving
         if (xa != 0 || ya != 0) {
             move(xa, ya);
             isMoving = true;
@@ -47,16 +54,31 @@ public class Player extends Mob {
     public void render(Screen screen) {
         int xTile = 0;
         int yTile = 28;
+        int walkingSpeed = 4;//character walk speed
+        //the value of the top part of the 8x8 sprite
+        int flipTop = (numSteps >> walkingSpeed) & 1;
+        //the value of the bottom part of the 8x8 sprite
+        int flipBottom = (numSteps >> walkingSpeed) & 1;
 
+        //change which group pixels are being presented for the character
+        if (movingDir == 1) {
+            //moves to the second 8x8 sprite
+            xTile += 2;
+            //moves to the third(?) 8x8 sprite
+        } else if (movingDir > 1) {
+            xTile += 4 + ((numSteps >> walkingSpeed) & 1) * 2;
+            flipTop = (movingDir - 1) % 2;
+        }
         int modifier = 8 * scale;
         int xOffset = x - modifier/2;
         int yOffset = y - modifier/2 - 4;
 
-        screen.render(xOffset, yOffset, xTile + yTile * 32, colour);
-        screen.render(xOffset + modifier, yOffset, (xTile + 1) + yTile * 32, colour);
 
-        screen.render(xOffset, yOffset + modifier, xTile + (yTile + 1) * 32, colour);
-        screen.render(xOffset + modifier, yOffset + modifier, (xTile + 1) + (yTile + 1) * 32, colour);
+        screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, colour, flipTop, scale);
+        screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
+
+        screen.render(xOffset  + (modifier * flipBottom), yOffset + modifier, xTile + (yTile + 1) * 32, colour, flipBottom, scale);
+        screen.render(xOffset + modifier - (modifier * flipBottom), yOffset + modifier, (xTile + 1) + (yTile + 1) * 32, colour, flipBottom, scale);
 
 
     }

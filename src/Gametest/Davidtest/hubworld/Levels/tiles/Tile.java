@@ -4,6 +4,7 @@ import Gametest.Davidtest.hubworld.Levels.Level1;
 import Gametest.Davidtest.hubworld.gfx.Colours;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 
+//Create all the variables that will be used in the levels
 public abstract class Tile {
 
     public static final Tile[] tiles = new Tile[256];
@@ -14,6 +15,7 @@ public abstract class Tile {
     protected byte id;
     protected boolean solid;
     protected boolean emitter;
+
 
     public Tile (int id, boolean isSolid, boolean isEmitter) {
         this.id = (byte) id;

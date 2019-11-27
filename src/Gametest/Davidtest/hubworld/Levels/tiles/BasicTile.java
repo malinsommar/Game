@@ -1,7 +1,7 @@
-package Gametest.Davidtest.hubworld.Levels.tiles;
+        package Gametest.Davidtest.hubworld.Levels.tiles;
 
-import Gametest.Davidtest.hubworld.Levels.Level1;
-import Gametest.Davidtest.hubworld.gfx.Screen;
+        import Gametest.Davidtest.hubworld.Levels.Level1;
+        import Gametest.Davidtest.hubworld.gfx.Screen;
 
 public class BasicTile extends Tile{
     protected int tileId;
@@ -15,6 +15,6 @@ public class BasicTile extends Tile{
 
     @Override
     public void render(Screen screen, Level1 level, int x, int y) {
-        screen.render(x,y,tileId,tileColour);
+        screen.render(x,y,tileId,tileColour, 0X00, 1);
     }
 }

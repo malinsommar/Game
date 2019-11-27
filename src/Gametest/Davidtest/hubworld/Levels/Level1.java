@@ -7,6 +7,7 @@ import Gametest.Davidtest.hubworld.Levels.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
 
+//Build the first map around everything in the Tile-class
 public class Level1 {
 
     private byte[] tiles; //an ArrayList for where the tiles are
@@ -14,6 +15,7 @@ public class Level1 {
     public int height;
     public List<Entity> entities = new ArrayList<Entity>();
 
+    //Assign all the variables in the constructor
     public Level1 (int width, int height) {
         tiles = new byte[width*height];
         this.width = width;
@@ -24,14 +26,10 @@ public class Level1 {
     public void generateLevel() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if (x * y % 10 < 5) {
                     tiles[x + y * width] = Tile.GRASS.getId();
-                } else {
-                    tiles[x + y * width] = Tile.STONE.getId();
                 }
             }
         }
-    }
 
     public void tick() {
         for (Entity e : entities) {
@@ -64,6 +62,6 @@ public class Level1 {
         return Tile.tiles[tiles[x + y * width]];
     }
     public void addEntity(Entity entity) {
-        this.entities.add(entity);
+        this.entities.add(entity); //call the Entity-class into the Level-class by adding the Player-object into Level-object
     }
 }

@@ -10,9 +10,9 @@ public abstract class Entity {
     public Entity(Level1 level1) {
         init(level1);
     }
-    public final void init(Level1 level1) {
-        this.level1 = level1;
+    public final void init(Level1 level1) { this.level1 = level1;
     }
+
 
     public abstract void tick();
 
