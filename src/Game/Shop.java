@@ -8,10 +8,10 @@ import java.io.IOException;
 public class Shop extends JFrame {
 
     private Inventory inv = new Inventory();
-    Warrior w = new Warrior();
-    Healer h = new Healer();
-    Ranger r = new Ranger();
-    Mage m = new Mage();
+    private Warrior w = new Warrior();
+    private Healer h = new Healer();
+    private Ranger r = new Ranger();
+    private Mage m = new Mage();
 
     private Font pixelMplus;
     private JButton back, potion1, potion2, potion3, potion4, potion5, potion6, potion7, potion8, potion9, potion10, potion11, potion12;
@@ -879,7 +879,7 @@ public class Shop extends JFrame {
                 currentAction.setText("Tempered steel blade, Attack: 15. Cost: 100G");
 
             }public void mouseExited(java.awt.event.MouseEvent evt) {
-                currentAction.setText("Shopkeeper: I take good care of my wares!");
+                currentAction.setText("Shopkeeper: Watch out, it's sharp!");
             }
         });
         warriorWeapon3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -887,7 +887,7 @@ public class Shop extends JFrame {
                 currentAction.setText("Sword of a thousand truths, Attack: 27. Cost: 150G");
 
             }public void mouseExited(java.awt.event.MouseEvent evt) {
-                currentAction.setText("Shopkeeper: Watch out, it's sharp!");
+                currentAction.setText("Shopkeeper: The truth hurts!");
             }
         });
         //Mage
