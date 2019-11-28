@@ -22,11 +22,11 @@ public class Mage{
     }
     public void mageEpicWeapon(){
         currentWeaponName= "Enchanted mana wand";
-        currentWeaponDamage = 15;
+        currentWeaponDamage = 9;
     }
     public void mageLegendaryWeapon(){
         currentWeaponName = "Pyromaniac's tinderbox";
-        currentWeaponDamage = 30;
+        currentWeaponDamage = 11;
     }
     //All mage armors
     public void mageRareArmor(){

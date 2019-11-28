@@ -7,12 +7,10 @@ import java.io.IOException;
 
 public class RouteScreen extends JFrame {
 
-    //TODO byta ut mot davids overview
-
     Font pixelMplus;
     JButton forrestChoice, caveChoice;
     ImageIcon forest = new ImageIcon("forest.jpg");
-    ImageIcon cave = new ImageIcon("cave.png");
+    ImageIcon cave = new ImageIcon("cave.jpg");
 
     public RouteScreen(){
 
@@ -42,8 +40,8 @@ public class RouteScreen extends JFrame {
         forrestChoice.setLocation(100, 100);
 
         caveChoice = new JButton(cave);
-        caveChoice.setSize(300, 300);
-        caveChoice.setLocation(500, 100);
+        caveChoice.setSize(500, 300);
+        caveChoice.setLocation(400, 100);
     }
 
     public void importFont() {

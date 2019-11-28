@@ -22,11 +22,11 @@ public class Healer {
     }
     public void healerEpicWeapon(){
         currentWeaponName = "Cleric's blessed walking stick";
-        currentWeaponDamage = 13;
+        currentWeaponDamage = 9;
     }
     public void healerLegendaryWeapon(){
         currentWeaponName = "Root of the world tree";
-        currentWeaponDamage = 23;
+        currentWeaponDamage = 11;
     }
     //All healer armors
     public void healerRareArmor(){
@@ -35,10 +35,10 @@ public class Healer {
     }
     public void healerEpicArmor(){
         currentArmorName = "Clerics armor";
-        currentArmorBlock = 8;
+        currentArmorBlock = 5;
     }
     public void healerLegendaryArmor(){
         currentArmorName = "Plate armor of Parl'ont the crusader";
-        currentArmorBlock = 13;
+        currentArmorBlock = 9;
     }
 }

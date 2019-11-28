@@ -22,23 +22,23 @@ public class Warrior {
     }
     public void warriorEpicWeapon(){
         currentWeaponName = "Tempered steel blade";
-        currentWeaponDamage = 15;
+        currentWeaponDamage = 11;
     }
     public void warriorLegendaryWeapon(){
         currentWeaponName = "Sword of a thousand truths";
-        currentWeaponDamage = 27;
+        currentWeaponDamage = 15;
     }
     //All warrior armors
     public void warriorRareArmor(){
         currentArmorName = "Shiny Armor";
-        currentArmorBlock = 6;
+        currentArmorBlock = 7;
     }
     public void warriorEpicArmor(){
         currentArmorName = "Hardened Armor";
-        currentArmorBlock = 10;
+        currentArmorBlock = 9;
     }
     public void warriorLegendaryArmor(){
         currentArmorName = "Royal Enchanted Armor";
-        currentArmorBlock = 20;
+        currentArmorBlock = 11;
     }
 }
