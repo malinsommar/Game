@@ -14,8 +14,6 @@ public class ForestFight extends JFrame {
     Healer h = new Healer();
     Ranger r = new Ranger();
 
-    private int turns = 1;
-
     private Font pixelMplus;
 
     private JButton attackButton, blockButton, itemButton, skillButton, endTurnButton;
@@ -26,10 +24,12 @@ public class ForestFight extends JFrame {
     private JLabel warrior, mage, healer, ranger;
     private JLabel playersHp, player1Hp, player2Hp, player3Hp, player4Hp;
 
+    private int turns = 1;
     private int currentEnergy;
     private int warriorEnergyInt=5, mageEnergyInt, rangerEnergyInt, healerEnergyInt;
     private int wolf1Int, wolf2Int, wolf3Int, wolf4Int;
 
+    //Get hp, block and damage from party
     private int warriorCurrentHp = w.hp, mageCurrentHp = m.hp, healerCurrentHp = h.hp, rangerCurrentHp = r.hp;
     private int warriorDamage = w.combinedDamage, mageDamage = m.combinedDamage, healerDamage = h.combinedDamage, rangerDamage = r.combinedDamage;
     private int warriorBlock = w.combinedBlock, mageBlock = m.combinedBlock, healerBlock = h.combinedBlock, rangerBlock = r.combinedBlock;
@@ -45,8 +45,8 @@ public class ForestFight extends JFrame {
         System.out.println(w.combinedBlock);
 
         //Background picture
-        ImageIcon background = new ImageIcon("forest.jpg"); //download image
-        setContentPane(new JLabel(background)); //set backgrund
+        ImageIcon background = new ImageIcon("forest.jpg");
+        setContentPane(new JLabel(background));
 
         wolf1Int = 20;
         wolf2Int = 20;
@@ -71,7 +71,9 @@ public class ForestFight extends JFrame {
         whosTurn = new JLabel("Warrior's turn");
         whosTurn.setFont(pixelMplus);
         whosTurn.setForeground(Color.black);
+        whosTurn.setBackground(Color.blue);
         Dimension whoSize = whosTurn.getPreferredSize();
+        //whosTurn.setMaximumSize(new Dimension(whoSize.width+100,whoSize.height+100));
         whosTurn.setBounds(30, 560, whoSize.width, whoSize.height);
         add(whosTurn);
 
@@ -112,7 +114,7 @@ public class ForestFight extends JFrame {
         //ActionListeners
         attackButton.addActionListener(e -> attackPressed());
         blockButton.addActionListener(e -> blockPressed());
-        itemButton.addActionListener(e -> System.exit(0)); //ska bort
+        skillButton.addActionListener(e -> System.exit(0)); //tillfällig
         endTurnButton.addActionListener(e-> startNewTurn());
 
         setVisible(true);
@@ -135,7 +137,7 @@ public class ForestFight extends JFrame {
             energy.setText("Energy: "+warriorEnergyInt);
             block.setText("Block: "+warriorBlock);
         }
-        //If warrior is dead, continue.
+        //If warrior is dead, skip.
         if (turns==1 && warriorCurrentHp<1){
             turns=2;
         }
@@ -153,7 +155,7 @@ public class ForestFight extends JFrame {
             energy.setText("Energy: "+rangerEnergyInt);
             block.setText("Block: "+rangerBlock);
         }
-        //If ranger is dead, continue.
+        //If ranger is dead, skip.
         if (turns==2 && rangerCurrentHp<1){
             turns=3;
         }
@@ -171,7 +173,7 @@ public class ForestFight extends JFrame {
             energy.setText("Energy: "+mageEnergyInt);
             block.setText("Block: "+mageBlock);
         }
-        //If mage is dead, continue.
+        //If mage is dead, skip.
         if (turns==3 && mageCurrentHp<1){
             turns=4;
         }
@@ -190,7 +192,7 @@ public class ForestFight extends JFrame {
             block.setText("Block: "+healerBlock);
 
         }
-        //If healer is dead, continue.
+        //If healer is dead, skip.
         if (turns==4 && healerCurrentHp<1){
             turns=5;
         }
@@ -203,7 +205,7 @@ public class ForestFight extends JFrame {
             wolfAttack();
             partyDeath();
         }
-        //If wolf 1 is dead, continue.
+        //If wolf 1 is dead, skip.
         if (turns==5 && wolf1Int<1){
             turns=6;
         }
@@ -215,7 +217,7 @@ public class ForestFight extends JFrame {
             wolfAttack();
             partyDeath();
         }
-        //If wolf 2 is dead, continue.
+        //If wolf 2 is dead, skip.
         if (turns==6 && wolf2Int<1){
             turns=7;
         }
@@ -227,7 +229,7 @@ public class ForestFight extends JFrame {
             wolfAttack();
             partyDeath();
         }
-        //If wolf 3 is dead, continue.
+        //If wolf 3 is dead, skip.
         if (turns==7 && wolf4Int<1){
             turns=8;
         }
@@ -240,7 +242,7 @@ public class ForestFight extends JFrame {
             partyDeath();
             turns=0;
         }
-        //If wolf 4 is dead, continue.
+        //If wolf 4 is dead, skip.
         if (turns==8 && wolf4Int<1){
             turns=0;
             startNewTurn();
@@ -427,7 +429,7 @@ public class ForestFight extends JFrame {
     private void isFightOver() {
         if (wolf1Int < 1 && wolf2Int < 1 && wolf3Int < 1 && wolf4Int < 1) {
             //Victory screen
-            new NewGame();
+            new VictoryScreen();
             dispose();
 
         }
@@ -580,7 +582,7 @@ public class ForestFight extends JFrame {
         Dimension player3HpSize = player3Hp.getPreferredSize();
         player3Hp.setBounds(405, 630, player3HpSize.width, player3HpSize.height);
 
-        player4Hp = new JLabel("Healer:  "+ rangerCurrentHp);
+        player4Hp = new JLabel("Healer:  "+ healerCurrentHp);
         player4Hp.setFont(pixelMplus);
         player4Hp.setForeground(Color.black);
         Dimension player4HpSize = player4Hp.getPreferredSize();
