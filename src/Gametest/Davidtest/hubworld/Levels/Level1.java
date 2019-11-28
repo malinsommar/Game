@@ -93,7 +93,15 @@ public class Level1 {
         for (Entity e : entities) {
             e.tick();
         }
+
+        for (Tile t : Tile.tiles) {
+            if (t == null) {
+                break;
+            }
+            t.tick();
+        }
     }
+
     //assigns players position on the screen
     public void renderTiles(Screen screen, int xOffset, int yOffset) {
         if (xOffset < 0) xOffset = 0;
