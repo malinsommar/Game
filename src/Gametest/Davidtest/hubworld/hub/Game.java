@@ -2,8 +2,6 @@ package Gametest.Davidtest.hubworld.hub;
 
 import Gametest.Davidtest.hubworld.Levels.Level1;
 import Gametest.Davidtest.hubworld.entities.Player;
-import Gametest.Davidtest.hubworld.gfx.Colours;
-import Gametest.Davidtest.hubworld.gfx.Fonts;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
 
@@ -66,7 +64,7 @@ public class Game extends Canvas implements Runnable{
         }
         screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
         input = new InputHandler(this); //call input-object
-        level1 = new Level1(64,64); //call Level-object
+        level1 = new Level1("/Gametest/Davidtest/hubworld/resources/levels/small_test_level.png"); //call Level-object
         player = new Player(level1,0,0,input); //call Player-object
         level1.addEntity(player); //add Player-object into the Level-object
     }
