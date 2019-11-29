@@ -720,6 +720,10 @@ public class Shop extends JFrame {
         healerWeapon3.setFocusPainted(false);
     }
 
+    /*Arraylist för alla buttons som loopar igenom och sätter in alla meninaar i en egen metod/länkar samman dem??
+           JLabel allHoverItems[]
+     */
+
     private void hoverEffect() {
 
         //Minor health potion

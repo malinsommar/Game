@@ -9,29 +9,35 @@ import java.io.IOException;
 
 public class ForestFight extends JFrame {
 
+    //TODO gör en metod som uppdaterar alla labels som man kan kalla på när man tar/gör skada etc.
+
+    //Objects
     private Inventory inv = new Inventory();
     private Warrior w = new Warrior();
     private Mage m = new Mage();
     private Healer h = new Healer();
     private Ranger r = new Ranger();
 
+    //Create fonts
     private Font pixelMplus;
 
+    //Create buttons
     private JButton attackButton, blockButton, itemButton, skillButton, endTurnButton;
     private JButton exitInventory, potion1, potion2, potion3, potion4, potion5, potion6, potion7, potion8, potion9, potion10, potion11, potion12;
 
+    //Create Labels
+    private JLabel inventoryHealth, inventoryBlock, inventoryEnergy, inventoryStr ,potion1Label,potion2Label,potion3Label,potion4Label,potion5Label,potion6Label,potion7Label,potion8Label,potion9Label,potion10Label,potion11Label,potion12Label;
     private JLabel whosTurn, energy, block;
     private JLabel wolf1, wolf2, wolf3, wolf4;
     private JLabel wolf1Hp, wolf2Hp, wolf3Hp, wolf4Hp;
     private JLabel warrior, mage, healer, ranger;
     private JLabel playersHp, player1Hp, player2Hp, player3Hp, player4Hp;
 
-
+    //Create int's
     private int turns = 1;
     private int currentEnergy;
     private int warriorEnergyInt=5, mageEnergyInt, rangerEnergyInt, healerEnergyInt;
     private int wolf1Int, wolf2Int, wolf3Int, wolf4Int;
-
     //Get hp, block and damage from party
     private int warriorCurrentHp = w.hp, mageCurrentHp = m.hp, healerCurrentHp = h.hp, rangerCurrentHp = r.hp;
     private int warriorDamage = w.combinedDamage, mageDamage = m.combinedDamage, healerDamage = h.combinedDamage, rangerDamage = r.combinedDamage;
@@ -114,7 +120,7 @@ public class ForestFight extends JFrame {
         inventory.setTitle("Inventory");
         inventory.setLocation(0,538);
 
-        getInventoryStuff();
+        getInventory();
 
         //Background
         ImageIcon backgroundInventory = new ImageIcon("white.jpg");
@@ -133,6 +139,22 @@ public class ForestFight extends JFrame {
         inventory.add(potion10);
         inventory.add(potion11);
         inventory.add(potion12);
+        inventory.add(inventoryHealth);
+        inventory.add(inventoryBlock);
+        inventory.add(inventoryEnergy);
+        inventory.add(inventoryStr);
+        inventory.add(potion1Label);
+        inventory.add(potion2Label);
+        inventory.add(potion3Label);
+        inventory.add(potion4Label);
+        inventory.add(potion5Label);
+        inventory.add(potion6Label);
+        inventory.add(potion7Label);
+        inventory.add(potion8Label);
+        inventory.add(potion9Label);
+        inventory.add(potion10Label);
+        inventory.add(potion11Label);
+        inventory.add(potion12Label);
 
         potion1.addActionListener(e->usePotion(1));
         potion2.addActionListener(e->usePotion(2));
@@ -152,16 +174,11 @@ public class ForestFight extends JFrame {
         inventory.setUndecorated(true);
         inventory.setVisible(true);
     }
-    public void usePotion(int potion){
 
-
-
-    }
-
-    public void getInventoryStuff(){
+    public void getInventory() {
         //Exit button
         exitInventory = new JButton("Exit inventory");
-        exitInventory.setBounds(1010,60,250,80);
+        exitInventory.setBounds(1010, 60, 250, 80);
         exitInventory.setFont(pixelMplus.deriveFont(30f));
         exitInventory.setBackground(Color.white);
         exitInventory.setBorder(null); //Remove border around button
@@ -169,87 +186,184 @@ public class ForestFight extends JFrame {
 
         //Minor Health Potion
         potion1 = new JButton(inv.minorHealthGif);
-        potion1.setBounds(50,60,41,62);
+        potion1.setBounds(50, 60, 41, 62);
         potion1.setBackground(Color.white);
         potion1.setBorder(null);
         potion1.setFocusPainted(false);
 
         //Lesser Health Potion
         potion2 = new JButton(inv.lesserHealthGif);
-        potion2.setBounds(100,60,46,62);
+        potion2.setBounds(100, 60, 46, 62);
         potion2.setBackground(Color.white);
         potion2.setBorder(null);
         potion2.setFocusPainted(false);
 
         //Major Health Potion
         potion3 = new JButton(inv.majorHealthGif);
-        potion3.setBounds(160,60,55,64);
+        potion3.setBounds(160, 60, 55, 64);
         potion3.setBackground(Color.white);
         potion3.setBorder(null);
         potion3.setFocusPainted(false);
 
         //Minor Block Potion
         potion4 = new JButton(inv.minorBlockGif);
-        potion4.setBounds(300,60,42,63);
+        potion4.setBounds(300, 60, 42, 63);
         potion4.setBackground(Color.white);
         potion4.setBorder(null);
         potion4.setFocusPainted(false);
 
         //Lesser Block Potion
         potion5 = new JButton(inv.lesserBlockGif);
-        potion5.setBounds(350,60,47,63);
+        potion5.setBounds(350, 60, 47, 63);
         potion5.setBackground(Color.white);
         potion5.setBorder(null);
         potion5.setFocusPainted(false);
 
         //Major Block Potion
         potion6 = new JButton(inv.majorBlockGif);
-        potion6.setBounds(410,60,59,64);
+        potion6.setBounds(410, 60, 59, 64);
         potion6.setBackground(Color.white);
         potion6.setBorder(null);
         potion6.setFocusPainted(false);
 
         //Minor Energy Potion
         potion7 = new JButton(inv.minorEnergyGif);
-        potion7.setBounds(550,60,40,63);
+        potion7.setBounds(550, 60, 40, 63);
         potion7.setBackground(Color.white);
         potion7.setBorder(null);
         potion7.setFocusPainted(false);
 
         //Lesser Energy Potion
         potion8 = new JButton(inv.lesserEnergyGif);
-        potion8.setBounds(600,60,46,63);
+        potion8.setBounds(600, 60, 46, 63);
         potion8.setBackground(Color.white);
         potion8.setBorder(null);
         potion8.setFocusPainted(false);
 
         //Major Energy Potion
         potion9 = new JButton(inv.majorEnergyGif);
-        potion9.setBounds(660,60,59,64);
+        potion9.setBounds(660, 60, 59, 64);
         potion9.setBackground(Color.white);
         potion9.setBorder(null);
         potion9.setFocusPainted(false);
 
         //Minor Strength Potion
         potion10 = new JButton(inv.minorStrGif);
-        potion10.setBounds(800,60,38,63);
+        potion10.setBounds(800, 60, 38, 63);
         potion10.setBackground(Color.white);
         potion10.setBorder(null);
         potion10.setFocusPainted(false);
 
         //Lesser Energy Potion
         potion11 = new JButton(inv.lesserStrGif);
-        potion11.setBounds(850,60,42,63);
+        potion11.setBounds(850, 60, 42, 63);
         potion11.setBackground(Color.white);
         potion11.setBorder(null);
         potion11.setFocusPainted(false);
 
         //Major Energy Potion
         potion12 = new JButton(inv.majorStrGif);
-        potion12.setBounds(900,60,53,64);
+        potion12.setBounds(900, 60, 53, 64);
         potion12.setBackground(Color.white);
         potion12.setBorder(null);
         potion12.setFocusPainted(false);
+
+        inventoryHealth = new JLabel("Health");
+        inventoryHealth.setFont(pixelMplus.deriveFont(30f));
+        inventoryHealth.setForeground(Color.black);
+        Dimension inventoryHealthSize = inventoryHealth.getPreferredSize();
+        inventoryHealth.setBounds(90, 25, inventoryHealthSize.width, inventoryHealthSize.height);
+
+        inventoryStr = new JLabel("Strength");
+        inventoryStr.setFont(pixelMplus.deriveFont(30f));
+        inventoryStr.setForeground(Color.black);
+        Dimension inventoryStrSize = inventoryStr.getPreferredSize();
+        inventoryStr.setBounds(815, 25, inventoryStrSize.width, inventoryStrSize.height);
+
+        inventoryEnergy = new JLabel("Energy");
+        inventoryEnergy.setFont(pixelMplus.deriveFont(30f));
+        inventoryEnergy.setForeground(Color.black);
+        Dimension inventoryEnergySize = inventoryEnergy.getPreferredSize();
+        inventoryEnergy.setBounds(590, 25, inventoryEnergySize.width, inventoryEnergySize.height);
+
+        inventoryBlock = new JLabel("Block");
+        inventoryBlock.setFont(pixelMplus.deriveFont(30f));
+        inventoryBlock.setForeground(Color.black);
+        Dimension inventoryBlockSize = inventoryBlock.getPreferredSize();
+        inventoryBlock.setBounds(345, 25, inventoryBlockSize.width, inventoryBlockSize.height);
+
+        //Potion owned
+        potion1Label = new JLabel("" + inv.ownedMinorHealingPotion);
+        potion1Label.setFont(pixelMplus.deriveFont(30f));
+        potion1Label.setForeground(Color.black);
+        Dimension potion1LabelSize = potion1Label.getPreferredSize();
+        potion1Label.setBounds(60, 125, potion1LabelSize.width, potion1LabelSize.height);
+
+        potion2Label = new JLabel("" + inv.ownedLesserHealingPotion);
+        potion2Label.setFont(pixelMplus.deriveFont(30f));
+        potion2Label.setForeground(Color.black);
+        Dimension potion2LabelSize = potion2Label.getPreferredSize();
+        potion2Label.setBounds(115, 125, potion2LabelSize.width, potion2LabelSize.height);
+
+        potion3Label = new JLabel("" + inv.ownedMajorHealingPotion);
+        potion3Label.setFont(pixelMplus.deriveFont(30f));
+        potion3Label.setForeground(Color.black);
+        Dimension potion3LabelSize = potion3Label.getPreferredSize();
+        potion3Label.setBounds(180, 125, potion3LabelSize.width, potion3LabelSize.height);
+
+        potion4Label = new JLabel("" + inv.ownedMinorBlockPotion);
+        potion4Label.setFont(pixelMplus.deriveFont(30f));
+        potion4Label.setForeground(Color.black);
+        Dimension potion4LabelSize = potion4Label.getPreferredSize();
+        potion4Label.setBounds(317, 125, potion4LabelSize.width, potion4LabelSize.height);
+
+        potion5Label = new JLabel("" + inv.ownedLesserBlockPotion);
+        potion5Label.setFont(pixelMplus.deriveFont(30f));
+        potion5Label.setForeground(Color.black);
+        Dimension potion5LabelSize = potion5Label.getPreferredSize();
+        potion5Label.setBounds(370, 125, potion5LabelSize.width, potion5LabelSize.height);
+
+        potion6Label = new JLabel("" + inv.ownedMajorBlockPotion);
+        potion6Label.setFont(pixelMplus.deriveFont(30f));
+        potion6Label.setForeground(Color.black);
+        Dimension potion6LabelSize = potion6Label.getPreferredSize();
+        potion6Label.setBounds(430, 125, potion6LabelSize.width, potion6LabelSize.height);
+
+        potion7Label = new JLabel("" + inv.ownedMinorEnergyPotion);
+        potion7Label.setFont(pixelMplus.deriveFont(30f));
+        potion7Label.setForeground(Color.black);
+        Dimension potion7LabelSize = potion7Label.getPreferredSize();
+        potion7Label.setBounds(557, 125, potion7LabelSize.width, potion7LabelSize.height);
+
+        potion8Label = new JLabel("" + inv.ownedLesserBlockPotion);
+        potion8Label.setFont(pixelMplus.deriveFont(30f));
+        potion8Label.setForeground(Color.black);
+        Dimension potion8LabelSize = potion8Label.getPreferredSize();
+        potion8Label.setBounds(617, 125, potion8LabelSize.width, potion8LabelSize.height);
+
+        potion9Label = new JLabel("" + inv.ownedMajorBlockPotion);
+        potion9Label.setFont(pixelMplus.deriveFont(30f));
+        potion9Label.setForeground(Color.black);
+        Dimension potion9LabelSize = potion9Label.getPreferredSize();
+        potion9Label.setBounds(680, 125, potion9LabelSize.width, potion9LabelSize.height);
+
+        potion10Label = new JLabel("" + inv.ownedMinorStrengthPotion);
+        potion10Label.setFont(pixelMplus.deriveFont(30f));
+        potion10Label.setForeground(Color.black);
+        Dimension potion10LabelSize = potion10Label.getPreferredSize();
+        potion10Label.setBounds(817, 125, potion10LabelSize.width, potion10LabelSize.height);
+
+        potion11Label = new JLabel("" + inv.ownedLesserStrengthPotion);
+        potion11Label.setFont(pixelMplus.deriveFont(30f));
+        potion11Label.setForeground(Color.black);
+        Dimension potion11LabelSize = potion11Label.getPreferredSize();
+        potion11Label.setBounds(863, 125, potion11LabelSize.width, potion11LabelSize.height);
+
+        potion12Label = new JLabel("" + inv.ownedMajorStrengthPotion);
+        potion12Label.setFont(pixelMplus.deriveFont(30f));
+        potion12Label.setForeground(Color.black);
+        Dimension potion12LabelSize = potion12Label.getPreferredSize();
+        potion12Label.setBounds(920, 125, potion12LabelSize.width, potion12LabelSize.height);
     }
 
     private void startNewTurn(){
@@ -378,6 +492,367 @@ public class ForestFight extends JFrame {
         if (turns == 8){
             turns=0;
             startNewTurn();
+        }
+    }
+
+    private void usePotion(int potion) {
+        //Warrior
+        if (turns == 1) {
+            if (potion == 1) {
+                if (inv.ownedMinorHealingPotion > 0) {
+                    warriorCurrentHp += inv.minorHealingPotion;
+                    playersHp.setText("Hp: " + warriorCurrentHp);
+                    player1Hp.setText("Warrior: " + warriorCurrentHp);
+                    inv.ownedMinorHealingPotion--;
+                    potion1Label.setText(""+inv.ownedMinorHealingPotion);
+                }
+            } else if (potion == 2) {
+                if (inv.ownedLesserHealingPotion > 0) {
+                    warriorCurrentHp += inv.lesserHealingPotion;
+                    playersHp.setText("Hp: " + warriorCurrentHp);
+                    player1Hp.setText("Warrior: " + warriorCurrentHp);
+                    inv.ownedLesserHealingPotion--;
+                    potion2Label.setText(""+inv.ownedLesserHealingPotion);
+                }
+            } else if (potion == 3) {
+                if (inv.ownedMajorHealingPotion > 0) {
+                    warriorCurrentHp += inv.majorHealingPotion;
+                    playersHp.setText("Hp: " + warriorCurrentHp);
+                    player1Hp.setText("Warrior: " + warriorCurrentHp);
+                    inv.ownedMajorHealingPotion--;
+                    potion3Label.setText(""+inv.ownedMajorHealingPotion);
+                }
+            } else if (potion == 4) {
+                if (inv.ownedMinorBlockPotion > 0) {
+                    warriorBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + warriorBlock);
+                    inv.ownedMinorBlockPotion--;
+                    potion4Label.setText(""+inv.ownedMinorBlockPotion);
+                }
+            } else if (potion == 5) {
+                if (inv.ownedLesserBlockPotion > 0) {
+                    warriorBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + warriorBlock);
+                    inv.ownedLesserBlockPotion--;
+                    potion5Label.setText(""+inv.ownedLesserBlockPotion);
+                }
+            } else if (potion == 6) {
+                if (inv.ownedMajorBlockPotion > 0) {
+                    warriorBlock += inv.majorBlockPotion;
+                    block.setText("Block: " + warriorBlock);
+                    inv.ownedMajorBlockPotion--;
+                    potion6Label.setText(""+inv.ownedMajorBlockPotion);
+                }
+            } else if (potion == 7) {
+                if (inv.ownedMinorEnergyPotion > 0) {
+                    warriorEnergyInt += inv.minorEnergyPotion;
+                    energy.setText("Energy: " + warriorEnergyInt);
+                    inv.ownedMinorEnergyPotion--;
+                    potion7Label.setText(""+inv.ownedMinorEnergyPotion);
+                }
+            } else if (potion == 8) {
+                if (inv.ownedLesserEnergyPotion > 0) {
+                    warriorCurrentHp += inv.lesserEnergyPotion;
+                    energy.setText("Energy: " + warriorEnergyInt);
+                    inv.ownedLesserEnergyPotion--;
+                    potion8Label.setText(""+inv.ownedLesserEnergyPotion);
+                }
+            } else if (potion == 9) {
+                if (inv.ownedMajorEnergyPotion > 0) {
+                    warriorCurrentHp += inv.majorEnergyPotion;
+                    energy.setText("Energy: " + warriorEnergyInt);
+                    inv.ownedMajorEnergyPotion--;
+                    potion9Label.setText(""+inv.ownedMajorEnergyPotion);
+                }
+            }
+            if (potion == 10) {
+                if (inv.ownedMinorStrengthPotion > 0) {
+                    warriorDamage += inv.minorStrengthPotion;
+                    inv.ownedMinorStrengthPotion--;
+                    potion10Label.setText(""+inv.ownedMinorStrengthPotion);
+                }
+            }
+            if (potion == 11) {
+                if (inv.ownedLesserStrengthPotion > 0) {
+                    warriorDamage += inv.lesserStrengthPotion;
+                    inv.ownedLesserStrengthPotion--;
+                    potion11Label.setText(""+inv.ownedLesserStrengthPotion);
+                }
+            }
+            if (potion == 12) {
+                if (inv.ownedMajorStrengthPotion > 0) {
+                    warriorDamage += inv.majorStrengthPotion;
+                    inv.ownedMajorStrengthPotion--;
+                    potion12Label.setText(""+inv.ownedMajorStrengthPotion);
+                }
+            }
+        }
+        //Ranger
+        else if (turns == 2) {
+            if (potion == 1) {
+                if (inv.ownedMinorHealingPotion > 0) {
+                    rangerCurrentHp += inv.minorHealingPotion;
+                    playersHp.setText("Hp: " + rangerCurrentHp);
+                    player2Hp.setText("Ranger: " + rangerCurrentHp);
+                    inv.ownedMinorHealingPotion--;
+                    potion1Label.setText(""+inv.ownedMinorHealingPotion);
+                }
+            } else if (potion == 2) {
+                if (inv.ownedLesserHealingPotion > 0) {
+                    rangerCurrentHp += inv.lesserHealingPotion;
+                    playersHp.setText("Hp: " + rangerCurrentHp);
+                    player2Hp.setText("Ranger: " + rangerCurrentHp);
+                    inv.ownedLesserHealingPotion--;
+                    potion2Label.setText(""+inv.ownedLesserHealingPotion);
+                }
+            } else if (potion == 3) {
+                if (inv.ownedMajorHealingPotion > 0) {
+                    rangerCurrentHp += inv.majorHealingPotion;
+                    playersHp.setText("Hp: " + rangerCurrentHp);
+                    player2Hp.setText("Ranger: " + rangerCurrentHp);
+                    inv.ownedMajorHealingPotion--;
+                    potion3Label.setText(""+inv.ownedMajorHealingPotion);
+                }
+            } else if (potion == 4) {
+                if (inv.ownedMinorBlockPotion > 0) {
+                    rangerBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + rangerBlock);
+                    inv.ownedMinorBlockPotion--;
+                    potion4Label.setText(""+inv.ownedMinorBlockPotion);
+                }
+            } else if (potion == 5) {
+                if (inv.ownedLesserBlockPotion > 0) {
+                    rangerBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + rangerBlock);
+                    inv.ownedLesserBlockPotion--;
+                    potion5Label.setText(""+inv.ownedLesserBlockPotion);
+                }
+            } else if (potion == 6) {
+                if (inv.ownedMajorBlockPotion > 0) {
+                    rangerBlock += inv.majorBlockPotion;
+                    block.setText("Block: " + rangerBlock);
+                    inv.ownedMajorBlockPotion--;
+                    potion6Label.setText(""+inv.ownedMajorBlockPotion);
+                }
+            }
+            if (potion == 7) {
+                if (inv.ownedMinorEnergyPotion > 0) {
+                    rangerEnergyInt += inv.minorEnergyPotion;
+                    energy.setText("Energy: " + rangerEnergyInt);
+                    inv.ownedMinorEnergyPotion--;
+                    potion7Label.setText(""+inv.ownedMinorEnergyPotion);
+                }
+            } else if (potion == 8) {
+                if (inv.ownedLesserEnergyPotion > 0) {
+                    rangerEnergyInt += inv.lesserEnergyPotion;
+                    energy.setText("Energy: " + rangerEnergyInt);
+                    inv.ownedLesserEnergyPotion--;
+                    potion8Label.setText(""+inv.ownedLesserEnergyPotion);
+                }
+            } else if (potion == 9) {
+                if (inv.ownedMajorEnergyPotion > 0) {
+                    rangerEnergyInt += inv.majorEnergyPotion;
+                    energy.setText("Energy: " + rangerEnergyInt);
+                    inv.ownedMajorEnergyPotion--;
+                    potion9Label.setText(""+inv.ownedMajorEnergyPotion);
+                }
+            } else if (potion == 10) {
+                if (inv.ownedMinorStrengthPotion > 0) {
+                    rangerDamage += inv.minorStrengthPotion;
+                    inv.ownedMinorStrengthPotion--;
+                    potion10Label.setText(""+inv.ownedMinorStrengthPotion);
+                }
+            } else if (potion == 11) {
+                if (inv.ownedLesserStrengthPotion > 0) {
+                    rangerDamage += inv.lesserStrengthPotion;
+                    inv.ownedLesserStrengthPotion--;
+                    potion11Label.setText(""+inv.ownedLesserStrengthPotion);
+                }
+            } else if (potion == 12) {
+                if (inv.ownedMajorStrengthPotion > 0) {
+                    rangerDamage += inv.majorStrengthPotion;
+                    inv.ownedMajorStrengthPotion--;
+                    potion12Label.setText(""+inv.ownedMajorStrengthPotion);
+                }
+            }
+        }
+        //Mage
+        else if (turns == 3) {
+            if (potion == 1) {
+                if (inv.ownedMinorHealingPotion > 0) {
+                    mageCurrentHp += inv.minorHealingPotion;
+                    playersHp.setText("Hp: " + mageCurrentHp);
+                    player3Hp.setText("Mage: " + mageCurrentHp);
+                    inv.ownedMinorHealingPotion--;
+                    potion1Label.setText(""+inv.ownedMinorHealingPotion);
+                }
+            } else if (potion == 2) {
+                if (inv.ownedLesserHealingPotion > 0) {
+                    mageCurrentHp += inv.lesserHealingPotion;
+                    playersHp.setText("Hp: " + mageCurrentHp);
+                    player3Hp.setText("Mage: " + mageCurrentHp);
+                    inv.ownedLesserHealingPotion--;
+                    potion2Label.setText(""+inv.ownedLesserHealingPotion);
+                }
+            } else if (potion == 3) {
+                if (inv.ownedMajorHealingPotion > 0) {
+                    rangerCurrentHp += inv.majorHealingPotion;
+                    playersHp.setText("Hp: " + mageCurrentHp);
+                    player3Hp.setText("Mage: " + mageCurrentHp);
+                    potion3Label.setText(""+inv.ownedMajorHealingPotion);
+                    inv.ownedMajorHealingPotion--;
+                }
+            } else if (potion == 4) {
+                if (inv.ownedMinorBlockPotion > 0) {
+                    mageBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + mageBlock);
+                    inv.ownedMinorBlockPotion--;
+                    potion4Label.setText(""+inv.ownedMinorBlockPotion);
+                }
+            } else if (potion == 5) {
+                if (inv.ownedLesserBlockPotion > 0) {
+                    mageBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + mageBlock);
+                    inv.ownedLesserBlockPotion--;
+                    potion5Label.setText(""+inv.ownedLesserBlockPotion);
+                }
+            } else if (potion == 6) {
+                if (inv.ownedMajorBlockPotion > 0) {
+                    mageBlock += inv.majorBlockPotion;
+                    block.setText("Block: " + mageBlock);
+                    inv.ownedMajorBlockPotion--;
+                    potion6Label.setText(""+inv.ownedMajorBlockPotion);
+                }
+            }
+            if (potion == 7) {
+                if (inv.ownedMinorEnergyPotion > 0) {
+                    mageEnergyInt += inv.minorEnergyPotion;
+                    energy.setText("Energy: " + mageEnergyInt);
+                    inv.ownedMinorEnergyPotion--;
+                    potion7Label.setText(""+inv.ownedMinorEnergyPotion);
+                }
+            } else if (potion == 8) {
+                if (inv.ownedLesserEnergyPotion > 0) {
+                    mageEnergyInt += inv.lesserEnergyPotion;
+                    energy.setText("Energy: " + mageEnergyInt);
+                    inv.ownedLesserEnergyPotion--;
+                    potion8Label.setText(""+inv.ownedLesserEnergyPotion);
+                }
+            } else if (potion == 9) {
+                if (inv.ownedMajorEnergyPotion > 0) {
+                    mageEnergyInt += inv.majorEnergyPotion;
+                    energy.setText("Energy: " + mageEnergyInt);
+                    inv.ownedMajorEnergyPotion--;
+                    potion9Label.setText(""+inv.ownedMajorEnergyPotion);
+                }
+            } else if (potion == 10) {
+                if (inv.ownedMinorStrengthPotion > 0) {
+                    mageDamage += inv.minorStrengthPotion;
+                    inv.ownedMinorStrengthPotion--;
+                    potion10Label.setText(""+inv.ownedMinorStrengthPotion);
+                }
+            } else if (potion == 11) {
+                if (inv.ownedLesserStrengthPotion > 0) {
+                    mageDamage += inv.lesserStrengthPotion;
+                    inv.ownedLesserStrengthPotion--;
+                    potion11Label.setText(""+inv.ownedLesserStrengthPotion);
+                }
+            } else if (potion == 12) {
+                if (inv.ownedMajorStrengthPotion > 0) {
+                    mageDamage += inv.majorStrengthPotion;
+                    inv.ownedMajorStrengthPotion--;
+                    potion12Label.setText(""+inv.ownedMajorStrengthPotion);
+                }
+            }
+        }
+        //Healer
+        else if (turns == 4) {
+            if (potion == 1) {
+                if (inv.ownedMinorHealingPotion > 0) {
+                    healerCurrentHp += inv.minorHealingPotion;
+                    playersHp.setText("Hp: " + healerCurrentHp);
+                    player4Hp.setText("Mage: " + healerCurrentHp);
+                    inv.ownedMinorHealingPotion--;
+                    potion1Label.setText(""+inv.ownedMinorHealingPotion);
+                }
+            } else if (potion == 2) {
+                if (inv.ownedLesserHealingPotion > 0) {
+                    healerCurrentHp += inv.lesserHealingPotion;
+                    playersHp.setText("Hp: " + healerCurrentHp);
+                    player4Hp.setText("Mage: " + healerCurrentHp);
+                    inv.ownedLesserHealingPotion--;
+                    potion2Label.setText(""+inv.ownedLesserHealingPotion);
+                }
+            } else if (potion == 3) {
+                if (inv.ownedMajorHealingPotion > 0) {
+                    healerCurrentHp += inv.majorHealingPotion;
+                    playersHp.setText("Hp: " + healerCurrentHp);
+                    player4Hp.setText("Mage: " + healerCurrentHp);
+                    inv.ownedMajorHealingPotion--;
+                    potion3Label.setText(""+inv.ownedMajorHealingPotion);
+                }
+            } else if (potion == 4) {
+                if (inv.ownedMinorBlockPotion > 0) {
+                    healerBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + healerBlock);
+                    inv.ownedMinorBlockPotion--;
+                    potion4Label.setText(""+inv.ownedMinorBlockPotion);
+                }
+            } else if (potion == 5) {
+                if (inv.ownedLesserBlockPotion > 0) {
+                    healerBlock += inv.minorBlockPotion;
+                    block.setText("Block: " + healerBlock);
+                    inv.ownedLesserBlockPotion--;
+                    potion5Label.setText(""+inv.ownedLesserBlockPotion);
+                }
+            } else if (potion == 6) {
+                if (inv.ownedMajorBlockPotion > 0) {
+                    healerBlock += inv.majorBlockPotion;
+                    block.setText("Block: " + healerBlock);
+                    inv.ownedMajorBlockPotion--;
+                    potion6Label.setText(""+inv.ownedMajorBlockPotion);
+                }
+            }
+            if (potion == 7) {
+                if (inv.ownedMinorEnergyPotion > 0) {
+                    healerEnergyInt += inv.minorEnergyPotion;
+                    energy.setText("Energy: " + healerEnergyInt);
+                    inv.ownedMinorEnergyPotion--;
+                    potion7Label.setText(""+inv.ownedMinorEnergyPotion);
+                }
+            } else if (potion == 8) {
+                if (inv.ownedLesserEnergyPotion > 0) {
+                    healerEnergyInt += inv.lesserEnergyPotion;
+                    energy.setText("Energy: " + healerEnergyInt);
+                    inv.ownedLesserEnergyPotion--;
+                    potion8Label.setText(""+inv.ownedLesserEnergyPotion);
+                }
+            } else if (potion == 9) {
+                if (inv.ownedMajorEnergyPotion > 0) {
+                    healerEnergyInt += inv.majorEnergyPotion;
+                    energy.setText("Energy: " + healerEnergyInt);
+                    inv.ownedMajorEnergyPotion--;
+                    potion9Label.setText(""+inv.ownedMajorEnergyPotion);
+                }
+            } else if (potion == 10) {
+                if (inv.ownedMinorStrengthPotion > 0) {
+                    healerDamage += inv.minorStrengthPotion;
+                    inv.ownedMinorStrengthPotion--;
+                    potion10Label.setText(""+inv.ownedMinorStrengthPotion);
+                }
+            } else if (potion == 11) {
+                if (inv.ownedLesserStrengthPotion > 0) {
+                    healerDamage += inv.lesserStrengthPotion;
+                    inv.ownedLesserStrengthPotion--;
+                    potion11Label.setText(""+inv.ownedLesserStrengthPotion);
+                }
+            } else if (potion == 12) {
+                if (inv.ownedMajorStrengthPotion > 0) {
+                    healerDamage += inv.majorStrengthPotion;
+                    inv.ownedMajorStrengthPotion--;
+                    potion12Label.setText(""+inv.ownedMajorStrengthPotion);
+                }
+            }
         }
     }
 
