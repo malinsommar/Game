@@ -247,7 +247,7 @@ public class simontest extends JFrame {
     //BufferedImage mage2 = ImageIO.read(new File("mage.gif"));//funkar inte
     //mage2.getGraphics().drawImage(mage2 ,500, 500, null);//funkar inte
 
-        
+
         /*
         BufferedImage mage2 = ImageIO.read((getClass().getResource("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\cave.jpg")));
         Graphics g = mage2.getGraphics();
