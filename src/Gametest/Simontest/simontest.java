@@ -462,7 +462,6 @@ public class simontest extends JFrame {
                 arrow.setVisible(true);
                 if (arrowx == 300) {
                     musicpick.musicStart("ding", "");
-                    arrow.setVisible(true);
                 }
                 arrowx += 10;
                 arrow.setLocation(arrowx, 270);
