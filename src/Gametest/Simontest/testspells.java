@@ -1,7 +1,7 @@
 package Gametest.Simontest;
-
 import game.Warrior;
-
+import game.Warrior;
+import game.Warrior;
 public class testspells {
 
     int[] partypizza = new int[4];

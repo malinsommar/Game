@@ -20,8 +20,8 @@ public class Game extends Canvas implements Runnable{
 
     private JFrame frame;
 
-    public boolean running = false;
-    public int tickCount = 0;
+    private boolean running = false;
+    private int tickCount = 0;
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
@@ -99,7 +99,6 @@ public class Game extends Canvas implements Runnable{
                 ticks++; //adds 1 to the ticks-value
                 tick(); //calls the tick function
                 delta -= 1; // subtract the value of delta by 1 and repeats the update-loop endlessly
-                shouldRender = true; //once delta is more than 1 shouldRender boolean is set to true
             }
 
             try {
@@ -109,10 +108,8 @@ public class Game extends Canvas implements Runnable{
                 e.printStackTrace();
                           }
 
-            if (shouldRender) {
-                frames++; //Adds to the frames by one
-                render(); //calls render method
-            }
+            frames++; //Adds to the frames by one
+            render(); //calls render method
 
             if (System.currentTimeMillis() - lastTimer > 1000) //If current time in milliseconds minus the time for the last update is greater than a thousand (one second): update.
             {

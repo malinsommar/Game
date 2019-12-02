@@ -24,7 +24,7 @@ public class Hub extends JFrame {
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
-        setContentPane(new JLabel(background)); //set backgrund
+        setContentPane(new JLabel(background)); //set background
 
         //Title of game
         gameName = new JLabel("Alterborne");
@@ -40,7 +40,7 @@ public class Hub extends JFrame {
 
         newRunButton.addActionListener(e -> dispose());
         newRunButton.addActionListener(e -> new NewGame());
-        tutorialButton.addActionListener(e-> new Shop());
+        tutorialButton.addActionListener(e-> new LootScreen());
         exitButton.addActionListener(e -> System.exit(0));
 
         MusicPick.musicStart("mainmenu","music");
