@@ -1,21 +1,11 @@
 package Gametest.Simontest;
 
-import Game.*;
-import javafx.css.Size;
-import javafx.scene.canvas.GraphicsContext;
+import game.*;
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class simontest extends JFrame {

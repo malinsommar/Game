@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class VictoryScreen extends JFrame {
+public class LoseScreen extends JFrame {
 
     JLabel youWon, wonBread;
     JButton countinueButton;
     Font pixelMplus;
     private int textDelay = 0;
 
-    public VictoryScreen() {
+    public LoseScreen() {
         setLayout(null);
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,23 +25,23 @@ public class VictoryScreen extends JFrame {
         try {pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf"));
         } catch(IOException | FontFormatException e){}
 
-        youWon = new JLabel("Victory Achieved");
+        youWon = new JLabel("You Died");
         youWon.setForeground(Color.white);
-        youWon.setFont(pixelMplus.deriveFont(100f));
+        youWon.setFont(pixelMplus.deriveFont(150f));
         Dimension size = youWon.getPreferredSize();
         youWon.setBounds(200, 100, size.width, size.height);
 
-        wonBread = new JLabel("The minions of the underworld did not best you this day");
+        wonBread = new JLabel("You had challenged forces too great for you");
         wonBread.setForeground(Color.white);
         wonBread.setFont(pixelMplus.deriveFont(30f));
         Dimension size4 = wonBread.getPreferredSize();
         wonBread.setBounds(200, 300, size4.width, size4.height);
 
-        countinueButton = new JButton("Onwards!");
+        countinueButton = new JButton("Thanks Obama...");
         countinueButton.setSize(300, 100);
         countinueButton.setLocation(500, 600);
         countinueButton.setForeground(Color.white);
-        countinueButton.setFont(pixelMplus.deriveFont(50f));
+        countinueButton.setFont(pixelMplus.deriveFont(35f));
         countinueButton.setBackground(Color.darkGray);
         countinueButton.setBorder(null);
         countinueButton.setFocusPainted(false);
@@ -58,14 +58,14 @@ public class VictoryScreen extends JFrame {
 
         timer.setRepeats(true);
         timer.setCoalesce(true);
-        timer.setInitialDelay(500);
+        timer.setInitialDelay(2500);
         timer.start();
 
         //countinue
         countinueButton.addActionListener(e -> dispose());
         //countinueButton.addActionListener(e -> new ForestFight());
 
-        musicpick.musicStart("Victory","music");
+        musicpick.musicStart("gwyn","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
@@ -77,15 +77,12 @@ public class VictoryScreen extends JFrame {
         public void actionPerformed(ActionEvent ae) {
             textDelay++;
             if (textDelay == 1){
-                musicpick.musicStart("ding","");
                 add(youWon);
             }
             else if (textDelay == 3){
-                musicpick.musicStart("ding","");
                 add(wonBread);
             }
-            else if (textDelay == 6){
-                musicpick.musicStart("ding","");
+            else if (textDelay == 5){
                 add(countinueButton);
             }
             repaint();

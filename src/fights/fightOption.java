@@ -1,6 +1,4 @@
-package Fights;
-
-import java.lang.reflect.Array;
+package fights;
 
 public class fightOption {
     public int turnOrder = 0;

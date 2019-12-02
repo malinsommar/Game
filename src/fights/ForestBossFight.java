@@ -1,6 +1,6 @@
-package Fights;
+package fights;
 
-import Game.musicpick;
+import game.musicpick;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-public class ForrestBossFight extends JFrame implements KeyListener {
+public class ForestBossFight extends JFrame implements KeyListener {
     Font pixelMplus;
     JButton attackButton;
     JButton blockButton;
@@ -34,7 +34,7 @@ public class ForrestBossFight extends JFrame implements KeyListener {
         }
     }
 
-    public ForrestBossFight(){
+    public ForestBossFight(){
 
         super();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

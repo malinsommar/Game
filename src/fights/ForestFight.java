@@ -1,6 +1,6 @@
-package Fights;
+package fights;
 
-import Game.*;
+import game.*;
 
 import javax.swing.*;
 import java.awt.*;
