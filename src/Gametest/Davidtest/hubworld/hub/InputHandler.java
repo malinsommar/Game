@@ -20,8 +20,9 @@ public class InputHandler implements KeyListener {
         public int getNumTimesPressed() {
             return numTimesPressed;
         }
+        //create a "isPressed" method that will be called as an object in game
         public boolean isPressed() {
-            return pressed; //create a "isPressed" method that will be called as an object in game
+            return pressed;
         }
 
         public void toggle(boolean isPressed) {

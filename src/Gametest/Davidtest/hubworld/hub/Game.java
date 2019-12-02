@@ -2,8 +2,6 @@ package Gametest.Davidtest.hubworld.hub;
 
 import Gametest.Davidtest.hubworld.Levels.Level1;
 import Gametest.Davidtest.hubworld.entities.Player;
-import Gametest.Davidtest.hubworld.gfx.Colours;
-import Gametest.Davidtest.hubworld.gfx.Fonts;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
 
@@ -65,10 +63,10 @@ public class Game extends Canvas implements Runnable{
             }
         }
         screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
-        input = new InputHandler(this);
-        level1 = new Level1(64,64);
-        player = new Player(level1,0,0,input);
-        level1.addEntity(player);
+        input = new InputHandler(this); //call input-object
+        level1 = new Level1("/Gametest/Davidtest/hubworld/resources/levels/lake_level.png"); //call Level-object
+        player = new Player(level1,0,0,input); //call Player-object
+        level1.addEntity(player); //add Player-object into the Level-object
     }
     private synchronized void start() {
         running = true;
@@ -100,8 +98,8 @@ public class Game extends Canvas implements Runnable{
             while (delta >= 1) {
                 ticks++; //adds 1 to the ticks-value
                 tick(); //calls the tick function
-                delta -= 1; // subtract the value of delta by 1 and repeats the update-loop
-                shouldRender = true;
+                delta -= 1; // subtract the value of delta by 1 and repeats the update-loop endlessly
+                shouldRender = true; //once delta is more than 1 shouldRender boolean is set to true
             }
 
             try {
@@ -126,9 +124,9 @@ public class Game extends Canvas implements Runnable{
             }
         }
     }
-    public void tick() //Updates the logic of the game
+    public void tick() //Updates the logic of the game within all the active classes
      {
-         tickCount++;
+         tickCount++; //adds to the tick-count by one. continuing the loop of updating every class
 
              level1.tick();
      }
@@ -144,16 +142,10 @@ public class Game extends Canvas implements Runnable{
         int xOffset = player.x - (screen.width/2);
         int yOffset = player.y - (screen.height/2);
 
+        //render the map into the game
         level1.renderTiles(screen, xOffset, yOffset);
 
-        for (int x = 0; x < level1.width; x++) {
-            int colour = Colours.get(-1,-1,-1,000);
-            if (x % 10 == 0 && x != 0) {
-                colour = Colours.get(-1,-1,-1,500);
-            }
-            Fonts.render((x%10)+"", screen, 0 + (x*8), 0, colour);
-        }
-
+        //render the available mobs into to game
         level1.renderEntities(screen);
 
           for (int y = 0; y < screen.height; y++) {
@@ -164,9 +156,9 @@ public class Game extends Canvas implements Runnable{
         }
 
         Graphics g = bs.getDrawGraphics(); //a graphic-object
-        g.drawImage(image,0,0,getWidth(),getHeight(),null);
+        g.drawImage(image,0,0,getWidth(),getHeight(),null); //draws the image on the screen
         g.dispose(); //free up space
-        bs.show();
+        bs.show();//show in JFrame
     }
 
 
