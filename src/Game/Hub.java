@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class Hub extends JFrame {
 
         //Background picture
         ImageIcon background = new ImageIcon("bakgrundMountain.png"); //download image
-        setContentPane(new JLabel(background)); //set backgrund
+        setContentPane(new JLabel(background)); //set background
 
         //Title of game
         gameName = new JLabel("Alterborne");
