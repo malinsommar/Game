@@ -1,4 +1,4 @@
-package game;
+package Game;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -21,6 +21,9 @@ public class musicpick {
             gainControl.setValue(-30.0f); //ändrar volym
             clip.start();
             //ljudeffecter fuckar upp denna
+            if (soundType == "music" ) {
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }
             //clip.loop(Clip.LOOP_CONTINUOUSLY);
             i = 5;
 
