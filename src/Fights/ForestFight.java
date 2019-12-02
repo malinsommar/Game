@@ -9,8 +9,6 @@ import java.io.IOException;
 
 public class ForestFight extends JFrame {
 
-    //TODO gör en metod som uppdaterar alla labels som man kan kalla på när man tar/gör skada etc.
-
     //Objects
     private Inventory inv = new Inventory();
     private Warrior w = new Warrior();
@@ -38,11 +36,13 @@ public class ForestFight extends JFrame {
     private int currentEnergy;
     private int warriorEnergyInt=5, mageEnergyInt, rangerEnergyInt, healerEnergyInt;
     private int wolf1Int, wolf2Int, wolf3Int, wolf4Int;
+
     //Get hp, block and damage from party
     private int warriorCurrentHp = w.hp, mageCurrentHp = m.hp, healerCurrentHp = h.hp, rangerCurrentHp = r.hp;
     private int warriorDamage = w.combinedDamage, mageDamage = m.combinedDamage, healerDamage = h.combinedDamage, rangerDamage = r.combinedDamage;
     private int warriorBlock = w.combinedBlock, mageBlock = m.combinedBlock, healerBlock = h.combinedBlock, rangerBlock = r.combinedBlock;
 
+    //Constructor for forestFight.
     public ForestFight(){
 
         super();
@@ -51,18 +51,19 @@ public class ForestFight extends JFrame {
         setSize(1920, 1080);
         setTitle("Forest Fight");
         importFont();
-        System.out.println(w.combinedBlock);
 
         //Background picture
         ImageIcon background = new ImageIcon("forest.jpg");
         setContentPane(new JLabel(background));
 
+        //Set wolf hp & energy label
         wolf1Int = 20;
         wolf2Int = 20;
         wolf3Int = 20;
         wolf4Int = 20;
         currentEnergy=warriorEnergyInt;
 
+        //Import methods
         importWolfGif();
         importPartyGif();
         importButtons();
@@ -110,274 +111,21 @@ public class ForestFight extends JFrame {
         setVisible(true);
     }
 
-    public void itemPressed(){
-
-        //Frame settings
-        JFrame inventory = new JFrame();
-        inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        inventory.setLayout(null);
-        inventory.setSize(1920, 300);
-        inventory.setTitle("Inventory");
-        inventory.setLocation(0,538);
-
-        getInventory();
-
-        //Background
-        ImageIcon backgroundInventory = new ImageIcon("white.jpg");
-        inventory.setContentPane(new JLabel(backgroundInventory));
-
-        inventory.add(exitInventory);
-        inventory.add(potion1);
-        inventory.add(potion2);
-        inventory.add(potion3);
-        inventory.add(potion4);
-        inventory.add(potion5);
-        inventory.add(potion6);
-        inventory.add(potion7);
-        inventory.add(potion8);
-        inventory.add(potion9);
-        inventory.add(potion10);
-        inventory.add(potion11);
-        inventory.add(potion12);
-        inventory.add(inventoryHealth);
-        inventory.add(inventoryBlock);
-        inventory.add(inventoryEnergy);
-        inventory.add(inventoryStr);
-        inventory.add(potion1Label);
-        inventory.add(potion2Label);
-        inventory.add(potion3Label);
-        inventory.add(potion4Label);
-        inventory.add(potion5Label);
-        inventory.add(potion6Label);
-        inventory.add(potion7Label);
-        inventory.add(potion8Label);
-        inventory.add(potion9Label);
-        inventory.add(potion10Label);
-        inventory.add(potion11Label);
-        inventory.add(potion12Label);
-
-        potion1.addActionListener(e->usePotion(1));
-        potion2.addActionListener(e->usePotion(2));
-        potion3.addActionListener(e->usePotion(3));
-        potion4.addActionListener(e->usePotion(4));
-        potion5.addActionListener(e->usePotion(5));
-        potion6.addActionListener(e->usePotion(6));
-        potion7.addActionListener(e->usePotion(7));
-        potion8.addActionListener(e->usePotion(8));
-        potion9.addActionListener(e->usePotion(9));
-        potion10.addActionListener(e->usePotion(10));
-        potion11.addActionListener(e->usePotion(11));
-        potion12.addActionListener(e->usePotion(12));
-
-        exitInventory.addActionListener(e->inventory.dispose());
-
-        inventory.setUndecorated(true);
-        inventory.setVisible(true);
-    }
-
-    public void getInventory() {
-        //Exit button
-        exitInventory = new JButton("Exit inventory");
-        exitInventory.setBounds(1010, 60, 250, 80);
-        exitInventory.setFont(pixelMplus.deriveFont(30f));
-        exitInventory.setBackground(Color.white);
-        exitInventory.setBorder(null); //Remove border around button
-        exitInventory.setFocusPainted(false);//Remove border around text in button
-
-        //Minor Health Potion
-        potion1 = new JButton(inv.minorHealthGif);
-        potion1.setBounds(50, 60, 41, 62);
-        potion1.setBackground(Color.white);
-        potion1.setBorder(null);
-        potion1.setFocusPainted(false);
-
-        //Lesser Health Potion
-        potion2 = new JButton(inv.lesserHealthGif);
-        potion2.setBounds(100, 60, 46, 62);
-        potion2.setBackground(Color.white);
-        potion2.setBorder(null);
-        potion2.setFocusPainted(false);
-
-        //Major Health Potion
-        potion3 = new JButton(inv.majorHealthGif);
-        potion3.setBounds(160, 60, 55, 64);
-        potion3.setBackground(Color.white);
-        potion3.setBorder(null);
-        potion3.setFocusPainted(false);
-
-        //Minor Block Potion
-        potion4 = new JButton(inv.minorBlockGif);
-        potion4.setBounds(300, 60, 42, 63);
-        potion4.setBackground(Color.white);
-        potion4.setBorder(null);
-        potion4.setFocusPainted(false);
-
-        //Lesser Block Potion
-        potion5 = new JButton(inv.lesserBlockGif);
-        potion5.setBounds(350, 60, 47, 63);
-        potion5.setBackground(Color.white);
-        potion5.setBorder(null);
-        potion5.setFocusPainted(false);
-
-        //Major Block Potion
-        potion6 = new JButton(inv.majorBlockGif);
-        potion6.setBounds(410, 60, 59, 64);
-        potion6.setBackground(Color.white);
-        potion6.setBorder(null);
-        potion6.setFocusPainted(false);
-
-        //Minor Energy Potion
-        potion7 = new JButton(inv.minorEnergyGif);
-        potion7.setBounds(550, 60, 40, 63);
-        potion7.setBackground(Color.white);
-        potion7.setBorder(null);
-        potion7.setFocusPainted(false);
-
-        //Lesser Energy Potion
-        potion8 = new JButton(inv.lesserEnergyGif);
-        potion8.setBounds(600, 60, 46, 63);
-        potion8.setBackground(Color.white);
-        potion8.setBorder(null);
-        potion8.setFocusPainted(false);
-
-        //Major Energy Potion
-        potion9 = new JButton(inv.majorEnergyGif);
-        potion9.setBounds(660, 60, 59, 64);
-        potion9.setBackground(Color.white);
-        potion9.setBorder(null);
-        potion9.setFocusPainted(false);
-
-        //Minor Strength Potion
-        potion10 = new JButton(inv.minorStrGif);
-        potion10.setBounds(800, 60, 38, 63);
-        potion10.setBackground(Color.white);
-        potion10.setBorder(null);
-        potion10.setFocusPainted(false);
-
-        //Lesser Energy Potion
-        potion11 = new JButton(inv.lesserStrGif);
-        potion11.setBounds(850, 60, 42, 63);
-        potion11.setBackground(Color.white);
-        potion11.setBorder(null);
-        potion11.setFocusPainted(false);
-
-        //Major Energy Potion
-        potion12 = new JButton(inv.majorStrGif);
-        potion12.setBounds(900, 60, 53, 64);
-        potion12.setBackground(Color.white);
-        potion12.setBorder(null);
-        potion12.setFocusPainted(false);
-
-        inventoryHealth = new JLabel("Health");
-        inventoryHealth.setFont(pixelMplus.deriveFont(30f));
-        inventoryHealth.setForeground(Color.black);
-        Dimension inventoryHealthSize = inventoryHealth.getPreferredSize();
-        inventoryHealth.setBounds(90, 25, inventoryHealthSize.width, inventoryHealthSize.height);
-
-        inventoryStr = new JLabel("Strength");
-        inventoryStr.setFont(pixelMplus.deriveFont(30f));
-        inventoryStr.setForeground(Color.black);
-        Dimension inventoryStrSize = inventoryStr.getPreferredSize();
-        inventoryStr.setBounds(815, 25, inventoryStrSize.width, inventoryStrSize.height);
-
-        inventoryEnergy = new JLabel("Energy");
-        inventoryEnergy.setFont(pixelMplus.deriveFont(30f));
-        inventoryEnergy.setForeground(Color.black);
-        Dimension inventoryEnergySize = inventoryEnergy.getPreferredSize();
-        inventoryEnergy.setBounds(590, 25, inventoryEnergySize.width, inventoryEnergySize.height);
-
-        inventoryBlock = new JLabel("Block");
-        inventoryBlock.setFont(pixelMplus.deriveFont(30f));
-        inventoryBlock.setForeground(Color.black);
-        Dimension inventoryBlockSize = inventoryBlock.getPreferredSize();
-        inventoryBlock.setBounds(345, 25, inventoryBlockSize.width, inventoryBlockSize.height);
-
-        //Potion owned
-        potion1Label = new JLabel("" + inv.ownedMinorHealingPotion);
-        potion1Label.setFont(pixelMplus.deriveFont(30f));
-        potion1Label.setForeground(Color.black);
-        Dimension potion1LabelSize = potion1Label.getPreferredSize();
-        potion1Label.setBounds(60, 125, potion1LabelSize.width, potion1LabelSize.height);
-
-        potion2Label = new JLabel("" + inv.ownedLesserHealingPotion);
-        potion2Label.setFont(pixelMplus.deriveFont(30f));
-        potion2Label.setForeground(Color.black);
-        Dimension potion2LabelSize = potion2Label.getPreferredSize();
-        potion2Label.setBounds(115, 125, potion2LabelSize.width, potion2LabelSize.height);
-
-        potion3Label = new JLabel("" + inv.ownedMajorHealingPotion);
-        potion3Label.setFont(pixelMplus.deriveFont(30f));
-        potion3Label.setForeground(Color.black);
-        Dimension potion3LabelSize = potion3Label.getPreferredSize();
-        potion3Label.setBounds(180, 125, potion3LabelSize.width, potion3LabelSize.height);
-
-        potion4Label = new JLabel("" + inv.ownedMinorBlockPotion);
-        potion4Label.setFont(pixelMplus.deriveFont(30f));
-        potion4Label.setForeground(Color.black);
-        Dimension potion4LabelSize = potion4Label.getPreferredSize();
-        potion4Label.setBounds(317, 125, potion4LabelSize.width, potion4LabelSize.height);
-
-        potion5Label = new JLabel("" + inv.ownedLesserBlockPotion);
-        potion5Label.setFont(pixelMplus.deriveFont(30f));
-        potion5Label.setForeground(Color.black);
-        Dimension potion5LabelSize = potion5Label.getPreferredSize();
-        potion5Label.setBounds(370, 125, potion5LabelSize.width, potion5LabelSize.height);
-
-        potion6Label = new JLabel("" + inv.ownedMajorBlockPotion);
-        potion6Label.setFont(pixelMplus.deriveFont(30f));
-        potion6Label.setForeground(Color.black);
-        Dimension potion6LabelSize = potion6Label.getPreferredSize();
-        potion6Label.setBounds(430, 125, potion6LabelSize.width, potion6LabelSize.height);
-
-        potion7Label = new JLabel("" + inv.ownedMinorEnergyPotion);
-        potion7Label.setFont(pixelMplus.deriveFont(30f));
-        potion7Label.setForeground(Color.black);
-        Dimension potion7LabelSize = potion7Label.getPreferredSize();
-        potion7Label.setBounds(557, 125, potion7LabelSize.width, potion7LabelSize.height);
-
-        potion8Label = new JLabel("" + inv.ownedLesserBlockPotion);
-        potion8Label.setFont(pixelMplus.deriveFont(30f));
-        potion8Label.setForeground(Color.black);
-        Dimension potion8LabelSize = potion8Label.getPreferredSize();
-        potion8Label.setBounds(617, 125, potion8LabelSize.width, potion8LabelSize.height);
-
-        potion9Label = new JLabel("" + inv.ownedMajorBlockPotion);
-        potion9Label.setFont(pixelMplus.deriveFont(30f));
-        potion9Label.setForeground(Color.black);
-        Dimension potion9LabelSize = potion9Label.getPreferredSize();
-        potion9Label.setBounds(680, 125, potion9LabelSize.width, potion9LabelSize.height);
-
-        potion10Label = new JLabel("" + inv.ownedMinorStrengthPotion);
-        potion10Label.setFont(pixelMplus.deriveFont(30f));
-        potion10Label.setForeground(Color.black);
-        Dimension potion10LabelSize = potion10Label.getPreferredSize();
-        potion10Label.setBounds(817, 125, potion10LabelSize.width, potion10LabelSize.height);
-
-        potion11Label = new JLabel("" + inv.ownedLesserStrengthPotion);
-        potion11Label.setFont(pixelMplus.deriveFont(30f));
-        potion11Label.setForeground(Color.black);
-        Dimension potion11LabelSize = potion11Label.getPreferredSize();
-        potion11Label.setBounds(863, 125, potion11LabelSize.width, potion11LabelSize.height);
-
-        potion12Label = new JLabel("" + inv.ownedMajorStrengthPotion);
-        potion12Label.setFont(pixelMplus.deriveFont(30f));
-        potion12Label.setForeground(Color.black);
-        Dimension potion12LabelSize = potion12Label.getPreferredSize();
-        potion12Label.setBounds(920, 125, potion12LabelSize.width, potion12LabelSize.height);
-    }
-
+    //When you press "end turn" button.
     private void startNewTurn(){
         turns++;
 
         //Warrior's turn
         if (turns==1 && warriorCurrentHp>0){
-            warriorEnergyInt+=5;
-            currentEnergy=warriorEnergyInt;
-            warriorBlock=w.combinedBlock;
+            warriorEnergyInt+=5; //Get energy
+            currentEnergy=warriorEnergyInt; //Update energy.
+            warriorBlock=w.combinedBlock; //Update block, reset extra block.
 
+            //Energy cant go over 10.
             if (warriorEnergyInt>10){
                 warriorEnergyInt=10;
             }
+            //Update labels.
             whosTurn.setText("Warrior's turn");
             playersHp.setText("Hp: "+warriorCurrentHp);
             energy.setText("Energy: "+warriorEnergyInt);
@@ -495,16 +243,351 @@ public class ForestFight extends JFrame {
         }
     }
 
+    //When player press block
+    private void blockPressed(){
+
+        //If its warrior's turn and player has 2 or more energy.
+        if(turns==1 && warriorEnergyInt>1){
+            warriorEnergyInt=warriorEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            warriorBlock+=5;
+            energy.setText("Energy: "+warriorEnergyInt);
+            block.setText("Block: "+warriorBlock);
+        }
+        //If its ranger's turn and player has 2 or more energy.
+        else if(turns==2 && rangerEnergyInt>1){
+            rangerEnergyInt=rangerEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+rangerEnergyInt);
+            block.setText("Block: "+warriorBlock);
+        }
+        //If its mage's turn and player has 2 or more energy.
+        else if(turns==3 && mageEnergyInt>1){
+            mageEnergyInt=mageEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+mageEnergyInt);
+            block.setText("Block: "+warriorBlock);
+        }
+        //If its healer's turn and player has 2 or more energy.
+        else if(turns==4 && healerEnergyInt>1){
+            healerEnergyInt=healerEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+healerEnergyInt);
+            block.setText("Block: "+warriorBlock);
+        }
+    }
+    //When you press the "attack button".
+    private void attackPressed(){
+
+        //If its warrior's turn and player has 2 or more energy.
+        if(turns==1 && warriorEnergyInt>1){
+            warriorEnergyInt=warriorEnergyInt-2; //Energy -2.
+            currentEnergy=currentEnergy-2; // Update currentEnergy.
+            energy.setText("Energy: "+warriorEnergyInt); //Update energyLabel
+            warriorAttackWolf(); //Warrior deals damage to a random wolf.
+            mobDeath(); //Check if enemy died.
+            isFightOver(); //Check if all enemies/party members are dead.
+        }
+        //If its ranger's turn and player has 2 or more energy.
+        else if(turns==2 && rangerEnergyInt>1){
+            rangerEnergyInt=rangerEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+rangerEnergyInt);
+            rangerAttackWolf();
+            mobDeath();
+            isFightOver();
+        }
+        //If its mage's turn and player has 2 or more energy.
+        else if(turns==3 && mageEnergyInt>1){
+            mageEnergyInt=mageEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+mageEnergyInt);
+            mageAttackWolf();
+            mobDeath();
+            isFightOver();
+        }
+        //If its healer's turn and player has 2 or more energy.
+        else if(turns==4 && healerEnergyInt>1){
+            healerEnergyInt=healerEnergyInt-2;
+            currentEnergy=currentEnergy-2;
+            energy.setText("Energy: "+healerEnergyInt);
+            healerAttackWolf();
+            mobDeath();
+            isFightOver();
+        }
+    }
+    //When warrior press the "attack button".
+    private void warriorAttackWolf() {
+        //Loop until one of the if-statements are true.
+        while (true) {
+            //Randomize a number between 1-4.
+            int target = (int) (Math.random() * 4)+1;
+
+            //If target is 1 and wolf 1 is alive.
+            if (target == 1 && wolf1Int > 0) {
+                wolf1Int = wolf1Int - warriorDamage;//Wolf take damage equals to warriors damage.
+                wolf1Hp.setText("Wolf 1: " + wolf1Int);//Update wolf 1 hp label.
+                break;
+            }
+            //If target is 2 and wolf 2 is alive.
+            if (target == 2 && wolf2Int > 0) {
+                wolf2Int = wolf2Int - warriorDamage;
+                wolf2Hp.setText("Wolf 2: " + wolf2Int);
+                break;
+            }
+            //If target is 3 and wolf 3 is alive.
+            if (target == 3 && wolf3Int > 0) {
+                wolf3Int = wolf3Int - warriorDamage;
+                wolf3Hp.setText("Wolf 3: " + wolf3Int);
+                break;
+            }
+            //If target is 4 and wolf 4 is alive.
+            if (target == 4 && wolf4Int > 0) {
+                wolf4Int = wolf4Int - warriorDamage;
+                wolf4Hp.setText("Wolf 4: " + wolf4Int);
+                break;
+            }
+        }
+    }
+
+    //When mage press the "attack button".
+    private void mageAttackWolf(){
+        //Loop until one of the if-statements are true.
+        while (true) {
+            //Randomize a number between 1-4.
+            int target = (int) (Math.random() * 4)+1;
+
+            //If target is 1 and wolf 1 is alive.
+            if (target == 1 && wolf1Int > 0) {
+                wolf1Int = wolf1Int - mageDamage;//Wolf take damage equals to mage's damage.
+                wolf1Hp.setText("Wolf 1: " + wolf1Int);
+                break;
+            }
+            //If target is 2 and wolf 2 is alive.
+            if (target == 2 && wolf2Int > 0) {
+                wolf2Int = wolf2Int - mageDamage;
+                wolf2Hp.setText("Wolf 2: " + wolf2Int);
+                break;
+            }
+            //If target is 3 and wolf 3 is alive.
+            if (target == 3 && wolf3Int > 0) {
+                wolf3Int = wolf3Int - mageDamage;
+                wolf3Hp.setText("Wolf 3: " + wolf3Int);
+                break;
+            }
+            //If target is 4 and wolf 4 is alive.
+            if (target == 4 && wolf4Int > 0) {
+                wolf4Int = wolf4Int - mageDamage;
+                wolf4Hp.setText("Wolf 4: " + wolf4Int);
+                break;
+            }
+        }
+    }
+
+    //When ranger press the "attack button".
+    private void rangerAttackWolf(){
+        //Loop until one of the if-statements are true.
+        while (true) {
+            //Randomize a number between 1-4.
+            int target = (int) (Math.random() * 4)+1;
+
+            //If target is 1 and wolf 1 is alive.
+            if (target == 1 && wolf1Int > 0) {
+                wolf1Int = wolf1Int - rangerDamage;//Wolf take damage equals to rangers damage.
+                wolf1Hp.setText("Wolf 1: " + wolf1Int);
+                break;
+            }
+            //If target is 2 and wolf 2 is alive.
+            if (target == 2 && wolf2Int > 0) {
+                wolf2Int = wolf2Int - rangerDamage;
+                wolf2Hp.setText("Wolf 2: " + wolf2Int);
+                break;
+            }
+            //If target is 3 and wolf 3 is alive.
+            if (target == 3 && wolf3Int > 0) {
+                wolf3Int = wolf3Int - rangerDamage;
+                wolf3Hp.setText("Wolf 3: " + wolf3Int);
+                break;
+            }
+            //If target is 4 and wolf 4 is alive.
+            if (target == 4 && wolf4Int > 0) {
+                wolf4Int = wolf4Int - rangerDamage;
+                wolf4Hp.setText("Wolf 4: " + wolf4Int);
+                break;
+            }
+        }
+    }
+
+    //When healer press the "attack button".
+    private void healerAttackWolf(){
+        //Loop until one of the if-statements are true.
+        while (true) {
+            int target = (int) (Math.random() * 4)+1;
+
+            //If target is 1 and wolf 1 is alive.
+            if (target == 1 && wolf1Int > 0) {
+                wolf1Int = wolf1Int - healerDamage;//Wolf take damage equals to healers damage.
+                wolf1Hp.setText("Wolf 1: " + wolf1Int);
+                break;
+            }
+            //If target is 2 and wolf 2 is alive.
+            if (target == 2 && wolf2Int > 0) {
+                wolf2Int = wolf2Int - healerDamage;
+                wolf2Hp.setText("Wolf 2: " + wolf2Int);
+                break;
+            }
+            //If target is 3 and wolf 3 is alive.
+            if (target == 3 && wolf3Int > 0) {
+                wolf3Int = wolf3Int - healerDamage;
+                wolf3Hp.setText("Wolf 3: " + wolf3Int);
+                break;
+            }
+            //If target is 4 and wolf 4 is alive.
+            if (target == 4 && wolf4Int > 0) {
+                wolf4Int = wolf4Int - healerDamage;
+                wolf4Hp.setText("Wolf 4: " + wolf4Int);
+                break;
+            }
+        }
+    }
+
+    //Checks if all of the enemies or party-members are dead.
+    private void isFightOver() {
+        //All of the wolves are dead. Victory!
+        if (wolf1Int < 1 && wolf2Int < 1 && wolf3Int < 1 && wolf4Int < 1) {
+            new VictoryScreen();
+            dispose();
+        }
+        //The whole party is dead. Game over!
+        if (warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1) {
+            new Hub();
+            dispose();
+        }
+        //If none of these are true, nothing happens and the fight goes on.
+    }
+
+    //When the wolf attacks.
+    private void wolfAttack() {
+        int target = (int) (Math.random() * 4); //Random target, 0-3.
+        int wolfDamage = (int) (Math.random() * 10) + 15;//Generate random damage, 15-25.
+
+        //Loops until it reaches an alive party-member.
+        while (true) {
+
+            //Warrior, Target 2.
+            if (target == 0) {
+                //If warrior is dead, target=1.
+                if (warriorCurrentHp < 1) {
+                    target=1;
+                }
+                //If warrior is alive.
+                if (warriorCurrentHp >0) {
+                    wolfDamage=wolfDamage-warriorBlock; //Warrior take damage equal to wolf damage.
+                    warriorCurrentHp = warriorCurrentHp - wolfDamage; //Update warrior hp.
+                    player1Hp.setText("Warrior: "+warriorCurrentHp); //Update hp Label.
+                    break;
+                }
+            }
+            //Mage, Target 1.
+            if (target == 1) {
+                //If mage is dead, target=2.
+                if (mageCurrentHp < 1) {
+                    target = 2;
+                }
+                //If mage is alive.
+                if (mageCurrentHp >0) {
+                    wolfDamage=wolfDamage-mageBlock;
+                    mageCurrentHp = mageCurrentHp - wolfDamage;
+                    player2Hp.setText("Mage:    "+mageCurrentHp);
+                    break;
+                }
+            }
+            //Ranger, target 2.
+            if (target == 2) {
+                //If ranger is dead, target=3.
+                if (rangerCurrentHp < 1) {
+                    target = 3;
+                }
+                //If ranger is alive.
+                if (rangerCurrentHp >0) {
+                    wolfDamage=wolfDamage-rangerBlock;
+                    rangerCurrentHp = rangerCurrentHp - wolfDamage;
+                    player3Hp.setText("Ranger:  "+rangerCurrentHp);
+                    break;
+                }
+            }
+            //Healer, target3.
+            if (target == 3) {
+                //If healer is dead, target=0.
+                if (healerCurrentHp < 1) {
+                    target = 0;
+                }
+                //If healer is alive.
+                if (healerCurrentHp >0) {
+                    wolfDamage=wolfDamage-healerBlock;
+                    healerCurrentHp = healerCurrentHp - wolfDamage;
+                    player4Hp.setText("Healer:   "+healerCurrentHp);
+                    break;
+                }
+            }
+        }
+    }
+    //Checks if an enemy died. If so, set gif to "setVisible(false);" and hp label to 0.
+    private void mobDeath(){
+
+        if(wolf1Int<=0){
+            wolf1Hp.setText("Wolf 1: 0");
+            wolf1.setVisible(false);
+        }
+        if(wolf2Int<=0){
+            wolf2Hp.setText("Wolf 2: 0");
+            wolf2.setVisible(false);
+        }
+        if(wolf3Int<=0){
+            wolf3Hp.setText("Wolf 3: 0");
+            wolf3.setVisible(false);
+        }
+        if(wolf4Int<=0){
+            wolf4Hp.setText("Wolf 4: 0");
+            wolf4.setVisible(false);
+        }
+    }
+
+    //Checks if any party-member died. If so, set gif to "setVisible(false);" and hp label to 0.
+    private void partyDeath(){
+
+        if(warriorCurrentHp<=0){
+            player1Hp.setText("Warrior: 0");
+            warrior.setVisible(false);
+        }
+        if(mageCurrentHp<=0){
+            player2Hp.setText("Mage:    0");
+            mage.setVisible(false);
+        }
+        if(rangerCurrentHp<=0){
+            player3Hp.setText("Ranger:  0");
+            ranger.setVisible(false);
+        }
+        if(healerCurrentHp<=0){
+            player4Hp.setText("Healer:  0");
+            healer.setVisible(false);
+        }
+    }
+
+    //Get the effect from potions.
     private void usePotion(int potion) {
+
         //Warrior
         if (turns == 1) {
+            //If potion 1 "minor healing potion" is pressed.
             if (potion == 1) {
+                //If player own that potion.
                 if (inv.ownedMinorHealingPotion > 0) {
-                    warriorCurrentHp += inv.minorHealingPotion;
-                    playersHp.setText("Hp: " + warriorCurrentHp);
-                    player1Hp.setText("Warrior: " + warriorCurrentHp);
-                    inv.ownedMinorHealingPotion--;
-                    potion1Label.setText(""+inv.ownedMinorHealingPotion);
+                    warriorCurrentHp += inv.minorHealingPotion; //Heal warrior equals to the potions heal.
+                    playersHp.setText("Hp: " + warriorCurrentHp); //Update Warrior's hp Label.
+                    player1Hp.setText("Warrior: " + warriorCurrentHp); // Update currentPlayer Hp label.
+                    inv.ownedMinorHealingPotion--; //Delete one potion.
+                    potion1Label.setText(""+inv.ownedMinorHealingPotion); //Update ownedPotion Label.
                 }
             } else if (potion == 2) {
                 if (inv.ownedLesserHealingPotion > 0) {
@@ -855,292 +938,269 @@ public class ForestFight extends JFrame {
             }
         }
     }
+    //This method triggers when you press the "Item button". It opens up another JFrame that covers the hud.
+    private void itemPressed(){
 
-    //When you press block
-    private void blockPressed(){
+        //Frame settings
+        JFrame inventory = new JFrame();
+        inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inventory.setLayout(null);
+        inventory.setSize(1920, 300);
+        inventory.setTitle("Inventory");
+        inventory.setLocation(0,538);
 
-        if(turns==1 && warriorEnergyInt>1){
-            warriorEnergyInt=warriorEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            warriorBlock+=5;
-            energy.setText("Energy: "+warriorEnergyInt);
-            block.setText("Block: "+warriorBlock);
-        }
-        else if(turns==2 && rangerEnergyInt>1){
-            rangerEnergyInt=rangerEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+rangerEnergyInt);
-            block.setText("Block: "+warriorBlock);
-        }
-        else if(turns==3 && mageEnergyInt>1){
-            mageEnergyInt=mageEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+mageEnergyInt);
-            block.setText("Block: "+warriorBlock);
-        }
-        else if(turns==4 && healerEnergyInt>1){
-            healerEnergyInt=healerEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+healerEnergyInt);
-            block.setText("Block: "+warriorBlock);
-        }
+        getInventory();
+
+        //Background
+        ImageIcon backgroundInventory = new ImageIcon("white.jpg");
+        inventory.setContentPane(new JLabel(backgroundInventory));
+
+        //Add all labels//buttons.
+        inventory.add(exitInventory);
+        inventory.add(potion1);
+        inventory.add(potion2);
+        inventory.add(potion3);
+        inventory.add(potion4);
+        inventory.add(potion5);
+        inventory.add(potion6);
+        inventory.add(potion7);
+        inventory.add(potion8);
+        inventory.add(potion9);
+        inventory.add(potion10);
+        inventory.add(potion11);
+        inventory.add(potion12);
+        inventory.add(inventoryHealth);
+        inventory.add(inventoryBlock);
+        inventory.add(inventoryEnergy);
+        inventory.add(inventoryStr);
+        inventory.add(potion1Label);
+        inventory.add(potion2Label);
+        inventory.add(potion3Label);
+        inventory.add(potion4Label);
+        inventory.add(potion5Label);
+        inventory.add(potion6Label);
+        inventory.add(potion7Label);
+        inventory.add(potion8Label);
+        inventory.add(potion9Label);
+        inventory.add(potion10Label);
+        inventory.add(potion11Label);
+        inventory.add(potion12Label);
+
+        //Action listeners for the potions. Sends them to usePotion() with an unique number/int.
+        potion1.addActionListener(e->usePotion(1));
+        potion2.addActionListener(e->usePotion(2));
+        potion3.addActionListener(e->usePotion(3));
+        potion4.addActionListener(e->usePotion(4));
+        potion5.addActionListener(e->usePotion(5));
+        potion6.addActionListener(e->usePotion(6));
+        potion7.addActionListener(e->usePotion(7));
+        potion8.addActionListener(e->usePotion(8));
+        potion9.addActionListener(e->usePotion(9));
+        potion10.addActionListener(e->usePotion(10));
+        potion11.addActionListener(e->usePotion(11));
+        potion12.addActionListener(e->usePotion(12));
+
+        //Dispose the item frame.
+        exitInventory.addActionListener(e->inventory.dispose());
+
+        inventory.setUndecorated(true);
+        inventory.setVisible(true);
     }
 
-    //When you press attack
-    private void attackPressed(){
+    //Set all "stats" for each button and label to the Item Frame.
+    private void getInventory() {
+        //Exit button
+        exitInventory = new JButton("Exit inventory");
+        exitInventory.setBounds(1010, 60, 250, 80);
+        exitInventory.setFont(pixelMplus.deriveFont(30f));
+        exitInventory.setBackground(Color.white);
+        exitInventory.setBorder(null); //Remove border around button
+        exitInventory.setFocusPainted(false);//Remove border around text in button
 
-        if(turns==1 && warriorEnergyInt>1){
-            warriorEnergyInt=warriorEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+warriorEnergyInt);
-            warriorAttackWolf();
-            mobDeath();
-            isFightOver();
-        }
-        else if(turns==2 && rangerEnergyInt>1){
-            rangerEnergyInt=rangerEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+rangerEnergyInt);
-            rangerAttackWolf();
-            mobDeath();
-            isFightOver();
-        }
-        else if(turns==3 && mageEnergyInt>1){
-            mageEnergyInt=mageEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+mageEnergyInt);
-            mageAttackWolf();
-            mobDeath();
-            isFightOver();
-        }
-        else if(turns==4 && healerEnergyInt>1){
-            healerEnergyInt=healerEnergyInt-2;
-            currentEnergy=currentEnergy-2;
-            energy.setText("Energy: "+healerEnergyInt);
-            healerAttackWolf();
-            mobDeath();
-            isFightOver();
-        }
+        //Minor Health Potion
+        potion1 = new JButton(inv.minorHealthGif);
+        potion1.setBounds(50, 60, 41, 62);
+        potion1.setBackground(Color.white);
+        potion1.setBorder(null);
+        potion1.setFocusPainted(false);
+
+        //Lesser Health Potion
+        potion2 = new JButton(inv.lesserHealthGif);
+        potion2.setBounds(100, 60, 46, 62);
+        potion2.setBackground(Color.white);
+        potion2.setBorder(null);
+        potion2.setFocusPainted(false);
+
+        //Major Health Potion
+        potion3 = new JButton(inv.majorHealthGif);
+        potion3.setBounds(160, 60, 55, 64);
+        potion3.setBackground(Color.white);
+        potion3.setBorder(null);
+        potion3.setFocusPainted(false);
+
+        //Minor Block Potion
+        potion4 = new JButton(inv.minorBlockGif);
+        potion4.setBounds(300, 60, 42, 63);
+        potion4.setBackground(Color.white);
+        potion4.setBorder(null);
+        potion4.setFocusPainted(false);
+
+        //Lesser Block Potion
+        potion5 = new JButton(inv.lesserBlockGif);
+        potion5.setBounds(350, 60, 47, 63);
+        potion5.setBackground(Color.white);
+        potion5.setBorder(null);
+        potion5.setFocusPainted(false);
+
+        //Major Block Potion
+        potion6 = new JButton(inv.majorBlockGif);
+        potion6.setBounds(410, 60, 59, 64);
+        potion6.setBackground(Color.white);
+        potion6.setBorder(null);
+        potion6.setFocusPainted(false);
+
+        //Minor Energy Potion
+        potion7 = new JButton(inv.minorEnergyGif);
+        potion7.setBounds(550, 60, 40, 63);
+        potion7.setBackground(Color.white);
+        potion7.setBorder(null);
+        potion7.setFocusPainted(false);
+
+        //Lesser Energy Potion
+        potion8 = new JButton(inv.lesserEnergyGif);
+        potion8.setBounds(600, 60, 46, 63);
+        potion8.setBackground(Color.white);
+        potion8.setBorder(null);
+        potion8.setFocusPainted(false);
+
+        //Major Energy Potion
+        potion9 = new JButton(inv.majorEnergyGif);
+        potion9.setBounds(660, 60, 59, 64);
+        potion9.setBackground(Color.white);
+        potion9.setBorder(null);
+        potion9.setFocusPainted(false);
+
+        //Minor Strength Potion
+        potion10 = new JButton(inv.minorStrGif);
+        potion10.setBounds(800, 60, 38, 63);
+        potion10.setBackground(Color.white);
+        potion10.setBorder(null);
+        potion10.setFocusPainted(false);
+
+        //Lesser Energy Potion
+        potion11 = new JButton(inv.lesserStrGif);
+        potion11.setBounds(850, 60, 42, 63);
+        potion11.setBackground(Color.white);
+        potion11.setBorder(null);
+        potion11.setFocusPainted(false);
+
+        //Major Energy Potion
+        potion12 = new JButton(inv.majorStrGif);
+        potion12.setBounds(900, 60, 53, 64);
+        potion12.setBackground(Color.white);
+        potion12.setBorder(null);
+        potion12.setFocusPainted(false);
+
+        //Labels
+        inventoryHealth = new JLabel("Health");
+        inventoryHealth.setFont(pixelMplus.deriveFont(30f));
+        inventoryHealth.setForeground(Color.black);
+        Dimension inventoryHealthSize = inventoryHealth.getPreferredSize();
+        inventoryHealth.setBounds(90, 25, inventoryHealthSize.width, inventoryHealthSize.height);
+
+        inventoryStr = new JLabel("Strength");
+        inventoryStr.setFont(pixelMplus.deriveFont(30f));
+        inventoryStr.setForeground(Color.black);
+        Dimension inventoryStrSize = inventoryStr.getPreferredSize();
+        inventoryStr.setBounds(815, 25, inventoryStrSize.width, inventoryStrSize.height);
+
+        inventoryEnergy = new JLabel("Energy");
+        inventoryEnergy.setFont(pixelMplus.deriveFont(30f));
+        inventoryEnergy.setForeground(Color.black);
+        Dimension inventoryEnergySize = inventoryEnergy.getPreferredSize();
+        inventoryEnergy.setBounds(590, 25, inventoryEnergySize.width, inventoryEnergySize.height);
+
+        inventoryBlock = new JLabel("Block");
+        inventoryBlock.setFont(pixelMplus.deriveFont(30f));
+        inventoryBlock.setForeground(Color.black);
+        Dimension inventoryBlockSize = inventoryBlock.getPreferredSize();
+        inventoryBlock.setBounds(345, 25, inventoryBlockSize.width, inventoryBlockSize.height);
+
+        //Potion owned
+        potion1Label = new JLabel("" + inv.ownedMinorHealingPotion);
+        potion1Label.setFont(pixelMplus.deriveFont(30f));
+        potion1Label.setForeground(Color.black);
+        Dimension potion1LabelSize = potion1Label.getPreferredSize();
+        potion1Label.setBounds(60, 125, potion1LabelSize.width, potion1LabelSize.height);
+
+        potion2Label = new JLabel("" + inv.ownedLesserHealingPotion);
+        potion2Label.setFont(pixelMplus.deriveFont(30f));
+        potion2Label.setForeground(Color.black);
+        Dimension potion2LabelSize = potion2Label.getPreferredSize();
+        potion2Label.setBounds(115, 125, potion2LabelSize.width, potion2LabelSize.height);
+
+        potion3Label = new JLabel("" + inv.ownedMajorHealingPotion);
+        potion3Label.setFont(pixelMplus.deriveFont(30f));
+        potion3Label.setForeground(Color.black);
+        Dimension potion3LabelSize = potion3Label.getPreferredSize();
+        potion3Label.setBounds(180, 125, potion3LabelSize.width, potion3LabelSize.height);
+
+        potion4Label = new JLabel("" + inv.ownedMinorBlockPotion);
+        potion4Label.setFont(pixelMplus.deriveFont(30f));
+        potion4Label.setForeground(Color.black);
+        Dimension potion4LabelSize = potion4Label.getPreferredSize();
+        potion4Label.setBounds(317, 125, potion4LabelSize.width, potion4LabelSize.height);
+
+        potion5Label = new JLabel("" + inv.ownedLesserBlockPotion);
+        potion5Label.setFont(pixelMplus.deriveFont(30f));
+        potion5Label.setForeground(Color.black);
+        Dimension potion5LabelSize = potion5Label.getPreferredSize();
+        potion5Label.setBounds(370, 125, potion5LabelSize.width, potion5LabelSize.height);
+
+        potion6Label = new JLabel("" + inv.ownedMajorBlockPotion);
+        potion6Label.setFont(pixelMplus.deriveFont(30f));
+        potion6Label.setForeground(Color.black);
+        Dimension potion6LabelSize = potion6Label.getPreferredSize();
+        potion6Label.setBounds(430, 125, potion6LabelSize.width, potion6LabelSize.height);
+
+        potion7Label = new JLabel("" + inv.ownedMinorEnergyPotion);
+        potion7Label.setFont(pixelMplus.deriveFont(30f));
+        potion7Label.setForeground(Color.black);
+        Dimension potion7LabelSize = potion7Label.getPreferredSize();
+        potion7Label.setBounds(557, 125, potion7LabelSize.width, potion7LabelSize.height);
+
+        potion8Label = new JLabel("" + inv.ownedLesserBlockPotion);
+        potion8Label.setFont(pixelMplus.deriveFont(30f));
+        potion8Label.setForeground(Color.black);
+        Dimension potion8LabelSize = potion8Label.getPreferredSize();
+        potion8Label.setBounds(617, 125, potion8LabelSize.width, potion8LabelSize.height);
+
+        potion9Label = new JLabel("" + inv.ownedMajorBlockPotion);
+        potion9Label.setFont(pixelMplus.deriveFont(30f));
+        potion9Label.setForeground(Color.black);
+        Dimension potion9LabelSize = potion9Label.getPreferredSize();
+        potion9Label.setBounds(680, 125, potion9LabelSize.width, potion9LabelSize.height);
+
+        potion10Label = new JLabel("" + inv.ownedMinorStrengthPotion);
+        potion10Label.setFont(pixelMplus.deriveFont(30f));
+        potion10Label.setForeground(Color.black);
+        Dimension potion10LabelSize = potion10Label.getPreferredSize();
+        potion10Label.setBounds(817, 125, potion10LabelSize.width, potion10LabelSize.height);
+
+        potion11Label = new JLabel("" + inv.ownedLesserStrengthPotion);
+        potion11Label.setFont(pixelMplus.deriveFont(30f));
+        potion11Label.setForeground(Color.black);
+        Dimension potion11LabelSize = potion11Label.getPreferredSize();
+        potion11Label.setBounds(863, 125, potion11LabelSize.width, potion11LabelSize.height);
+
+        potion12Label = new JLabel("" + inv.ownedMajorStrengthPotion);
+        potion12Label.setFont(pixelMplus.deriveFont(30f));
+        potion12Label.setForeground(Color.black);
+        Dimension potion12LabelSize = potion12Label.getPreferredSize();
+        potion12Label.setBounds(920, 125, potion12LabelSize.width, potion12LabelSize.height);
     }
 
-    private void warriorAttackWolf() {
-
-        while (true) {
-            int target = (int) (Math.random() * 4)+1;
-
-            if (target == 1 && wolf1Int > 0) {
-                wolf1Int = wolf1Int - warriorDamage;
-                wolf1Hp.setText("Wolf 1: " + wolf1Int);
-                break;
-            }
-            if (target == 2 && wolf2Int > 0) {
-                wolf2Int = wolf2Int - warriorDamage;
-                wolf2Hp.setText("Wolf 2: " + wolf2Int);
-                break;
-            }
-            if (target == 3 && wolf3Int > 0) {
-                wolf3Int = wolf3Int - warriorDamage;
-                wolf3Hp.setText("Wolf 3: " + wolf3Int);
-                break;
-            }
-            if (target == 4 && wolf4Int > 0) {
-                wolf4Int = wolf4Int - warriorDamage;
-                wolf4Hp.setText("Wolf 4: " + wolf4Int);
-                break;
-            }
-        }
-    }
-
-    private void mageAttackWolf(){
-
-        while (true) {
-            int target = (int) (Math.random() * 4)+1;
-
-            if (target == 1 && wolf1Int > 0) {
-                wolf1Int = wolf1Int - mageDamage;
-                wolf1Hp.setText("Wolf 1: " + wolf1Int);
-                break;
-            }
-            if (target == 2 && wolf2Int > 0) {
-                wolf2Int = wolf2Int - mageDamage;
-                wolf2Hp.setText("Wolf 2: " + wolf2Int);
-                break;
-            }
-            if (target == 3 && wolf3Int > 0) {
-                wolf3Int = wolf3Int - mageDamage;
-                wolf3Hp.setText("Wolf 3: " + wolf3Int);
-                break;
-            }
-            if (target == 4 && wolf4Int > 0) {
-                wolf4Int = wolf4Int - mageDamage;
-                wolf4Hp.setText("Wolf 4: " + wolf4Int);
-                break;
-            }
-        }
-    }
-
-    private void rangerAttackWolf(){
-        while (true) {
-            int target = (int) (Math.random() * 4)+1;
-
-            if (target == 1 && wolf1Int > 0) {
-                wolf1Int = wolf1Int - rangerDamage;
-                wolf1Hp.setText("Wolf 1: " + wolf1Int);
-                break;
-            }
-            if (target == 2 && wolf2Int > 0) {
-                wolf2Int = wolf2Int - rangerDamage;
-                wolf2Hp.setText("Wolf 2: " + wolf2Int);
-                break;
-            }
-            if (target == 3 && wolf3Int > 0) {
-                wolf3Int = wolf3Int - rangerDamage;
-                wolf3Hp.setText("Wolf 3: " + wolf3Int);
-                break;
-            }
-            if (target == 4 && wolf4Int > 0) {
-                wolf4Int = wolf4Int - rangerDamage;
-                wolf4Hp.setText("Wolf 4: " + wolf4Int);
-                break;
-            }
-        }
-    }
-
-    private void healerAttackWolf(){
-
-        while (true) {
-            int target = (int) (Math.random() * 4)+1;
-
-            if (target == 1 && wolf1Int > 0) {
-                wolf1Int = wolf1Int - healerDamage;
-                wolf1Hp.setText("Wolf 1: " + wolf1Int);
-                break;
-            }
-            if (target == 2 && wolf2Int > 0) {
-                wolf2Int = wolf2Int - healerDamage;
-                wolf2Hp.setText("Wolf 2: " + wolf2Int);
-                break;
-            }
-            if (target == 3 && wolf3Int > 0) {
-                wolf3Int = wolf3Int - healerDamage;
-                wolf3Hp.setText("Wolf 3: " + wolf3Int);
-                break;
-            }
-            if (target == 4 && wolf4Int > 0) {
-                wolf4Int = wolf4Int - healerDamage;
-                wolf4Hp.setText("Wolf 4: " + wolf4Int);
-                break;
-            }
-        }
-    }
-
-    private void isFightOver() {
-        if (wolf1Int < 1 && wolf2Int < 1 && wolf3Int < 1 && wolf4Int < 1) {
-            //Victory screen
-            new VictoryScreen();
-            dispose();
-
-        }
-        if (warriorCurrentHp < 1 && mageCurrentHp < 1 && healerCurrentHp < 1 && rangerCurrentHp < 1) {
-            //Game over
-            new Hub();
-            dispose();
-        }
-        //else fight not over
-    }
-
-    private void wolfAttack() {
-        int target = (int) (Math.random() * 4);
-        int wolfDamage = (int) (Math.random() * 10) + 15;
-
-        while (true) {
-            if (target == 0) {
-                if (warriorCurrentHp < 1) {
-                    target=1;
-                }
-                if (warriorCurrentHp >0) {
-                    wolfDamage=wolfDamage-warriorBlock;
-                    warriorCurrentHp = warriorCurrentHp - wolfDamage;
-                    player1Hp.setText("Warrior: "+warriorCurrentHp);
-                    break;
-                }
-            }
-            if (target == 1) {
-                if (mageCurrentHp < 1) {
-                    target = 2;
-                }
-                if (mageCurrentHp >0) {
-                    wolfDamage=wolfDamage-mageBlock;
-                    mageCurrentHp = mageCurrentHp - wolfDamage;
-                    player2Hp.setText("Mage:    "+mageCurrentHp);
-                    break;
-                }
-            }
-            if (target == 2) {
-                if (rangerCurrentHp < 1) {
-                    target = 3;
-                }
-                if (rangerCurrentHp >0) {
-                    wolfDamage=wolfDamage-rangerBlock;
-                    rangerCurrentHp = rangerCurrentHp - wolfDamage;
-                    player3Hp.setText("Ranger:  "+rangerCurrentHp);
-                    break;
-                }
-            }
-            if (target == 3) {
-                if (healerCurrentHp < 1) {
-                    target = 0;
-
-                }
-                if (healerCurrentHp >0) {
-                    wolfDamage=wolfDamage-healerBlock;
-                    healerCurrentHp = healerCurrentHp - wolfDamage;
-                    player4Hp.setText("Healer:   "+healerCurrentHp);
-                    break;
-                }
-            }
-        }
-    }
-
-    private void mobDeath(){
-
-        if(wolf1Int<=0){
-            wolf1Hp.setText("Wolf 1: 0");
-            wolf1.setVisible(false);
-        }
-        if(wolf2Int<=0){
-            wolf2Hp.setText("Wolf 2: 0");
-            wolf2.setVisible(false);
-        }
-        if(wolf3Int<=0){
-            wolf3Hp.setText("Wolf 3: 0");
-            wolf3.setVisible(false);
-        }
-        if(wolf4Int<=0){
-            wolf4Hp.setText("Wolf 4: 0");
-            wolf4.setVisible(false);
-        }
-    }
-
-    private void partyDeath(){
-
-        if(warriorCurrentHp<=0){
-            player1Hp.setText("Warrior: 0");
-            warrior.setVisible(false);
-        }
-        if(mageCurrentHp<=0){
-            player2Hp.setText("Mage:    0");
-            mage.setVisible(false);
-        }
-        if(rangerCurrentHp<=0){
-            player3Hp.setText("Ranger:  0");
-            ranger.setVisible(false);
-        }
-        if(healerCurrentHp<=0){
-            player4Hp.setText("Healer:  0");
-            healer.setVisible(false);
-        }
-    }
+    //Set al "stats" for labels.
     private void importLabels(){
         playersHp = new JLabel("Hp: "+warriorCurrentHp);
         playersHp.setFont(pixelMplus.deriveFont(30f));
@@ -1217,6 +1277,7 @@ public class ForestFight extends JFrame {
         whosTurn.setBounds(30, 560, whoSize.width, whoSize.height);
     }
 
+    //Set all stats for buttons.
     private void importButtons(){
         //Attack button
         attackButton = new JButton("Attack");
@@ -1264,6 +1325,7 @@ public class ForestFight extends JFrame {
         endTurnButton.setFocusPainted(false);//Remove border around text in button
     }
 
+    //Get all party-gif's.
     private void importPartyGif(){
         warrior = new JLabel();
         warrior.setIcon(new ImageIcon("warrior.gif"));
@@ -1286,6 +1348,7 @@ public class ForestFight extends JFrame {
         mage.setBounds(-110, 290, mageSize.width, mageSize.height);
     }
 
+    //Get wolf gif.
     private void importWolfGif(){
         wolf1 = new JLabel();
         wolf1.setIcon(new ImageIcon("forestMob.gif"));
@@ -1304,14 +1367,16 @@ public class ForestFight extends JFrame {
         wolf4.setIcon(new ImageIcon("forestMob.gif"));
         wolf4.setBounds(1080, 400, wolfSize.width, wolfSize.height);
     }
+
     //Imports Pixel Font
-    public void importFont() {
+    private void importFont() {
         try {
             pixelMplus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf"));
-        } catch (IOException | FontFormatException e) {
+        } catch (IOException | FontFormatException ignored) {
         }
     }
 
+    //Add hover effect to buttons.
     private void hoverEffect() {
 
         //Attack Hover
@@ -1330,6 +1395,7 @@ public class ForestFight extends JFrame {
                 attackButton.setBackground(Color.white);
             }
         });
+
         //Block Hover
         blockButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
