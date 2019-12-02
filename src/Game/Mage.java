@@ -2,7 +2,7 @@ package Game;
 
 public class Mage{
 
-    String currentWeaponName = "Wodden wand";
+    String currentWeaponName = "Wooden wand";
     public int currentWeaponDamage = 5;
 
     String currentArmorName = "Cloth robe";
@@ -22,11 +22,11 @@ public class Mage{
     }
     public void mageEpicWeapon(){
         currentWeaponName= "Enchanted mana wand";
-        currentWeaponDamage = 9;
+        currentWeaponDamage = 15;
     }
     public void mageLegendaryWeapon(){
         currentWeaponName = "Pyromaniac's tinderbox";
-        currentWeaponDamage = 11;
+        currentWeaponDamage = 30;
     }
     //All mage armors
     public void mageRareArmor(){
