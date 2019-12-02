@@ -105,7 +105,7 @@ public class ForestFight extends JFrame {
         attackButton.addActionListener(e -> attackPressed());
         blockButton.addActionListener(e -> blockPressed());
         itemButton.addActionListener(e -> itemPressed());
-        skillButton.addActionListener(e -> System.exit(0)); //tillfällig
+        skillButton.addActionListener(e -> System.exit(0)); //for now
         endTurnButton.addActionListener(e-> startNewTurn());
 
         setVisible(true);
