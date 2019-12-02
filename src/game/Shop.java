@@ -26,7 +26,7 @@ public class Shop extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setSize(1920, 1080);
-        musicpick.musicStart("shop", "music");
+        MusicPick.musicStart("shop", "music");
 
         importFont();
         addButtons();

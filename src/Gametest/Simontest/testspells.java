@@ -1,6 +1,6 @@
 package Gametest.Simontest;
 
-import Game.Warrior;
+import game.Warrior;
 
 public class testspells {
 

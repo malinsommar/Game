@@ -25,7 +25,7 @@ public class NewGame extends JFrame {
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.darkGray);
-        musicpick.musicStart("theme","music");
+        MusicPick.musicStart("theme","music");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 

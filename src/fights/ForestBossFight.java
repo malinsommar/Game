@@ -1,6 +1,6 @@
 package fights;
 
-import game.musicpick;
+import game.MusicPick;
 
 import javax.swing.*;
 import java.awt.*;
@@ -226,7 +226,7 @@ public class ForestBossFight extends JFrame implements KeyListener {
 
         addKeyListener(this);
 
-        musicpick.musicStart("forest2","music");
+        MusicPick.musicStart("forest2","music");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);

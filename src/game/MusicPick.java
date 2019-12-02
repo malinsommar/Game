@@ -1,9 +1,9 @@
-package Game;
+package game;
 
 import javax.sound.sampled.*;
 import java.io.File;
 
-public class musicpick {
+public class MusicPick {
 
     private static Clip clip;
     private static int i = 0;
