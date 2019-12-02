@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-//Build the first map around everything in the Tile-class
+//Build the map around everything in the Tile-class
 public class Level1 {
 
     private byte[] tiles; //an ArrayList for where the tiles are
@@ -81,7 +81,7 @@ public class Level1 {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (x * y % 10 < 7) {
-                    tiles[x + y * width] = Tile.GRASS.getId();
+                    tiles[x + y * width] = Tile.START.getId();
                 } else {
                     tiles[x + y * width] = Tile.STONE.getId();
                 }
@@ -123,6 +123,7 @@ public class Level1 {
             e.render(screen);
         }
     }
+    //if no tile has been added call the Void-tile natively
     public Tile getTile (int x, int y) {
         if (0 > x || x >= width || 0 > y || y >= height)
             return  Tile.VOID;

@@ -10,8 +10,10 @@ public class Player extends Mob {
 
     private InputHandler input;
     private int colour = Colours.get(-1,111,111,543); //Assign colour for character which will be calculated within the Colours-class
-    //assign size to character
-    private int scale = 1; //Player size
+    private int scale = 1; //assign size to character
+    protected boolean isSwimming = false; //assign the isSwimming value as natively false
+    private int tickCount = 0; //counts the ticks since the last update
+
 
     public Player(Level1 level1, int x, int y, InputHandler input) {
         super(level1, "Player", x, y, 1);
@@ -22,9 +24,9 @@ public class Player extends Mob {
     @Override
     //updates isPressed method based on player-input every time the tick counts up by one
     public void tick() {
+
         /*up, down, left and right are identified with keyboard-inputs the xa or ya based on axel. When an assigned
         button is pressed, the xa or ya subs or adds by one, updating the movement*/
-
         int xa = 0;
         int ya = 0;
         if (input != null) {
@@ -49,8 +51,18 @@ public class Player extends Mob {
             } else {
                 isMoving = false;
             }
+            //identify if player is swimming
+            if (level1.getTile(this.x >> 3, this.y >> 3).getId() == 3) {
+                isSwimming = true;
+
+            }
+            //identify if player is not swimming
+            if (isSwimming && level1.getTile(this.x >> 3, this.y >> 3).getId() != 3) {
+                isSwimming = false;
+            }
+            tickCount++; //adds to tick whenever a move is made
+            }
         }
-    }
     @Override
     //render character on screen
     public void render(Screen screen) {
@@ -72,16 +84,37 @@ public class Player extends Mob {
             flipTop = (movingDir - 1) % 2;
         }
         int modifier = 8 * scale;
-        int xOffset = x - modifier/2;
-        int yOffset = y - modifier/2 - 4;
+        int xOffset = x - modifier / 2;
+        int yOffset = y - modifier / 2 - 4;
+        if (isSwimming) {
+            int waterColour = 0; //call the wave-effect while swimming
+            yOffset += 2;//lowers the position while in the water
 
+            //assign whenever during the ticCount the sprites will be played
+            if (tickCount % 60 < 15) {
+                waterColour = Colours.get(-1, -1, 225, -1);//
+            } else if (tickCount % 60 < 30) {
+                yOffset -= 1;//lowers the position of the character to create a bop-effect
+                waterColour = Colours.get(-1, 225, 115, -1);
+            } else if (tickCount % 60 < 45) {
+                yOffset -= 2;//more bop
+                waterColour = Colours.get(-1,115,-1, 225);
+            } else {
+                waterColour = Colours.get(-1,225,115, -1);
+            }
+            screen.render(xOffset, yOffset + 3, 0+27 * 32, waterColour, 0x00, 1);
+            screen.render(xOffset + 8, yOffset + 3, 0+27 * 32, waterColour, 0x01, 1);
 
-        screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, colour, flipTop, scale);
-        screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
+        }
+            screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, colour, flipTop, scale);
+            screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
 
-        screen.render(xOffset  + (modifier * flipBottom), yOffset + modifier, xTile + (yTile + 1) * 32, colour, flipBottom, scale);
-        screen.render(xOffset + modifier - (modifier * flipBottom), yOffset + modifier, (xTile + 1) + (yTile + 1) * 32, colour, flipBottom, scale);
+        //call this whenever player=isSwimming is assigned false
+        if (!isSwimming) {
+            screen.render(xOffset + (modifier * flipBottom), yOffset + modifier, xTile + (yTile + 1) * 32, colour, flipBottom, scale);
+            screen.render(xOffset + modifier - (modifier * flipBottom), yOffset + modifier, (xTile + 1) + (yTile + 1) * 32, colour, flipBottom, scale);
 
+        }
     }
 
     @Override
