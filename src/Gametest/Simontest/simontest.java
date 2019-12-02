@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 public class simontest extends JFrame {
     
@@ -122,7 +121,7 @@ public class simontest extends JFrame {
         add(volley3);
 
 
-        musicpick.musicStart("allstar", "music");
+        MusicPick.musicStart("allstar", "music");
         setLayout(null); //Default layout
         setSize(1900, 500);
 
@@ -134,7 +133,7 @@ public class simontest extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (phase == 0) {
-                if (cloudx == 100) musicpick.musicStart("warriorattack", "");
+                if (cloudx == 100) MusicPick.musicStart("warriorattack", "");
                 cloudx += 30;
                 player.setLocation(cloudx, cloudy);
                 if (cloudx > 200) {
@@ -155,7 +154,7 @@ public class simontest extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (phase == 0) {
-                musicpick.musicStart("warriorattacked", "");
+                MusicPick.musicStart("warriorattacked", "");
                 phase = 1;
             } else if (phase == 1) {
                 timepast++;
@@ -198,7 +197,7 @@ public class simontest extends JFrame {
         public void actionPerformed(ActionEvent ae) {
 
             if (phase == 0) {
-                musicpick.musicStart("magespell", "");
+                MusicPick.musicStart("magespell", "");
                 phase = 1;
             }
             else if (phase == 1){
@@ -258,7 +257,7 @@ public class simontest extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (phase == 0) {
-                musicpick.musicStart("warriorattacked", "");
+                MusicPick.musicStart("warriorattacked", "");
                 phase = 1;
             } else if (phase == 1) {
                 timepast++;
@@ -287,11 +286,11 @@ public class simontest extends JFrame {
                     timepast = 0;
                     phase = 5;
                 }
-            } else if (phase == 5) {
+            }
+            else if (phase == 5) {
                 player.setVisible(true);
                 unusedtakedamage.stop();
                 phase = 0;
-
             }
         }
     });
@@ -302,7 +301,7 @@ public class simontest extends JFrame {
             if (phase == 0) {
                 arrow.setVisible(true);
                 if (arrowx == 300) {
-                    musicpick.musicStart("ding", "");
+                    MusicPick.musicStart("ding", "");
                 }
                 arrowx += 10;
                 arrow.setLocation(arrowx, cloudy + 50);
@@ -323,7 +322,7 @@ public class simontest extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (phase == 0) {
-                musicpick.musicStart("charge", "");
+                MusicPick.musicStart("charge", "");
                 phase = 1;
             }
             else if (phase == 1) {
@@ -333,14 +332,12 @@ public class simontest extends JFrame {
                     phase = 2;
                 }
             }
-
             else if (phase == 2) {
                 cloudx = 100;
                 player.setLocation(cloudx,cloudy);
                 phase = 0;
                 charge.stop();
             }
-           
         }
     });
     Timer volley = new Timer(10, new ActionListener() {
@@ -352,17 +349,17 @@ public class simontest extends JFrame {
             volley3.setLocation(arrowx - 400, cloudy + 50);
             if (phase == 0) {
                 volley1.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 1;
             }
             else if (phase == 1 && arrowx > cloudx + 300) {
                 volley2.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 2;
             }
             else if (phase == 2 && arrowx > cloudx + 600) {
                 volley3.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 3;
                 }
             else if (phase == 3 && arrowx > 1000) {
@@ -380,17 +377,17 @@ public class simontest extends JFrame {
             if (phase == 6) {
                 arrowx = 300;
                 volley1.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 7;
             }
             else if (phase == 7 && arrowx > cloudx + 300) {
                 volley2.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 8;
             }
             else if (phase == 8 && arrowx > cloudx + 600) {
                 volley3.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 9;
             }
             else if (phase == 9 && arrowx > 1000) {
@@ -408,17 +405,17 @@ public class simontest extends JFrame {
             }
             if (phase == 12) {
                 volley1.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 13;
             }
             else if (phase == 13 && arrowx > cloudx + 300) {
                 volley2.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 14;
             }
             else if (phase == 14 && arrowx > cloudx + 600) {
                 volley3.setVisible(true);
-                musicpick.musicStart("ding", "");
+                MusicPick.musicStart("ding", "");
                 phase = 15;
             }
             else if (phase == 15 && arrowx > 1000) {

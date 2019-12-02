@@ -97,7 +97,7 @@ public class ForestFight extends JFrame {
         add(player4Hp);
 
         hoverEffect();
-        musicpick.musicStart("forest1","music");
+        MusicPick.musicStart("forest1","music");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 

@@ -43,7 +43,7 @@ public class Hub extends JFrame {
         tutorialButton.addActionListener(e-> new LootScreen());
         exitButton.addActionListener(e -> System.exit(0));
 
-        musicpick.musicStart("mainmenu","music");
+        MusicPick.musicStart("mainmenu","music");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         setVisible(true);
