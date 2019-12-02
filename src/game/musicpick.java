@@ -1,4 +1,4 @@
-package game;
+package Game;
 
 import javax.sound.sampled.*;
 import java.io.File;
