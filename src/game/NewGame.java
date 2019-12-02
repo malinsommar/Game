@@ -1,6 +1,6 @@
-package Game;
+package game;
 
-import Fights.ForestFight;
+import fights.ForestFight;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
