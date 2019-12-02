@@ -247,12 +247,7 @@ public class simontest extends JFrame {
     //BufferedImage mage2 = ImageIO.read(new File("mage.gif"));//funkar inte
     //mage2.getGraphics().drawImage(mage2 ,500, 500, null);//funkar inte
 
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> parent of b10e117... Revert "Merge branch 'master' of https://github.com/malinsommar/Game"
-        /*
+/*
         BufferedImage mage2 = ImageIO.read((getClass().getResource("C:\\Users\\96simben\\Documents\\GitHub\\Game\\src\\cave.jpg")));
         Graphics g = mage2.getGraphics();
         g.drawImage(mage2, 0, 0, null);
@@ -466,10 +461,6 @@ public class simontest extends JFrame {
                 arrow.setVisible(true);
                 if (arrowx == 300) {
                     musicpick.musicStart("ding", "");
-<<<<<<< HEAD
-=======
-                    arrow.setVisible(true);
->>>>>>> parent of b10e117... Revert "Merge branch 'master' of https://github.com/malinsommar/Game"
                 }
                 arrowx += 10;
                 arrow.setLocation(arrowx, 270);
