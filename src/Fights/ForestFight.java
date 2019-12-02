@@ -68,7 +68,7 @@ public class ForestFight extends JFrame {
         importButtons();
         importLabels();
 
-        //Add all Labels, buttons etc.
+        //Add all Labels, buttons etc..
         add(energy);
         add(block);
         add(whosTurn);
