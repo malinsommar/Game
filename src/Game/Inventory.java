@@ -57,17 +57,17 @@ public class Inventory {
     public ImageIcon rangerEpicArmorPic = new ImageIcon("rangerEpicArmor.gif");
     public ImageIcon rangerLegendaryArmorPic = new ImageIcon("rangerLegendaryArmor.gif");
 
-    int minorHealingPotion = 10, lesserHealingPotion = 30, majorHealingPotion = 60;
-    int ownedMinorHealingPotion = 1, ownedLesserHealingPotion = 0, ownedMajorHealingPotion = 0;
+    public int minorHealingPotion = 10, lesserHealingPotion = 30, majorHealingPotion = 60;
+    public int ownedMinorHealingPotion = 1, ownedLesserHealingPotion = 0, ownedMajorHealingPotion = 0;
 
-    int minorBlockPotion = 5, lesserBlockPotion = 20, majorBlockPotion = 50;
-    int ownedMinorBlockPotion = 1, ownedLesserBlockPotion = 0, ownedMajorBlockPotion = 0;
+    public int minorBlockPotion = 5, lesserBlockPotion = 20, majorBlockPotion = 50;
+    public int ownedMinorBlockPotion = 1, ownedLesserBlockPotion = 0, ownedMajorBlockPotion = 0;
 
-    int minorEnergyPotion = 3, lesserEnergyPotion = 5, majorEnergyPotion = 10;
-    int ownedMinorEnergyPotion = 1, ownedLesserEnergyPotion = 0, ownedMajorEnergyPotion = 0;
+    public int minorEnergyPotion = 3, lesserEnergyPotion = 5, majorEnergyPotion = 10;
+    public int ownedMinorEnergyPotion = 1, ownedLesserEnergyPotion = 0, ownedMajorEnergyPotion = 0;
 
-    int minorStrengthPotion = 5, lesserStrengthPotion = 10, majorStrengthPotion = 20;
-    int ownedMinorStrengthPotion = 5, ownedLesserStrengthPotion = 10, ownedMajorStrengthPotion = 20;
+    public int minorStrengthPotion = 5, lesserStrengthPotion = 10, majorStrengthPotion = 20;
+    public int ownedMinorStrengthPotion = 1, ownedLesserStrengthPotion = 0, ownedMajorStrengthPotion = 0;
 
     public void addPotion(int potion) {
 

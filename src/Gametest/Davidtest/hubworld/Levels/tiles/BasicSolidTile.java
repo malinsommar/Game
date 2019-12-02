@@ -1,5 +1,4 @@
 package Gametest.Davidtest.hubworld.Levels.tiles;
-import Gametest.Davidtest.hubworld.gfx.Screen;
 
 public class BasicSolidTile extends  BasicTile{
 
