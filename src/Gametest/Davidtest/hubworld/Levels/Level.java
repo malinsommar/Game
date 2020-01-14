@@ -10,10 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 //Build the map around everything in the Tile-class
-public class Level1 {
+public class Level {
 
     private byte[] tiles; //an ArrayList for where the tiles are
     public int width;
@@ -23,7 +22,7 @@ public class Level1 {
     private BufferedImage image;
 
     //Assign all the variables in the constructor
-    public Level1 (String imagePath) {
+    public Level(String imagePath) {
         if (imagePath != null) {
             this.imagePath = imagePath;
             this.loadLevelFromFile();
@@ -37,7 +36,7 @@ public class Level1 {
 
     private void loadLevelFromFile() {
         try {
-            this.image = ImageIO.read(Level1.class.getResource(this.imagePath));
+            this.image = ImageIO.read(Level.class.getResource(this.imagePath));
             this.width = image.getWidth();
             this.height = image.getHeight();
             tiles = new byte[width* height];
@@ -67,7 +66,7 @@ public class Level1 {
 
     private void saveLevelToFile() {
         try {
-            ImageIO.write(image, "png", new File(Level.class.getResource(this.imagePath).getFile()));
+            ImageIO.write(image, "png", new File(java.util.logging.Level.class.getResource(this.imagePath).getFile()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -117,7 +116,7 @@ public class Level1 {
             }
         }
     }
-    //render the entities/mobs above the tiles so they wll be visible
+    //render the entities/mobs above the tiles so they'll stay visible
     public void renderEntities(Screen screen) {
         for (Entity e : entities) {
             e.render(screen);

@@ -1,8 +1,8 @@
 package Gametest.Davidtest.hubworld.Levels.tiles;
 
-public class BasicSolidTile extends  BasicTile{
+public class SolidTile extends  BasicTile{
 
-    public BasicSolidTile(int id , int x, int y, int tileColour, int levelColour) {
+    public SolidTile(int id , int x, int y, int tileColour, int levelColour) {
         super(id, x, y, tileColour, levelColour);
         this.solid = true;
 

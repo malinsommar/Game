@@ -12,8 +12,7 @@ public class Hub extends JFrame {
     Font pixelMplus;
 
     public Hub() {
-
-        super("Alterborne");
+        super("AlterBorne");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setSize(1920, 1080);
@@ -27,7 +26,7 @@ public class Hub extends JFrame {
         setContentPane(new JLabel(background)); //set background
 
         //Title of game
-        gameName = new JLabel("Alterborne");
+        gameName = new JLabel("AlterBorne");
         gameName.setForeground(Color.white);
         gameName.setFont((pixelMplus.deriveFont(100f)));
         Dimension size = gameName.getPreferredSize();

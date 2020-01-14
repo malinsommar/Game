@@ -1,24 +1,25 @@
 package Gametest.Davidtest.hubworld.entities;
 
-import Gametest.Davidtest.hubworld.Levels.Level1;
+import Gametest.Davidtest.hubworld.Levels.Level;
 import Gametest.Davidtest.hubworld.Levels.tiles.Tile;
 
-public abstract class Mob extends Entity{
+public abstract class Mob extends Entity {
 
     protected String name;
     protected int speed;
     protected int numSteps = 0;
     protected boolean isMoving;
     protected int movingDir = 1; //assign the direction the mob is facing
-    protected int scale = 1;
+    protected int scale = 1; //size of the mob
 
-    public Mob(Level1 level1, String name, int x, int y, int speed) {
+    public Mob(Level level1, String name, int x, int y, int speed) {
         super(level1);
         this.name = name;
         this.x = x;
         this.y = y;
         this.speed = speed;
     }
+
     //method to indicate where the mob is moving.
     public void move(int xa, int ya) {
         //Makes it so you can´t move two directions at once
@@ -28,38 +29,60 @@ public abstract class Mob extends Entity{
             return;
         }
         numSteps++;
+
+
         //Collision detection
         if (!hasCollided(xa, ya)) {
             //add directional indicators
-            if (ya < 0) movingDir = 0;
+            if (ya < 0)
+                movingDir = 0;
             if (ya > 0)
                 movingDir = 1;
-            if ( xa < 0)
+            if (xa < 0)
                 movingDir = 2;
             if (xa > 0)
                 movingDir = 3;
+            //create movement
             x += xa * speed;
             y += ya * speed;
         }
+
+        if (!hasEntered(xa, ya)) {
+            //add directional indicators
+            if (ya < 0)
+                movingDir = 0;
+            if (ya > 0)
+                movingDir = 1;
+            if (xa < 0)
+                movingDir = 2;
+            if (xa > 0)
+                movingDir = 3;
+        }
     }
-    public abstract boolean hasCollided (int xa, int ya);
+
+    public abstract boolean hasCollided(int xa, int ya);
 
     //compare tiles whether they are Basic or BasicSolid-tile (seen in Tile-class).
-    protected boolean isSolidTile(int xa, int ya,  int x, int y) {
-        if (level1 == null) {
-            return false;
-        }
+    protected boolean isSolidTile(int xa, int ya, int x, int y) {
         //the tile you stand on before you start moving
-        Tile lastTile = level1.getTile((this.x + x)>>3, (this.y + y) >> 3);
+        Tile lastTile = level1.getTile((this.x + x) >> 3, (this.y + y) >> 3);
         //the tile you stand on once you've started moving
-        Tile newTile = level1.getTile((this.x + x + xa)>> 3, (this.y + y + ya) >> 3);
-        //checks so that that the LastTile (first tile you spawn on) isn´t a solid block. Just so you don´t get stuck
-        if(!lastTile.equals(newTile) && newTile.isSolid()) {
-            return true;
-        }
+        Tile newTile = level1.getTile((this.x + x + xa) >> 3, (this.y + y + ya) >> 3);
+        return !lastTile.equals(newTile) //If the tile player spawns on is an IsSolid tile it won´t be solid immediately
+                && newTile.isSolid();  //newTile is Solid
         //if no difference is identified return false
-        return false;
     }
+    public abstract boolean hasEntered(int xa, int ya);
+
+    protected boolean isPathTile(int xa, int ya, int x, int y) {
+        Tile lastTile = level1.getTile((this.x + x) >> 3, (this.y + y) >> 3);
+        //the tile you stand on once you've started moving
+        Tile newTile = level1.getTile((this.x + x + xa) >> 3, (this.y + y + ya) >> 3);
+        return !lastTile.equals(newTile) //If the tile player spawns on is an IsSolid tile it won´t be solid immediately
+                && newTile.isPath();  //newTile is Solid
+    }
+
+
     public String getName() {
         return name;
     }

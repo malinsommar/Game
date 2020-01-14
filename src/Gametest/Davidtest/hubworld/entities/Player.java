@@ -1,7 +1,7 @@
 package Gametest.Davidtest.hubworld.entities;
 
 
-import Gametest.Davidtest.hubworld.Levels.Level1;
+import Gametest.Davidtest.hubworld.Levels.Level;
 import Gametest.Davidtest.hubworld.gfx.Colours;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.hub.InputHandler;
@@ -9,13 +9,13 @@ import Gametest.Davidtest.hubworld.hub.InputHandler;
 public class Player extends Mob {
 
     private InputHandler input;
-    private int colour = Colours.get(-1,111,111,543); //Assign colour for character which will be calculated within the Colours-class
+    private int colour = Colours.get(-1, 111, 111, 543); //Assign colour for character which will be calculated within the Colours-class
     private int scale = 1; //assign size to character
     protected boolean isSwimming = false; //assign the isSwimming value as natively false
     private int tickCount = 0; //counts the ticks since the last update
 
 
-    public Player(Level1 level1, int x, int y, InputHandler input) {
+    public Player(Level level1, int x, int y, InputHandler input) {
         super(level1, "Player", x, y, 1);
         this.input = input;
     }
@@ -61,8 +61,9 @@ public class Player extends Mob {
                 isSwimming = false;
             }
             tickCount++; //adds to tick whenever a move is made
-            }
         }
+    }
+
     @Override
     //render character on screen
     public void render(Screen screen) {
@@ -74,7 +75,7 @@ public class Player extends Mob {
         //the value of the bottom part of the 8x8 sprite
         int flipBottom = (numSteps >> walkingSpeed) & 1;
 
-        //change which group pixels are being presented for the character
+        //change which group of pixels are being presented for the character
         if (movingDir == 1) {
             //moves to the second 8x8 sprite
             xTile += 2;
@@ -98,16 +99,16 @@ public class Player extends Mob {
                 waterColour = Colours.get(-1, 225, 115, -1);
             } else if (tickCount % 60 < 45) {
                 yOffset -= 2;//more bop
-                waterColour = Colours.get(-1,115,-1, 225);
+                waterColour = Colours.get(-1, 115, -1, 225);
             } else {
-                waterColour = Colours.get(-1,225,115, -1);
+                waterColour = Colours.get(-1, 225, 115, -1);
             }
-            screen.render(xOffset, yOffset + 3, 0+27 * 32, waterColour, 0x00, 1);
-            screen.render(xOffset + 8, yOffset + 3, 0+27 * 32, waterColour, 0x01, 1);
+            screen.render(xOffset, yOffset + 3, 27 * 32, waterColour, 0x00, 1);
+            screen.render(xOffset + 8, yOffset + 3, 27 * 32, waterColour, 0x01, 1);
 
         }
-            screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, colour, flipTop, scale);
-            screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
+        screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, colour, flipTop, scale);
+        screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
 
         //call this whenever player=isSwimming is assigned false
         if (!isSwimming) {
@@ -121,8 +122,8 @@ public class Player extends Mob {
     //create a collisionBox for where a function will activate if character interacts with a thing within that box
     public boolean hasCollided(int xa, int ya) {
         //top left corner
-         int xMin = 0;
-         //top right corner
+        int xMin = 0;
+        //top right corner
         int xMax = 5;
         //bottom left corner
         int yMin = 3;
@@ -135,12 +136,12 @@ public class Player extends Mob {
             }
         }
         //creates a loop between bottom left and top right corner
-            for (int x = xMin; x < xMax; x++) {
-                if (isSolidTile(xa,ya,x,yMax)) {
-                    return true;
-                }
+        for (int x = xMin; x < xMax; x++) {
+            if (isSolidTile(xa, ya, x, yMax)) {
+                return true;
+            }
         }
-            //create a loop between top left and bottom left corner
+        //create a loop between top left and bottom left corner
         for (int y = yMin; y < yMax; y++) {
             if (isSolidTile(xa, ya, xMin, y)) {
                 return true;
@@ -149,6 +150,43 @@ public class Player extends Mob {
         //create a loop between top right and bottom right corner
         for (int y = yMin; y < yMax; y++) {
             if (isSolidTile(xa, ya, xMax, y)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasEntered(int xa, int ya) {
+        //top left corner
+        int xMin = 0;
+        //top right corner
+        int xMax = 5;
+        //bottom left corner
+        int yMin = 3;
+        //bottom right corner
+        int yMax = 5;
+        //create a loop between the top left and top right corner
+        for (int x = xMin; x < xMax; x++) {
+            if (isPathTile(xa, ya, x, yMin)) {
+                return true;
+            }
+        }
+        //creates a loop between bottom left and top right corner
+        for (int x = xMin; x < xMax; x++) {
+            if (isPathTile(xa, ya, x, yMax)) {
+                return true;
+            }
+        }
+        //create a loop between top left and bottom left corner
+        for (int y = yMin; y < yMax; y++) {
+            if (isPathTile(xa, ya, xMin, y)) {
+                return true;
+            }
+        }
+        //create a loop between top right and bottom right corner
+        for (int y = yMin; y < yMax; y++) {
+            if (isPathTile(xa, ya, xMax, y)) {
                 return true;
             }
         }

@@ -28,7 +28,6 @@ public class NewGame extends JFrame {
         MusicPick.musicStart("theme","music");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
-
         importFont();
         importLabels();
         importButton();
@@ -47,7 +46,6 @@ public class NewGame extends JFrame {
         //ActionListeners
         startButton.addActionListener(e -> dispose());
         startButton.addActionListener(e -> new ForestFight());
-
         setVisible(true);
     }
 

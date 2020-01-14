@@ -25,7 +25,7 @@ public class LootScreen extends JFrame {
         add(gameName);
 
 
-        musicpick.musicStart("mainmenu","music");
+        MusicPick.musicStart("mainmenu","music");
         setVisible(true);
     }
 }

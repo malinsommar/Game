@@ -1,10 +1,5 @@
 package Gametest.Davidtest.hubworld.Levels.tiles;
 
-import Gametest.Davidtest.hubworld.Levels.Level1;
-import Gametest.Davidtest.hubworld.gfx.Screen;
-
-import java.util.logging.Level;
-
 public class AnimatedTile extends BasicTile {
 
     private int[][] animationTileCoordinates;

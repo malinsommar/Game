@@ -1,6 +1,6 @@
 package Gametest.Davidtest.hubworld.hub;
 
-import Gametest.Davidtest.hubworld.Levels.Level1;
+import Gametest.Davidtest.hubworld.Levels.Level;
 import Gametest.Davidtest.hubworld.entities.Player;
 import Gametest.Davidtest.hubworld.gfx.Screen;
 import Gametest.Davidtest.hubworld.gfx.SpriteSheet;
@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+
 
 public class Game extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
@@ -28,7 +29,7 @@ public class Game extends Canvas implements Runnable{
     private int[] colours = new int[6*6*6];
     private Screen screen;
     public InputHandler input;
-    public Level1 level1;
+    public Level level1;
     public  Player player;
     public Game() {
         setMinimumSize(new Dimension(WIDTH* SCALE, HEIGHT * SCALE));
@@ -64,9 +65,10 @@ public class Game extends Canvas implements Runnable{
         }
         screen = new Screen(WIDTH,HEIGHT, new SpriteSheet("/Gametest/Davidtest/hubworld/resources/Sprite_sheet.png"));
         input = new InputHandler(this); //call input-object
-        level1 = new Level1("/Gametest/Davidtest/hubworld/resources/levels/lake_level.png"); //call Level-object
+        level1 = new Level("/Gametest/Davidtest/hubworld/resources/levels/lake_level.png");
         player = new Player(level1,0,0,input); //call Player-object
-        level1.addEntity(player); //add Player-object into the Level-object
+        level1.addEntity(player);
+
     }
     private synchronized void start() {
         running = true;

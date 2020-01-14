@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Shop extends JFrame {
 
-    private Inventory inv = new Invntory();
+    private Inventory inv = new Inventory();
     private Warrior w = new Warrior();
     private Healer h = new Healer();
     private Ranger r = new Ranger();
